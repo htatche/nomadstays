@@ -258,4 +258,5 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   
   config.omniauth :twitter, 'o5O3vPRBVL3kEmRMcGqWIyBkm', 'LP8ZNSlMDU54vcrTco5yuVvGfACQ9H2yCwB68YMZjfsu2p0ZS1', scope: 'user,public_repo'
+  config.omniauth :google_oauth2, "797206073625-jerq2prodcrro9153efr0fuf6ek47u7q.apps.googleusercontent.com", "3RW3C1xMCbTR41wNlel4B_bJ", :scope => 'email,profile'
 end
