@@ -40,7 +40,10 @@ gem 'html2haml'
 gem "haml-rails", "~> 0.9"
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass' #, '~> 3.3.4'
+
+# Forms
 gem 'simple_form'
+gem 'country_select'
 
 
 group :development, :test do

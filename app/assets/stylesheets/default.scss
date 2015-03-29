@@ -1,0 +1,28 @@
+p.notice, p.alert {
+	display: none;
+}
+
+.title {
+	margin-bottom: 20px
+}
+
+form.new_user {
+	width: 25%;
+
+	.user_birthdate {
+
+		label {
+	    width: 100%;
+		}
+
+		select {
+	    width: 33.33%;
+	    float: left;
+		}
+
+	}
+}
+
+.signon {
+	margin: 10px
+}

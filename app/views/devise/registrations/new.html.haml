@@ -1,22 +1,20 @@
-%h2 Sign up
+.row
+  .col-md-12
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = f.input :email
+      / = f.input :username
+      = f.input :password, autocomplete: "off"      
+      - if @validatable
+        %em
+          (#{@minimum_password_length} characters minimum)  
+      = f.input :password_confirmation, autocomplete: "off"      
+      = f.input :photo, :as => :file
+      = f.input :birthdate
+      = f.input :origin_country
+      = f.input :current_city
+      = f.input :current_country
+      / = f.input :description Discarded for now
+      = f.input :activity
+      = f.hint "I walk on the moon"
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    - if @validatable
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+      = f.button :submit, "Sign up"
