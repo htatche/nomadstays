@@ -49,7 +49,6 @@ gem 'bootstrap-social-rails'
 gem 'simple_form'
 gem 'country_select'
 
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -59,5 +58,9 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+	# Catch mails in development
+	# Start serve with command mailcatcher and open http://localhost:1080
+  gem 'mailcatcher'
 end
 

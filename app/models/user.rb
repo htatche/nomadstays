@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, #, :validatable, #:confirmable,
+         :recoverable, :rememberable, :trackable, :confirmable, #, :validatable, #:confirmable,
          :omniauthable, :omniauth_providers => [:twitter, :google_oauth2]
 
   has_many :identities, :dependent => :delete_all

@@ -11,10 +11,5 @@ class AddMoreColumnsToUsers < ActiveRecord::Migration
 		add_column :users, :description, :string            
 		add_column :users, :activity, :string
 		add_column :users, :thrusted, :integer
-
-    add_column :users, :provider, :string
-    add_column :users, :uid, :string
-
-		change_column	:users, :email, :string, :unique => true
   end
 end
