@@ -1,5 +1,7 @@
 .row
   .col-md-12
+    %h3 Sign up
+
     = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = f.input :email
       = f.input :password, autocomplete: "off"      

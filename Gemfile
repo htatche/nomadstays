@@ -40,6 +40,10 @@ gem 'html2haml'
 gem "haml-rails", "~> 0.9"
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass' #, '~> 3.3.4'
+gem 'font-awesome-sass', '~> 4.3.1'
+
+# Sign-on social networks
+gem 'bootstrap-social-rails'
 
 # Forms
 gem 'simple_form'
