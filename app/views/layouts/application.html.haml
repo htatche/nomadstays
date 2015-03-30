@@ -3,19 +3,31 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Nomadstays
+
+    / Google maps
+    %script{:src => "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry", :type => "text/javascript"}
+    %script{:src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", :type => "text/javascript"}    
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
 
-    = if flash[:alert]
-      %p.bg-danger= flash[:alert]
+    .container-fluid
+      .row
+        .col-md-2
+          .left-panel
+            = render "menu/menu"
 
-    = if flash[:notice]      
-      %p.bg-warning= flash[:notice]
+        .col-md-10
+          .main-panel
+          = if flash[:alert]
+            %p.bg-danger= flash[:alert]
 
-  .container-fluid
-    .title
-      %h1 Nomad | Stays
+          = if flash[:notice]      
+            %p.bg-warning= flash[:notice]
 
-    = yield
+          .title
+            %h1 Nomad | Stays
+
+          = yield

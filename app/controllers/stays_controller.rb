@@ -1,0 +1,2 @@
+class StaysController < ApplicationController
+end

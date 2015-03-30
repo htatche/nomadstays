@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # Users
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations' }, class_name: 'FormUser'
   get 'users/:id' => 'users#profile'
-  # resources :authentications
+
+  # Stays
+  resources :stays
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
