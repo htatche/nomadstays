@@ -19,6 +19,12 @@ form.new_user, form.edit_user {
 	}
 }
 
-.signon {
+.signon-links {
 	margin-top: 10px
+}
+
+.gravatar {
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;	
 }

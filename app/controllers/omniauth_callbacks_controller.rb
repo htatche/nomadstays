@@ -10,10 +10,24 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def generic_callback( provider )
     @identity = Identity.find_for_oauth env["omniauth.auth"]
-
     @user = @identity.user || current_user
+
     if @user.nil?
-      @user = User.new( email: @identity.email || "" )
+      # If a user had already registered using this email, we just linked it up
+      # to this identity
+      @user_by_email = User.find_by_email @identity.email
+      if @user_by_email
+        @user = @user_by_email
+      else
+        full_name = @identity.build_name
+        @user = User.new(
+          email: @identity.email || @user_by_email || "",
+          first_name: full_name[0],
+          last_name: full_name[1],
+          photo: @identity.image
+        )
+      end  
+
       @user.skip_confirmation! 
       @user.save
       @identity.update_attribute( :user_id, @user.id )

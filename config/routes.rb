@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations' }, class_name: 'FormUser'
-  # devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }, path_names: {registration: 'register'}, class_name: 'FormUser'
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
   # You can have the root of your site routed with "root"
   root :to => "home#index"
-  resources :authentications
+
+  # Users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations' }, class_name: 'FormUser'
+  get 'users/:id' => 'users#profile'
+  # resources :authentications
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -17,4 +17,19 @@ class Identity < ActiveRecord::Base
     identity.save
     identity
   end
+
+  # Twitter doesnt separate First and Last names
+  def build_name
+    full_name = name.split
+
+    if full_name.size == 1 then 
+      full_name[1] = ""
+    elsif full_name.size == 0 then
+      full_name[0] = ""
+      full_name[1] = ""
+    end  
+
+    full_name  
+  end
+
 end

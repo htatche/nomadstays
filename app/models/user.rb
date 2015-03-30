@@ -8,19 +8,6 @@ class User < ActiveRecord::Base
 
   has_many :identities, :dependent => :delete_all
 
-  def self.build_name(full_name)
-    full_name = full_name.split
-
-    if full_name.size == 1 then 
-      full_name[1] = ""
-    elsif full_name.size == 0 then
-      full_name[0] = ""
-      full_name[1] = ""
-    end  
-
-    full_name  
-  end
-
   def twitter
     identities.where( :provider => "twitter" ).first
   end
@@ -40,6 +27,10 @@ class User < ActiveRecord::Base
     end
     @google_oauth2_client
   end  
+
+  def full_name
+    first_name + " " + last_name
+  end
 
 	# def self.find_for_twitter_oauth2(auth)
  #    # Twitter doesnt provide First and Last name,
