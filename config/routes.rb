@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }, path_names: {registration: 'register'}
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations' }, class_name: 'FormUser'
+  # devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }, path_names: {registration: 'register'}, class_name: 'FormUser'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
