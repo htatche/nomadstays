@@ -1,0 +1,87 @@
+.row
+  .col-md-12
+    %h3 Add a new stay
+
+    = simple_form_for @stay, :method => :post do |f|    
+      / = f.hidden :step
+
+      %h4 What sort of accomodation do you offer ?
+
+      = f.select :accomodation_type, ["Apartment", "House", "Room"]
+
+      / Description
+
+      %h4 Write a beautiful description
+
+      .panel.panel-default
+        .panel-body
+          .input-group
+            = f.input :title,
+              :input_html => { :value => 'Fully furnitured appartment by the sea' }
+            = f.input :description
+
+      / Location
+
+      %h4 Where is it ?
+      %p Don't worry, we will only offer an approximate location   until booking is completed
+
+      .panel.panel-default
+        .panel-body
+
+          .row
+            .col-md-6
+
+              .input-group
+                = f.input :country
+                = f.input :state 
+                = f.input :city
+                = f.input :full_street_address
+                = f.hint "Once you have filled those fields please fine-grain the position by clicking on the map"
+
+            .col-md-6
+
+              = render "new_stay_map"                
+
+      / Connection
+
+      %h4 What sort of connetion is available ?
+      %p Remember, only stays that have an internet connection will be listed
+
+      .panel.panel-default
+        .panel-body
+          .input-group
+            = f.input :wifi
+            = f.select :wifi_speed,
+              ["< 1 Mbps", "1 - 3 Mbps", "5 Mbps", "10 Mbps", "> 10 Mbps"],
+              :label => "What is the speed of your internet connection ?"
+            = f.input :router_access, :label => "Does your guest has phisycal access to the router ? (in case he needs to restart it)"
+            = f.input :mobile_data
+            = f.select :mobile_data_speed,
+              ["< 1 Mbps", "1 - 3 Mbps", "5 Mbps", "10 Mbps", "> 10 Mbps"],
+              :label => "What is the speed of your mobile data connection in your place ?"
+
+      / Amenities
+
+      %h4 Does your place offer amenities ?
+
+      .panel.panel-default
+        .panel-body
+          .input-group
+            = f.input :terrace
+            = f.input :desk
+            = f.hint "Having a desk will give you a better score"
+
+      / Extra services
+
+      %h4 Would you like to offer any extra service ?
+      %p Make some extra bucks while offering a more comfortable stay
+
+      .panel.panel-default
+        .panel-body
+          .input-group
+            = f.input :laundry
+            = f.input :cleaning
+            = f.input :data_sim_card, :label => "Data SIM Card"
+            = f.input :airport_pickup, :label => "Airport Pickup"
+
+      = f.button :submit, "Add"

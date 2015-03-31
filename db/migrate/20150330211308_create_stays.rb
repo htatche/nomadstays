@@ -2,13 +2,14 @@ class CreateStays < ActiveRecord::Migration
   def change
     create_table :stays do |t|
       t.string :user_id
+      t.string  :title,                       :null => false
       t.float  :latitude
       t.float  :longitude
       t.string :city,                         :null => false
       t.string :state,                        :null => false
       t.string :country,                      :null => false
       t.string :full_street_address,          :null => false
-      t.string :airport_transfer
+      t.boolean :airport_pickup
       t.boolean :laundry
       t.boolean :cleaning
       t.boolean :data_sim_card

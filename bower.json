@@ -1,0 +1,20 @@
+{
+  "name": "nomadstays",
+  "version": "0.0.0",
+  "homepage": "https://github.com/htatche/nomadstays",
+  "authors": [
+    "Herve Tatche <herve.tatche@gmail.com>"
+  ],
+  "description": "Your new worldwide desk",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gmaps": "~0.4.17"
+  }
+}
