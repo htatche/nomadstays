@@ -26,17 +26,11 @@
       / Apartment 
       #accomodation_is_apartment
         = f.simple_fields_for @stay.apartment do |a|
-
-          = a.input :nrooms,        :label => "How many rooms does it have ?"
-          = a.input :floor,         :label => "In what floor is it ?"
-          = a.input :lift,          :label => "Does the building have a lift ?"
-          / Later we can showa message depending on which floor is this apartment
-          / "Wow, 4 floors is high enough ! Does the building have a lift ?"
-          = a.input :security,      :label => "Is there some sort security in the building ?"
+          = render :partial => 'form_apartment', :locals => {:a => a}
 
       / House            
       #accomodation_is_house
-        = f.simple_fields_for :house do |h|
+        = f.simple_fields_for @stay.house do |h|
           = render :partial => 'form_house', :locals => {:h => h}
 
       / Location

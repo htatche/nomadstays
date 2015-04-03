@@ -33,7 +33,7 @@ class StaysController < ApplicationController
 
     if input[:accomodation_type] == "House"
 
-      house_params = input[:house_attributes]
+      house_params = input[:house]
 
       @stay.house = House.new(
         :stay_id => @stay.id,
@@ -44,6 +44,7 @@ class StaysController < ApplicationController
       )
 
       @stay.house.save!
+      @stay.apartment = Apartment.new
       type = @stay.house
 
     elsif input[:accomodation_type] == "Apartment"
@@ -59,7 +60,8 @@ class StaysController < ApplicationController
         :security     => apartment_params[:security],
       )
 
-      @stay.apartment.save!        
+      @stay.apartment.save!    
+      @stay.house = House.new
       type = @stay.apartment
 
     end      

@@ -3,7 +3,7 @@
    ========================================================================== */
 
 h3 {
-	margin-bottom: 20px
+  margin-bottom: 20px
 }
 
 
@@ -13,55 +13,55 @@ h3 {
 
 .main-menu {
 
-	width: 80px;
-	padding: 10px;
+  width: 80px;
+  padding: 10px;
 
-	.btn {
-		width: 75px;
-		height: 75px;
+  .btn {
+    width: 75px;
+    height: 75px;
 
-		margin-bottom: 10px;
-	}
+    margin-bottom: 10px;
+  }
 
-	.glyphicon {
-		font-size: 30px;
-	}
+  .glyphicon {
+    font-size: 30px;
+  }
 }
 
 .main-panel {
-	padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 
 /* ==========================================================================
-		Users
-	 ========================================================================== */
+    Users
+   ========================================================================== */
 
 form.new_user, form.edit_user {
-	width: 25%;
+  width: 25%;
 
-	.user_birthdate {
+  .user_birthdate {
 
-		label {
-	    width: 100%;
-		}
+    label {
+      width: 100%;
+    }
 
-		select {
-	    width: 33.33%;
-	    float: left;
-		}
+    select {
+      width: 33.33%;
+      float: left;
+    }
 
-	}
+  }
 }
 
 .signon-links {
-	margin-top: 10px
+  margin-top: 10px
 }
 
 .gravatar {
-	border-radius: 50%;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;	
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%; 
 }
 
 /* ==========================================================================
@@ -72,13 +72,13 @@ form.new_user, form.edit_user {
  * New
  */
 
- 	.new_stay {
- 		.map-container {
- 			margin-top: 25px;
- 		}
+  .new_stay {
+    .map-container {
+      margin-top: 25px;
+    }
 
- 		#accomodation_is_apartment, #accomodation_is_house {
- 			display: none;
- 		}
- 	}
+    #accomodation_is_apartment, #accomodation_is_house {
+      display: none;
+    }
+  }
 
