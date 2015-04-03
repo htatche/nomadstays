@@ -1,0 +1,8 @@
+%h3 Rent a new room in #{@stay.title}
+
+= simple_form_for(@room, :url => stay_rooms_path(@stay.id)) do |f|
+	= f.input :title
+
+/ = simple_form , :method => :post do |f|    
+/ = f.input :stay_id, :as => :hidden
+/ [@business_area, @business_flow]

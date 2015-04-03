@@ -1,7 +1,8 @@
 class CreateStays < ActiveRecord::Migration
   def change
     create_table :stays do |t|
-      t.string :user_id
+      t.belongs_to :user, :index => true
+      
       t.string  :title,                       :null => false
       t.float  :latitude
       t.float  :longitude

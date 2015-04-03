@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330211308) do
+ActiveRecord::Schema.define(version: 20150403135135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apartments", force: :cascade do |t|
+    t.integer  "stay_id"
+    t.integer  "nrooms"
+    t.integer  "floor"
+    t.boolean  "lift"
+    t.boolean  "security"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "apartments", ["stay_id"], name: "index_apartments_on_stay_id", using: :btree
+
+  create_table "houses", force: :cascade do |t|
+    t.integer  "stay_id"
+    t.boolean  "garden"
+    t.boolean  "terrace"
+    t.boolean  "alarm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "houses", ["stay_id"], name: "index_houses_on_stay_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -34,8 +57,22 @@ ActiveRecord::Schema.define(version: 20150330211308) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "house_id"
+    t.integer  "apartment_id"
+    t.string   "title"
+    t.string   "sqm"
+    t.string   "desk"
+    t.string   "kitchen_access"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "rooms", ["apartment_id"], name: "index_rooms_on_apartment_id", using: :btree
+  add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
+
   create_table "stays", force: :cascade do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "title",                null: false
     t.float    "latitude"
     t.float    "longitude"
@@ -61,6 +98,8 @@ ActiveRecord::Schema.define(version: 20150330211308) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  add_index "stays", ["user_id"], name: "index_stays_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

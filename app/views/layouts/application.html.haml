@@ -20,13 +20,13 @@
 
         .col-md-10
           .main-panel
-          = if flash[:alert]
-            %p.bg-danger= flash[:alert]
+            - if flash[:alert]
+              %p.bg-danger= flash[:alert]
 
-          = if flash[:notice]      
-            %p.bg-warning= flash[:notice]
+            - if flash[:notice]      
+              %p.bg-warning= flash[:notice]
 
-          .title
-            %h1 Nomad | Stays
+            .title
+              %h1 Nomad | Stays
 
-          = yield
+            = yield

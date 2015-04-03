@@ -28,6 +28,10 @@ h3 {
 	}
 }
 
+.main-panel {
+	padding-bottom: 10px;
+}
+
 
 /* ==========================================================================
 		Users
@@ -71,6 +75,10 @@ form.new_user, form.edit_user {
  	.new_stay {
  		.map-container {
  			margin-top: 25px;
+ 		}
+
+ 		#accomodation_is_apartment, #accomodation_is_house {
+ 			display: none;
  		}
  	}
 

@@ -3,11 +3,8 @@
     %h3 Add a new stay
 
     = simple_form_for @stay, :method => :post do |f|    
-      / = f.hidden :step
-
-      %h4 What sort of accomodation do you offer ?
-
-      = f.select :accomodation_type, ["Apartment", "House", "Room"]
+      = f.input :latitude, :as => :hidden
+      = f.input :longitude, :as => :hidden
 
       / Description
 
@@ -16,9 +13,31 @@
       .panel.panel-default
         .panel-body
           .input-group
-            = f.input :title,
-              :input_html => { :value => 'Fully furnitured appartment by the sea' }
+            = f.input :title
+            = f.hint "Type something that will attract nomads. For example: Fully furnished apartment by the sea"
             = f.input :description
+
+      / Accomodation Type
+
+      %h4 What sort of accomodation do you offer ?
+
+      = f.select :accomodation_type, ["Select one", "Apartment", "House", "Room"]
+
+      / Apartment 
+      #accomodation_is_apartment
+        = f.simple_fields_for @stay.apartment do |a|
+
+          = a.input :nrooms,        :label => "How many rooms does it have ?"
+          = a.input :floor,         :label => "In what floor is it ?"
+          = a.input :lift,          :label => "Does the building have a lift ?"
+          / Later we can showa message depending on which floor is this apartment
+          / "Wow, 4 floors is high enough ! Does the building have a lift ?"
+          = a.input :security,      :label => "Is there some sort security in the building ?"
+
+      / House            
+      #accomodation_is_house
+        = f.simple_fields_for :house do |h|
+          = render :partial => 'form_house', :locals => {:h => h}
 
       / Location
 

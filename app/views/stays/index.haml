@@ -1,0 +1,5 @@
+%table.table
+	- @stays.each do |stay|
+		.tr
+			.td
+				=link_to stay.title, stay_path(stay.id)

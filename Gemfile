@@ -66,5 +66,11 @@ group :development, :test do
 	# Catch mails in development
 	# Start serve with command mailcatcher and open http://localhost:1080
   gem 'mailcatcher'
+
+  # Chrome Rails Panel extension
+  gem 'meta_request'
+
+  # Pretty print objects on console
+  gem 'awesome_print'
 end
 

@@ -1,28 +1,12 @@
-== README
+== Developers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+We are still working on the database schema, so to avoid creating a myriad of new migrations we just modify
+previous one.
 
-Things you may want to cover:
+In order to update your local codebase after pulling the code please do so:
 
-* Ruby version
+		git pull origin master
+		rake db:drop
+		rake db:migrate
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This will re-run all the migrations and leave you with a clean database

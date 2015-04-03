@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"lat",
+				"latLng"
+			],
+			[
 				"tween",
 				"tweens_chain"
 			],
@@ -183,6 +187,33 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "class StaysController < ApplicationController\n	def new\n		@stay = Stay.new\n	end\n\n	def create\n		input = params[:stay]\n\n\n		@stay = Stay.new(\n      :user_id => current_user.id,\n\n  		:title => input[:title],\n      :description => input[:description],\n\n  		:full_street_address => input[:full_street_address],\n  		:city  => input[:city],\n  		:state  => input[:state],\n  		:country  => input[:country],\n\n  		:latitude => input[:latitude],\n  		:longitude => input[:longitude],\n\n  		:wifi => input[:wifi],\n  		:wifi_speed => input[:wifi_speed]\n  	)\n\n		@stay.save\n\n  	if @stay.persisted?\n  		redirect_to :action => 'show', :id => @stay.id\n  	else\n  		render \"new\"\n  	end\n	end\n\n  def index\n    @stays = current_user.stays\n  end\n\n	def show\n		@stay = Stay.find params[:id]\n	end\nend",
+			"file": "app/controllers/stays_controller.rb",
+			"file_size": 793,
+			"file_write_time": 130724582800000000,
+			"settings":
+			{
+				"buffer_size": 768,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gemfile",
+			"settings":
+			{
+				"buffer_size": 1909,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/stays/index.haml",
+			"settings":
+			{
+				"buffer_size": 149,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -281,24 +312,43 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/htatche/dev/nomadstays"
+		"/Users/htatche/dev/nomadstays",
+		"/Users/htatche/dev/nomadstays/app",
+		"/Users/htatche/dev/nomadstays/app/views",
+		"/Users/htatche/dev/nomadstays/app/views/stays"
 	],
 	"file_history":
 	[
-		"/Users/htatche/dev/nomadstays/db/migrate/20150329013302_add_more_columns_to_users.rb",
+		"/Users/htatche/dev/nomadstays/db/schema.rb",
+		"/Users/htatche/dev/nomadstays/app/assets/javascripts/stays.js",
+		"/Users/htatche/dev/nomadstays/app/models/stay.rb",
+		"/Users/htatche/dev/nomadstays/app/models/user.rb",
+		"/Users/htatche/dev/nomadstays/.irbrc",
+		"/Users/htatche/dev/nomadstays/Gemfile",
+		"/Users/htatche/dev/nomadstays/config/routes.rb",
+		"/Users/htatche/dev/nomadstays/app/views/stays/new.haml",
+		"/Users/htatche/dev/nomadstays/app/controllers/stays_controller.rb",
 		"/Users/htatche/dev/nomadstays/.gitignore",
+		"/Users/htatche/dev/nomadstays/nomadstays.sublime-project",
+		"/Users/htatche/dev/nomadstays_old/db/migrate/20150329013302_add_more_columns_to_users.rb",
+		"/Users/htatche/dev/nomadstays_old/config/initializers/devise.rb",
+		"/Users/htatche/dev/nomadstays_old/app/models/user.rb",
+		"/Users/htatche/dev/nomadstays_old/app/controllers/home_controller.rb",
+		"/Users/htatche/dev/nomadstays_old/config/routes.rb",
+		"/Users/htatche/dev/nomadstays_old/app/views/layouts/application.html.erb",
+		"/Users/htatche/dev/nomadstays_old/config/environments/development.rb",
+		"/Users/htatche/dev/nomadstays_old/config/environment.rb",
+		"/Users/htatche/dev/nomadstays_old/Gemfile",
+		"/Users/htatche/dev/nomadstays_old/config/database.yml",
+		"/Users/htatche/dev/nomadstays/db/migrate/20150329013302_add_more_columns_to_users.rb",
 		"/Users/htatche/dev/nomadstays/db/migrate/20150327182324_devise_create_users.rb",
 		"/Users/htatche/dev/nomadstays/db/migrate/20150327220922_add_name_and_photo_to_users.rb",
 		"/Users/htatche/dev/nomadstays/db/migrate/20150328124631_add_nickname_to_users.rb",
-		"/Users/htatche/dev/nomadstays/db/schema.rb",
-		"/Users/htatche/dev/nomadstays/Gemfile",
-		"/Users/htatche/dev/nomadstays/app/models/user.rb",
 		"/Users/htatche/dev/nomadstays/app/controllers/omniauth_callbacks_controller.rb",
 		"/Users/htatche/dev/nomadstays/app/views/home/index.html.erb",
 		"/Users/htatche/dev/nomadstays/app/views/devise/shared/_links.erb",
 		"/Users/htatche/dev/nomadstays/app/views/layouts/application.html.erb",
 		"/Users/htatche/dev/nomadstays/app/controllers/users_controller.rb",
-		"/Users/htatche/dev/nomadstays/config/routes.rb",
 		"/Users/htatche/dev/nomadstays/config/initializers/devise.rb",
 		"/Users/htatche/dev/nomadstays/app/views/devise/unlocks/new.html.erb",
 		"/Users/htatche/dev/nomadstays/app/views/devise/sessions/new.html.erb",
@@ -396,23 +446,7 @@
 		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/single.php",
 		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/header.php",
 		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/index.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-config.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/menu-projectes.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/menu-serveis.php.bk.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/sidebar.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/content.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/functions.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/footer.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/menu-nosaltres.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/menu-filosofia.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/menu-serveis.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/search.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-settings.php",
-		"/Users/htatche/dev/curios/src/templates/index.jade",
-		"/Users/htatche/dev/curios/public/main.css",
-		"/Users/htatche/dev/curios/stylesheets/main.sass",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/inc/custom-header.php",
-		"/Applications/MAMP/htdocs/wordpress/wp-content/themes/publish/comments.php"
+		"/Applications/MAMP/htdocs/wordpress/wp-config.php"
 	],
 	"find":
 	{
@@ -460,6 +494,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"render",
+			"twitter",
 			":",
 			",",
 			"game_loop",
@@ -585,9 +621,7 @@
 			"random_x",
 			"game.world.randomX",
 			"boun",
-			"var",
-			"block",
-			"ground"
+			"var"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -615,13 +649,97 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
-			]
-		},
-		{
-			"sheets":
-			[
+				{
+					"buffer": 0,
+					"file": "app/controllers/stays_controller.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 768,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								711,
+								711
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Gemfile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1909,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 515.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/stays/index.haml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 149,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -642,18 +760,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -685,6 +796,66 @@
 		"selected_items":
 		[
 			[
+				"schem",
+				"db/schema.rb"
+			],
+			[
+				"stay",
+				"app/assets/javascripts/stays.js"
+			],
+			[
+				"gemf",
+				"Gemfile"
+			],
+			[
+				"user",
+				"app/models/user.rb"
+			],
+			[
+				"js",
+				"app/assets/javascripts/stays.js"
+			],
+			[
+				"new",
+				"app/views/stays/new.haml"
+			],
+			[
+				"s",
+				"app/controllers/stays_controller.rb"
+			],
+			[
+				"stays",
+				"app/controllers/stays_controller.rb"
+			],
+			[
+				"rou",
+				"config/routes.rb"
+			],
+			[
+				"proje",
+				"nomadstays.sublime-project"
+			],
+			[
+				"giti",
+				".gitignore"
+			],
+			[
+				"appli",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"develo",
+				"config/environments/development.rb"
+			],
+			[
+				"envir",
+				"config/environment.rb"
+			],
+			[
+				"data",
+				"config/database.yml"
+			],
+			[
 				"i",
 				".gitignore"
 			],
@@ -699,10 +870,6 @@
 			[
 				"ign",
 				".gitignore"
-			],
-			[
-				"gemf",
-				"Gemfile"
 			],
 			[
 				"config",
@@ -739,10 +906,6 @@
 			[
 				"models/",
 				"app/models/user.rb"
-			],
-			[
-				"appli",
-				"app/views/layouts/application.html.erb"
 			],
 			[
 				"route",
@@ -823,10 +986,6 @@
 			[
 				"footer",
 				"footer.php"
-			],
-			[
-				"proje",
-				"menu-projectes.php"
 			],
 			[
 				"servei",
@@ -1147,54 +1306,6 @@
 			[
 				"department",
 				"app/assets/javascripts/pos/templates/order_discount_department_buttons.emblem"
-			],
-			[
-				"order.jsc",
-				"app/assets/javascripts/pos/models/order.js.coffee"
-			],
-			[
-				"menuscontr",
-				"app/assets/javascripts/pos/controllers/menus_controller.js.coffee"
-			],
-			[
-				"salesbutton",
-				"app/assets/javascripts/pos/controllers/sales_screen_buttons_controller.js.coffee"
-			],
-			[
-				"lineitemjs",
-				"app/assets/javascripts/pos/models/line_item.js.coffee"
-			],
-			[
-				"salesbuttons",
-				"app/assets/javascripts/pos/controllers/sales_screen_buttons_controller.js.coffee"
-			],
-			[
-				"editselect",
-				"app/assets/javascripts/pos/controllers/edit_selected_line_item_controller.js.coffee"
-			],
-			[
-				"order_discount_department_buttons",
-				"app/assets/javascripts/pos/templates/order_discount_department_buttons.emblem"
-			],
-			[
-				"discountemblem",
-				"app/assets/javascripts/pos/templates/edit_discount_content.emblem"
-			],
-			[
-				"pos_lock",
-				"app/assets/javascripts/pos/util/pos_locks.js.coffee"
-			],
-			[
-				"productsizecontroll",
-				"app/assets/javascripts/pos/controllers/product_size_buttons_controller.js.coffee"
-			],
-			[
-				"editselectcontr",
-				"app/assets/javascripts/pos/controllers/edit_selected_line_item_controller.js.coffee"
-			],
-			[
-				"clock",
-				"app/assets/javascripts/pos/templates/clockin.emblem"
 			]
 		],
 		"width": 0.0
@@ -1207,7 +1318,7 @@
 		[
 			[
 				"",
-				"~/dev/nomadstays_landing/landing_page.sublime-project"
+				"~/dev/tetris/tetris.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -1280,8 +1391,8 @@
 	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 182.0,
+	"side_bar_visible": false,
+	"side_bar_width": 332.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

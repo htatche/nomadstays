@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :confirmable, #, :validatable, #:confirmable,
          :omniauthable, :omniauth_providers => [:twitter, :google_oauth2]
 
-  has_many :identities, :dependent => :delete_all
+  has_many :identities,       :dependent => :delete_all
+  has_many :stays,            :dependent => :delete_all
 
   def twitter
     identities.where( :provider => "twitter" ).first

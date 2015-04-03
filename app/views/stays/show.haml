@@ -1,2 +1,12 @@
 = @stay.title
 = render "map"
+
+- if !@stay.rooms.any?
+	%p You are not renting any room in this apartment
+
+	= link_to 'Rent a room', new_stay_room_path(@stay.id)
+
+- if @stay.rooms.any?
+	%h4 Rooms
+	- @stay.rooms.each do |room|
+		= link_to room.title, stay_room_path(stay_id: stay.id)

@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'users/:id' => 'users#profile'
 
   # Stays
-  resources :stays
+  # resources :stays
+
+  resources :stays do
+    resources :rooms
+  end  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
