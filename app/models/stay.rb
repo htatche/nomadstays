@@ -22,6 +22,12 @@ class Stay < ActiveRecord::Base
   validates_presence_of       :latitude
   validates_presence_of       :longitude
 
+  validates_presence_of       :accomodation_type
+
+  validates :accomodation_type, presence: true, allow_blank: false
+
+  validates_inclusion_of :wifi, in: [true, false]
+
   def container
     stay.apartment || stay.house
   end

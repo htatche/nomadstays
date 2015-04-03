@@ -1,89 +1,92 @@
 class StaysController < ApplicationController
-	def new
-		@stay = Stay.new
 
-    @stay.apartment = Apartment.new
-    @stay.house =     House.new
-	end
+  public
 
-	def create
-		input = params[:stay]
+  	def new
+  		@stay = Stay.new
 
-		@stay = Stay.new(
-      :user_id => 1,
-
-  		:title => input[:title],
-      :description => input[:description],
-
-  		:full_street_address => input[:full_street_address],
-  		:city  => input[:city],
-  		:state  => input[:state],
-  		:country  => input[:country],
-
-  		:latitude => input[:latitude],
-  		:longitude => input[:longitude],
-
-      :accomodation_type => input[:accomodation_type],
-
-  		:wifi => input[:wifi],
-  		:wifi_speed => input[:wifi_speed]
-  	)
-
-    @stay.save
-
-    if input[:accomodation_type] == "House"
-
-      house_params = input[:house]
-
-      @stay.house = House.new(
-        :stay_id => @stay.id,
-
-        :garden  => house_params[:garden],
-        :terrace  => house_params[:terrace],
-        :alarm  => house_params[:alarm]          
-      )
-
-      @stay.house.save!
       @stay.apartment = Apartment.new
-      type = @stay.house
+      @stay.house =     House.new
+  	end
 
-    elsif input[:accomodation_type] == "Apartment"
+  	def create
+  		input = params[:stay]
 
-      apartment_params = input[:apartment]
+      if input[:accomodation_type] == "Select one"
+        accomodation_type = ""
+      else
+        accomodation_type = input[:accomodation_type]
+      end
 
-      @stay.apartment = Apartment.new(
-        :stay_id => @stay.id,
+      apartment_params = 
 
-        :nrooms       => apartment_params[:nrooms],
-        :floor        => apartment_params[:floor],
-        :lift         => apartment_params[:lift],          
-        :security     => apartment_params[:security],
-      )
+  		@stay = Stay.new(
+        :user_id => current_user.id,
 
-      @stay.apartment.save!    
-      @stay.house = House.new
-      type = @stay.apartment
+    		:title => input[:title],
+        :description => input[:description],
 
-    end      
+    		:full_street_address => input[:full_street_address],
+    		:city  => input[:city],
+    		:state  => input[:state],
+    		:country  => input[:country],
 
-    if @stay.persisted? and type.persisted?
-      redirect_to :action => 'show', :id => @stay.id
-    else
-      render "new"
-    end    
+    		:latitude => input[:latitude],
+    		:longitude => input[:longitude],
 
-	end
+        :accomodation_type => accomodation_type,
 
-  def index
-    @stays = current_user.stays
-  end
+    		:wifi => input[:wifi],
+    		:wifi_speed => input[:wifi_speed],
+    	)
 
-	def show
-    @stay = Stay.find params[:id]
+      if input[:accomodation_type] == "House"
 
-    # if @stay.has_rooms?
-      # @has_rooms = @stay.rooms.any?
-    # end
+        house_params = input[:house_attributes]
 
-	end
+        @stay.house = House.new(
+          :stay_id => @stay.id,
+
+          :garden  => house_params[:garden],
+          :terrace  => house_params[:terrace],
+          :alarm  => house_params[:alarm]          
+        )
+
+      elsif input[:accomodation_type] == "Apartment"
+
+        apartment_params = input[:apartment_attributes]
+
+        @stay.apartment = Apartment.new(
+          :stay_id => @stay.id,
+
+          :nrooms       => apartment_params[:nrooms],
+          :floor        => apartment_params[:floor],
+          :lift         => apartment_params[:lift],          
+          :security     => apartment_params[:security]
+        )
+
+      end    
+
+      @stay.save
+
+      if @stay.persisted?
+        redirect_to :action => 'show', :id => @stay.id
+      else
+        # Renders the nested form for the child that was not created before
+        @stay.apartment = Apartment.new     if input[:accomodation_type] == "House"
+        @stay.house = House.new             if input[:accomodation_type] == "Apartment"
+
+        render "new"
+      end    
+
+  	end
+
+    def index
+      @stays = current_user.stays
+    end
+
+  	def show
+      @stay = Stay.find params[:id]
+
+  	end
 end
