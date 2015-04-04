@@ -9,7 +9,8 @@ class CreateStays < ActiveRecord::Migration
       t.string :city,                         :null => false
       t.string :state,                        :null => false
       t.string :country,                      :null => false
-      t.string :full_street_address,          :null => false
+      t.string :street_address,               :null => false
+      t.string :full_address,                 :null => false
       t.boolean :airport_pickup
       t.boolean :laundry
       t.boolean :cleaning

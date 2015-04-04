@@ -1,12 +1,15 @@
-Search stays here !
-
 / = simple_form (@room, :url => stay_rooms_path(@stay.id)) do |f|
 = search_form_for @q, :url => search_path do |f|
 
-  / Search if the name field contains...  
-  = f.label :title_cont
-  = f.search_field :title_cont
-  
+  .panel.panel-default
+    .panel-body
+      .input-group
+        = f.label :full_address_cont
+        = f.search_field :full_address_cont
+
+        = f.label :accomodation_type_eq
+        = f.search_field :accomodation_type_eq
+
   / Search if an associated articles.title starts with...
   / f.label :articles_title_start
   / f.search_field :articles_title_start
@@ -35,7 +38,7 @@ Search stays here !
 
 / Filter by availability (booking period)
 
-/ Filter by weather (WARM or COLD) OR by terran (SEA-SIDE, MOUNTAINS, FIELDS)
+/ Filter by weather (WARM or COLD) OR by terrain (SEA-SIDE, MOUNTAINS, FIELDS)
 / Filter by internet speed
 
 / Filter by extra services provided

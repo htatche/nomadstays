@@ -9,7 +9,7 @@ class Stay < ActiveRecord::Base
   accepts_nested_attributes_for :apartment
   accepts_nested_attributes_for :house
 
-  geocoded_by :full_street_address   # can also be an IP address
+  geocoded_by :full_address          # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
   validates_presence_of       :title
@@ -17,7 +17,8 @@ class Stay < ActiveRecord::Base
 
   validates_presence_of       :country
   validates_presence_of       :city
-  validates_presence_of       :full_street_address
+  validates_presence_of       :street_address
+  validates_presence_of       :full_address
 
   validates_presence_of       :latitude
   validates_presence_of       :longitude
@@ -31,6 +32,10 @@ class Stay < ActiveRecord::Base
   def attached_rooms
     container = apartment || house
     container.rooms
+  end
+
+  def build_full_address
+    street_address + ", " + city + ", " + state + ", " + country
   end
 
 end

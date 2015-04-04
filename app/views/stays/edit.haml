@@ -6,6 +6,11 @@
       = f.input :latitude, :as => :hidden
       = f.input :longitude, :as => :hidden
 
+      / Accomodation
+
+      = f.input  :accomodation_type, 
+                 :as => :hidden      
+
       / Room
 
       #accomodation_is_room
@@ -61,7 +66,7 @@
                 = f.input :country
                 = f.input :state 
                 = f.input :city
-                = f.input :full_street_address
+                = f.input :street_address
                 = f.hint "Once you have filled those fields please fine-grain the position by clicking on the map"
 
             .col-md-6
@@ -112,4 +117,4 @@
             = f.input :data_sim_card, :label => "Data SIM Card"
             = f.input :airport_pickup, :label => "Airport Pickup"
 
-      = f.button :submit, "Add"
+      = f.button :submit, "Update"

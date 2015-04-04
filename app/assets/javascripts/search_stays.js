@@ -1,8 +1,17 @@
-$( document ).ready(function() {
-  $("input").geocomplete();
+var ready = function() {
 
-  // Trigger geocoding request.
-  $("button.find").click(function(){
-    $("input").trigger("geocode");
-  });
-});
+  if ($("#stay_search").length > 0) {
+
+    $("q_full_address_cont").geocomplete();
+
+    // Trigger geocoding request.
+    $("button.find").click(function(){
+      $("q_full_address_cont").trigger("geocode");
+    });
+
+  }
+
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);  

@@ -26,27 +26,10 @@ class StaysController < ApplicationController
         accomodation_type = input[:accomodation_type]
       end
 
-      apartment_params = 
-
-  		@stay = Stay.new(
-        :user_id => current_user.id,
-
-    		:title => input[:title],
-        :description => input[:description],
-
-    		:full_street_address => input[:full_street_address],
-    		:city  => input[:city],
-    		:state  => input[:state],
-    		:country  => input[:country],
-
-    		:latitude => input[:latitude],
-    		:longitude => input[:longitude],
-
-        :accomodation_type => accomodation_type,
-
-    		:wifi => input[:wifi],
-    		:wifi_speed => input[:wifi_speed],
-    	)
+      @stay = Stay.new(stay_params)
+      @stay.accomodation_type = accomodation_type
+      @stay.user_id = current_user.id
+      @stay.full_address = @stay.build_full_address
 
       if input[:accomodation_type] == "House"
 
@@ -113,7 +96,11 @@ class StaysController < ApplicationController
   private
 
     def stay_params
-      params.require(:stay).permit(:title, :description)
+      params.require(:stay).permit(:title, :description, :accomodation_type,
+                                   :latitude, :longitude, :street_address, :city, :state, :country,
+                                   :wifi, :wifi_speed, :mobile_data, :mobile_data_speed,
+                                   :terrace, :router_access, :desk,
+                                   :airport_pickup, :laundry, :cleaning, :data_sim_card)
     end
 
 end

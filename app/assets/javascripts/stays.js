@@ -1,10 +1,15 @@
 var map, marker, loc, lat, lng;
 
-function build_map () {
+function build_map (latitude, longitude) {
+  if (arguments.length == 0) {
+    var latitude  = -12.043333;
+    var longitude = -77.028333;
+  }
+
   return new GMaps({
     el: '#map',
-    lat: -12.043333,
-    lng: -77.028333,
+    lat: latitude,
+    lng: longitude,
     zoom: 5
   }); 
 }
@@ -48,6 +53,7 @@ function detect_user_input () {
     pickup_location();
   });
 
+  // TODO: Fire also on "change" event
   $("#stay_state").keypress(function() {
     pickup_location();
   });
@@ -56,7 +62,7 @@ function detect_user_input () {
     pickup_location();
   });
 
-  $("#stay_full_street_address").keypress(function() {
+  $("#stay_street_address").keypress(function() {
     pickup_location();
   }); 
 }
@@ -68,7 +74,7 @@ function pickup_location () {
     country: $("#stay_country :selected").text().split(",")[0],
     state:   $("#stay_state").val(),
     city:    $("#stay_city").val(),
-    address: $("#stay_full_street_address").val()
+    address: $("#stay_street_address").val()
   }
 
   full_address = loc.address + "," + loc.city + "," + loc.state + "," + loc.country;
@@ -95,7 +101,8 @@ function read_dom_events() {
 }
 
 function show_accomodation_fields () {
-  var option = $("#stay_accomodation_type :selected").val();
+  var option = $("#stay_accomodation_type :selected").val() ||
+               $("#stay_accomodation_type").val();
 
   switch (option) {
     case "Apartment":
@@ -123,12 +130,9 @@ function show_accomodation_fields () {
   }
 }
 
-$( document ).ready(function() {
+var ready = function() {
 
-  var pathname = window.location.pathname;
-
-  if ($("#new_stay").length > 0 || $(".edit_stay").length > 0) {
-    console.log("yes");
+  if ($("#new_stay").length > 0) {
     map = build_map();
 
     marker = map.addMarker({
@@ -141,26 +145,26 @@ $( document ).ready(function() {
 
     show_accomodation_fields();
     read_dom_events();
-
   }
 
-  // var pathname = window.location.pathname;
+  if ($(".edit_stay").length > 0) {
+    var latitude  = parseFloat($("#stay_latitude").val());
+    var longitude = parseFloat($("#stay_longitude").val());
 
-  // switch (pathname) {
-  //  case "/stays/new":
-  //    map = build_map();
+    map = build_map(latitude, longitude);
 
-  //    marker = map.addMarker({
-  //      lat: -12.043333,
-  //      lng: -77.028333
-  //    });
+    marker = map.addMarker({
+      lat: latitude,
+      lng: longitude
+    });
 
-  //    detect_user_input(map);
-  //    detect_map_click();   
+    detect_user_input(map);
+    detect_map_click();   
 
-  //    read_dom_events();
+    show_accomodation_fields();
+  }  
 
-  //    break;
-  // }
+};
 
-});
+$(document).ready(ready);
+$(document).on('page:load', ready);  
