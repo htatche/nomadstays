@@ -259,4 +259,6 @@ Devise.setup do |config|
   
   config.omniauth :twitter, 'o5O3vPRBVL3kEmRMcGqWIyBkm', 'LP8ZNSlMDU54vcrTco5yuVvGfACQ9H2yCwB68YMZjfsu2p0ZS1', scope: 'user,public_repo'
   config.omniauth :google_oauth2, "797206073625-jerq2prodcrro9153efr0fuf6ek47u7q.apps.googleusercontent.com", "3RW3C1xMCbTR41wNlel4B_bJ", :scope => 'email,profile'
+
+  config.secret_key = '926b4aaddb5e8a85cd6aed32871a6b2cf20b2213ca1196105e3956ab5ac9b397e347356a9ac3674afd00f212d1ffc790eab3deec1b83b78bdabb7e8c39db20d7'
 end

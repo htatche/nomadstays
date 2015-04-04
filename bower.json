@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "gmaps": "~0.4.17"
+    "gmaps": "~0.4.17",
+    "geocomplete": "~1.6.5"
   }
 }

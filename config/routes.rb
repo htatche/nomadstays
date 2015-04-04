@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations' }, class_name: 'FormUser'
   get 'users/:id' => 'users#profile'
 
-  # Stays
-  # resources :stays
-
+  # Stays and rooms
   resources :stays do
     resources :rooms
   end  
+
+  # Search stays
+  get "search" => "search_stays#index"
+  post "search" => "search_stays#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

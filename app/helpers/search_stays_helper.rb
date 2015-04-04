@@ -1,0 +1,2 @@
+module SearchStaysHelper
+end

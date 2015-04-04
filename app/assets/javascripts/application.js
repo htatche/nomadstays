@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require gmaps
+//= require jquery.geocomplete
 //= require_tree .

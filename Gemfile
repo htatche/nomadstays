@@ -48,6 +48,7 @@ gem 'bootstrap-social-rails'
 # Forms
 gem 'simple_form'
 gem 'country_select'
+gem 'ransack'
 
 # Geolocation
 gem 'underscore-rails'
