@@ -48,6 +48,13 @@ class RoomsController < ApplicationController
       end         
     end
 
+    def destroy
+      @room = Room.find(params[:id])
+      @stay = Stay.find(params[:stay_id])
+      @room.destroy
+      redirect_to stay_path(id: @stay.id)
+    end
+
   private
 
     def room_params

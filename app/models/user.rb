@@ -33,33 +33,4 @@ class User < ActiveRecord::Base
     first_name + " " + last_name
   end
 
-	# def self.find_for_twitter_oauth2(auth)
- #    # Twitter doesnt provide First and Last name,
- #    # neither it gives an email
-
- #    full_name = build_name(auth.info.name)
-
-	#   where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
-	#   	user.provider = auth.provider
-	#   	user.uid			= auth.uid
-	#     user.username = auth.info.nickname
-	#     user.first_name = full_name[0]
- #      user.last_name = full_name[1]
-	#     user.photo = auth.info.image 
- #      user.encrypted_password = Devise.friendly_token[0,20]
-	#   end
-	# end  
-
- #  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
- #    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
- #      user.provider = auth.provider
- #      user.uid      = auth.uid   
- #      user.first_name = auth.info.first_name
- #      user.last_name = auth.info.last_name
- #      user.email = auth.info.email
- #      user.photo = auth.info.image
- #      user.encrypted_password = Devise.friendly_token[0,20]
- #    end
- #  end
-
 end	                

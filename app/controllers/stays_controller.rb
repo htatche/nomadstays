@@ -104,6 +104,12 @@ class StaysController < ApplicationController
       end         
     end
 
+    def destroy
+      @stay = Stay.find(params[:id])
+      @stay.destroy
+      redirect_to stays_path
+    end
+
   private
 
     def stay_params

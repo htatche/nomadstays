@@ -1,8 +1,8 @@
 class Stay < ActiveRecord::Base
   belongs_to :user
 
-  has_one  :apartment
-  has_one  :house
+  has_one  :apartment,    :dependent => :destroy
+  has_one  :house,        :dependent => :destroy
   has_many :rooms, through: :apartment
   has_many :rooms, through: :house
 
@@ -27,5 +27,10 @@ class Stay < ActiveRecord::Base
   validates :accomodation_type, presence: true, allow_blank: false
 
   validates_inclusion_of :wifi, in: [true, false]
+
+  def attached_rooms
+    container = apartment || house
+    container.rooms
+  end
 
 end

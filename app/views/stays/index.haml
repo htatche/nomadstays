@@ -1,5 +1,13 @@
-%table.table
-	- @stays.each do |stay|
-		.tr
-			.td
-				=link_to stay.title, stay_path(stay.id)
+- if !@stays.empty?
+  %table.table
+    .tr
+      .td
+        %p=link_to "Rent out a new stay", new_stay_path
+
+    - @stays.each do |stay|
+      .tr
+        .td
+          =link_to stay.title, stay_path(stay.id)
+
+- if @stays.empty?
+  %p=link_to("Rent out a stay", new_stay_path) + " and start hosting nomads !"

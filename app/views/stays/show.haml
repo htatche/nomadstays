@@ -1,12 +1,19 @@
 = @stay.title
+
+%p= link_to "Edit this stay", edit_stay_path(id: @stay.id)
+%p= link_to "Remove this stay", stay_path(id: @stay.id), :method => "delete"
+
 = render "map"
 
-- if !@stay.rooms.any?
-	%p Would you like to offer the possibility to rent a separate room in your #{@stay.accomodation_type} ? 
+- if @stay.attached_rooms.empty?
+  %p Would you like to offer the possibility to rent out a separate room in your #{@stay.accomodation_type} ? 
 
-	= link_to 'Rent a room', new_stay_room_path(@stay.id)
+  = link_to 'Rent out a room', new_stay_room_path(@stay.id)
 
-- if @stay.rooms.any?
-	%h4 Rooms
-	- @stay.rooms.each do |room|
-		%p= link_to room.title, stay_room_path(stay_id: @stay.id, id: room.id)
+- if @stay.attached_rooms.any?
+  %h4 Rooms
+  
+  %p= link_to('Rent out', new_stay_room_path(@stay.id)) + " a new room"
+
+  - @stay.attached_rooms.each do |room|
+    %p= link_to room.title, stay_room_path(stay_id: @stay.id, id: room.id)

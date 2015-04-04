@@ -1,3 +1,4 @@
 %h3 This is the room #{@room.title}
 
 %p= link_to "Edit this room", edit_stay_room_path(stay_id: @stay.id, id: @room.id)
+%p= link_to "Remove this room", stay_room_path(stay_id: @stay.id, id: @room.id), :method => "delete"
