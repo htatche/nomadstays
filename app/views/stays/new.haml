@@ -2,9 +2,22 @@
   .col-md-12
     %h3 Add a new stay
 
-    = simple_form_for @stay, :method => :post do |f|    
+    = simple_form_for @stay, :method => :post, html: { class: 'form-vertical' } do |f|    
       = f.input :latitude, :as => :hidden
       = f.input :longitude, :as => :hidden
+
+      / Accomodation Type
+
+      %h4 What sort of accomodation do you offer ?
+
+      = f.input :accomodation_type, 
+                collection: [["Select one", "Select one"], ["Apartment", "Apartment"], ["House", "House"], ["Room", "Room"]],
+                include_blank: false
+
+      / Room
+
+      #accomodation_is_room
+        = render :partial => 'form_room'
 
       / Description
 
@@ -17,21 +30,29 @@
             = f.hint "Type something that will attract nomads. For example: Fully furnished apartment by the sea"
             = f.input :description
 
-      / Accomodation Type
-
-      %h4 What sort of accomodation do you offer ?
-
-      = f.select :accomodation_type, ["Select one", "Apartment", "House", "Room"]
-
       / Apartment 
-      #accomodation_is_apartment
-        = f.simple_fields_for :apartment do |a|
-          = render :partial => 'form_apartment', :locals => {:a => a}
 
-      / House            
+      #accomodation_is_apartment
+
+        %h4 About your apartment
+
+        .panel.panel-default
+          .panel-body
+            .input-group      
+              = f.simple_fields_for :apartment do |a|
+                = render :partial => 'form_apartment', :locals => {:a => a}
+
+      / House          
+
       #accomodation_is_house
-        = f.simple_fields_for :house do |h|
-          = render :partial => 'form_house', :locals => {:h => h}
+
+        %h4 About your house
+
+        .panel.panel-default
+          .panel-body
+            .input-group          
+              = f.simple_fields_for :house do |h|
+                = render :partial => 'form_house', :locals => {:h => h}
 
       / Location
 
@@ -64,14 +85,16 @@
         .panel-body
           .input-group
             = f.input :wifi
-            = f.select :wifi_speed,
-              ["< 1 Mbps", "1 - 3 Mbps", "5 Mbps", "10 Mbps", "> 10 Mbps"],
-              :label => "What is the speed of your internet connection ?"
-            = f.input :router_access, :label => "Does your guest has phisycal access to the router ? (in case he needs to restart it)"
+            = f.input :wifi_speed,
+              :label => "What is the speed of your internet connection ?",
+              collection: [["< 1 Mbps", "< 1 Mbps"], ["1 - 3 Mbps", "1 - 3 Mbps"], ["5 Mbps", "5 Mbps"], ["10 Mbps", "10 Mbps"], ["> 10 Mbps", "> 10 Mbps"]],
+              include_blank: false              
+            = f.input :router_access, :label => "Does your guest has physical access to the router ? (in case he needs to restart it)"
             = f.input :mobile_data
-            = f.select :mobile_data_speed,
-              ["< 1 Mbps", "1 - 3 Mbps", "5 Mbps", "10 Mbps", "> 10 Mbps"],
-              :label => "What is the speed of your mobile data connection in your place ?"
+            = f.input :mobile_data_speed,
+              :label => "What is the speed of your mobile data connection in your place ?",
+              collection: [["< 1 Mbps", "< 1 Mbps"], ["1 - 3 Mbps", "1 - 3 Mbps"], ["5 Mbps", "5 Mbps"], ["10 Mbps", "10 Mbps"], ["> 10 Mbps", "> 10 Mbps"]],
+              include_blank: false                   
 
       / Amenities
 

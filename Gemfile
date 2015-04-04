@@ -54,8 +54,17 @@ gem 'underscore-rails'
 gem 'geocoder'
 
 group :development, :test do
+
+  # Better replacement for IRB console
+  gem 'pry-rails'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry-byebug'
+
+  # Imrpoved error-page
+  gem 'better_errors'
+  gem "binding_of_caller"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

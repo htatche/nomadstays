@@ -101,16 +101,25 @@ function show_accomodation_fields () {
     case "Apartment":
       $("#accomodation_is_apartment").show();
       $("#accomodation_is_house").hide();
+      $("#accomodation_is_room").hide();
       break;
 
     case "House":
-      $("#accomodation_is_apartment").hide();
       $("#accomodation_is_house").show();
+      $("#accomodation_is_apartment").hide();
+      $("#accomodation_is_room").hide();
+      break;
+
+    case "Room":
+      $("#accomodation_is_room").show();
+      $("#accomodation_is_house").hide();
+      $("#accomodation_is_apartment").hide();      
       break;
 
     default:
       $("#accomodation_is_apartment").hide();
-      $("#accomodation_is_house").hide();     
+      $("#accomodation_is_house").hide();    
+      $("#accomodation_is_room").hide(); 
   }
 }
 

@@ -28,8 +28,4 @@ class Stay < ActiveRecord::Base
 
   validates_inclusion_of :wifi, in: [true, false]
 
-  def container
-    stay.apartment || stay.house
-  end
-
 end

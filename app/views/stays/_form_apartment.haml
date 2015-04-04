@@ -1,6 +1,6 @@
-%p Great ! Can you give us some details about this apartment ?
+/%p Great ! Can you give us some details about this apartment ?
 
-= a.input :nrooms,        :label => "How many rooms does it have ?"
+= a.input :nrooms,        :label => "How many rooms does it have ?", collection: 1..15
 = a.input :floor,         :label => "In what floor is it ?"
 = a.input :lift,          :label => "Does the building have a lift ?"
 = a.input :security,      :label => "Is there some sort security in the building ?"
