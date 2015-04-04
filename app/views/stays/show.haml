@@ -2,11 +2,11 @@
 = render "map"
 
 - if !@stay.rooms.any?
-	%p You are not renting any room in this apartment
+	%p Would you like to offer the possibility to rent a separate room in your #{@stay.accomodation_type} ? 
 
 	= link_to 'Rent a room', new_stay_room_path(@stay.id)
 
 - if @stay.rooms.any?
 	%h4 Rooms
 	- @stay.rooms.each do |room|
-		= link_to room.title, stay_room_path(stay_id: stay.id)
+		%p= link_to room.title, stay_room_path(stay_id: @stay.id, id: room.id)

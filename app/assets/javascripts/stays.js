@@ -127,7 +127,8 @@ $( document ).ready(function() {
 
   var pathname = window.location.pathname;
 
-  if ($("#new_stay")) {
+  if ($("#new_stay").length > 0 || $(".edit_stay").length > 0) {
+    console.log("yes");
     map = build_map();
 
     marker = map.addMarker({

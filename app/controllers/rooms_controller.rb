@@ -1,41 +1,57 @@
 class RoomsController < ApplicationController
 
-	def new
-		@stay = Stay.find params[:stay_id]
-		@room = Room.new 
-	end
+  public
 
-	def create
-		input = params[:room]
+    def show
+      @stay = Stay.find params[:stay_id]
+      @room = Room.find params[:id]
+    end
 
-		
-
-		@room = Room.new(
-      :stay_id => params[:stay_id],
-
-  		:title => input[:title],
-    #   :description => input[:description],
-
-  		# :full_street_address => input[:full_street_address],
-  		# :city  => input[:city],
-  		# :state  => input[:state],
-  		# :country  => input[:country],
-
-  		# :latitude => input[:latitude],
-  		# :longitude => input[:longitude],
-
-  		# :wifi => input[:wifi],
-  		# :wifi_speed => input[:wifi_speed]
-  	)
-
-		@room.save
-
-  	if @room.persisted?
-  		# redirect_to :action => 'show', :id => @room.id
-  		redirect_to stay_room_path(stay_id: params[:stay_id])
-  	else
-  		render "new"
+  	def new
+  		@stay = Stay.find params[:stay_id]
+  		@room = Room.new 
   	end
-	end	
+
+  	def create
+      @stay = Stay.find(params[:stay_id])
+  		@room = Room.new(room_params)
+
+      # Rooms are linked to an apartment or a house, not to a stay
+      if @stay.house
+        @room.house_id = @stay.house.id
+      elsif @stay.apartment
+        @room.apartment_id = @stay.apartment.id
+      end      
+
+  		@room.save
+
+    	if @room.persisted?
+    		redirect_to stay_room_path(stay_id: @stay.id, id: @room.id)
+    	else
+    		render "new"
+    	end
+  	end	
+
+    def edit
+      @room = Room.find params[:id]
+      @stay = Stay.find params[:stay_id]
+    end
+
+    def update
+      @room = Room.find(params[:id])
+      @stay = Stay.find params[:stay_id]
+
+      if @room.update(room_params)
+        redirect_to stay_room_path(stay_id: @stay.id, id: @room.id)
+      else
+        render "edit"
+      end         
+    end
+
+  private
+
+    def room_params
+      params.require(:room).permit(:title, :sqm, :desk, :kitchen_access)
+    end  
 
 end

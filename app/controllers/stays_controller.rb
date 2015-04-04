@@ -2,6 +2,14 @@ class StaysController < ApplicationController
 
   public
 
+    def index
+      @stays = current_user.stays
+    end
+
+    def show
+      @stay = Stay.find params[:id]
+    end
+
   	def new
   		@stay = Stay.new
 
@@ -81,11 +89,25 @@ class StaysController < ApplicationController
 
   	end
 
-    def index
-      @stays = current_user.stays
+    def edit
+      @stay = Stay.find params[:id]
     end
 
-  	def show
-      @stay = Stay.find params[:id]
-  	end
+    def update
+      @stay = Stay.find(params[:id])
+      @stay.update(stay_params)
+
+      if @stay.update(stay_params)
+        redirect_to @stay
+      else
+        render "edit"
+      end         
+    end
+
+  private
+
+    def stay_params
+      params.require(:stay).permit(:title, :description)
+    end
+
 end

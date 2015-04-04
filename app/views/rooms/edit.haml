@@ -1,6 +1,6 @@
 %h3 Add a new room in #{@stay.title}
 
-= simple_form_for(@room, :url => stay_rooms_path(@stay.id)) do |f|
+= simple_form_for(@room, :url => stay_room_path(stay_id: @stay.id, id: @room.id), :method => "put") do |f|
   = f.input :title
   = f.hint "Make it appealing ! 'Spacious room on the sunny east side'"
   = f.input :sqm, label: "How big is this room ?"

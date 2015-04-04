@@ -1,18 +1,10 @@
 .row
   .col-md-12
-    %h3 Add a new stay
+    %h3 Update your stay
 
-    = simple_form_for @stay, :method => :post do |f|    
+    = simple_form_for @stay, :method => :put do |f|    
       = f.input :latitude, :as => :hidden
       = f.input :longitude, :as => :hidden
-
-      / Accomodation Type
-
-      %h4 What sort of accomodation do you offer ?
-
-      = f.input :accomodation_type, 
-                collection: [["Select one", "Select one"], ["Apartment", "Apartment"], ["House", "House"], ["Room", "Room"]],
-                include_blank: false
 
       / Room
 
