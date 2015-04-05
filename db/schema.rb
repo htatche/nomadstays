@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20150403135135) do
     t.boolean  "garden"
     t.boolean  "terrace"
     t.boolean  "alarm"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "nomad_house"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "houses", ["stay_id"], name: "index_houses_on_stay_id", using: :btree
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150403135135) do
     t.text     "description"
     t.boolean  "not_available"
     t.text     "not_available_reason"
+    t.integer  "monthly_price"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

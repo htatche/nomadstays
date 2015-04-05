@@ -1,9 +1,9 @@
-= @stay.title
+%h3= @stay.title
 
 %p= link_to "Edit this stay", edit_stay_path(id: @stay.id)
 %p= link_to "Remove this stay", stay_path(id: @stay.id), :method => "delete"
 
-= render "map"
+/ = render "map"
 
 - if @stay.attached_rooms.empty?
   %p Would you like to offer the possibility to rent out a separate room in your #{@stay.accomodation_type} ? 

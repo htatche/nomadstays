@@ -26,6 +26,7 @@ class CreateStays < ActiveRecord::Migration
       t.text   :description
       t.boolean :not_available
       t.text    :not_available_reason
+      t.integer :monthly_price
       t.timestamps null: false
     end
   end

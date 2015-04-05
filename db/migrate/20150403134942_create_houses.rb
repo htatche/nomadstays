@@ -6,6 +6,7 @@ class CreateHouses < ActiveRecord::Migration
       t.boolean :garden
       t.boolean :terrace
       t.boolean :alarm
+      t.boolean :nomad_house
 
       t.timestamps null: false
     end

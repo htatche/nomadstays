@@ -40,7 +40,8 @@ class StaysController < ApplicationController
 
           :garden  => house_params[:garden],
           :terrace  => house_params[:terrace],
-          :alarm  => house_params[:alarm]          
+          :alarm  => house_params[:alarm],          
+          :nomad_house  => house_params[:nomad_house]
         )
 
       elsif input[:accomodation_type] == "Apartment"
@@ -100,7 +101,8 @@ class StaysController < ApplicationController
                                    :latitude, :longitude, :street_address, :city, :state, :country,
                                    :wifi, :wifi_speed, :mobile_data, :mobile_data_speed,
                                    :terrace, :router_access, :desk,
-                                   :airport_pickup, :laundry, :cleaning, :data_sim_card)
+                                   :airport_pickup, :laundry, :cleaning, :data_sim_card,
+                                   :monthly_price)
     end
 
 end

@@ -27,6 +27,8 @@ class Stay < ActiveRecord::Base
 
   validates :accomodation_type, presence: true, allow_blank: false
 
+  validates :monthly_price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
   validates_inclusion_of :wifi, in: [true, false]
 
   def attached_rooms

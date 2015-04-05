@@ -2,7 +2,7 @@
   .col-md-12
     %h3 Update your stay
 
-    = simple_form_for @stay, :method => :put do |f|    
+    = simple_form_for @stay, method: :put, wrapper: :vertical_input_group do |f|    
       = f.input :latitude, :as => :hidden
       = f.input :longitude, :as => :hidden
 
@@ -84,13 +84,13 @@
             = f.input :wifi
             = f.input :wifi_speed,
               :label => "What is the speed of your internet connection ?",
-              collection: [["< 1 Mbps", "< 1 Mbps"], ["1 - 3 Mbps", "1 - 3 Mbps"], ["5 Mbps", "5 Mbps"], ["10 Mbps", "10 Mbps"], ["> 10 Mbps", "> 10 Mbps"]],
+              collection: internet_speed_types,
               include_blank: false              
             = f.input :router_access, :label => "Does your guest has physical access to the router ? (in case he needs to restart it)"
             = f.input :mobile_data
             = f.input :mobile_data_speed,
               :label => "What is the speed of your mobile data connection in your place ?",
-              collection: [["< 1 Mbps", "< 1 Mbps"], ["1 - 3 Mbps", "1 - 3 Mbps"], ["5 Mbps", "5 Mbps"], ["10 Mbps", "10 Mbps"], ["> 10 Mbps", "> 10 Mbps"]],
+              collection: internet_speed_types,
               include_blank: false                   
 
       / Amenities
@@ -103,6 +103,17 @@
             = f.input :terrace
             = f.input :desk
             = f.hint "Having a desk will give you a better score"
+
+      / Price
+
+      %h4 What will be the monthly cost ?
+
+      .panel.panel-default
+        .panel-body
+          .input-group      
+            = f.input :monthly_price, wrapper: :vertical_input_group, hint: "Remember, the minimum stay length will be 1 month" do
+              %span.input-group-addon US $
+              = f.input_field :monthly_price, class: "form-control"
 
       / Extra services
 

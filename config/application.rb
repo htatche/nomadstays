@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+# Tell Ransack to use simple_form
+ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder'
+
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -31,5 +34,8 @@ module Nomadstays
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Global variables used to avoid repeating code, as well as avoid over-accessing the database
+    config.whatever_variable = ""
   end
 end
