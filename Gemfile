@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Determine ruby version, good for heroku and local dev machines
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -18,7 +20,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem "therubyracer"
+# Instead of therubyracer install nodejs on your dev machine
+# https://devcenter.heroku.com/articles/rails-asset-pipeline#therubyracer
+# gem "therubyracer"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -37,10 +41,11 @@ gem 'omniauth-google-oauth2'
 
 # Templating
 gem 'html2haml'
-gem "haml-rails", "~> 0.9"
+gem 'haml'
+gem 'haml-rails', '~> 0.9'
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass' #, '~> 3.3.4'
-gem 'font-awesome-sass', '~> 4.3.1'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 
 # Sign-on social networks
 gem 'bootstrap-social-rails'
