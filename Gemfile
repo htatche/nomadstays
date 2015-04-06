@@ -49,6 +49,7 @@ gem 'bootstrap-social-rails'
 gem 'simple_form'
 gem 'country_select'
 gem 'ransack'
+gem 'bootstrap-datepicker-rails'
 
 # Geolocation
 gem 'underscore-rails'

@@ -28,6 +28,16 @@
         = f.input :house_nomad_house_eq_any, 
                   label: "Only show nomad houses",
                   as: :boolean
+
+        = f.input_field :updated_at_gt,
+                  :data => {:provide => "datepicker"},
+                  label: "Available from",
+                  class: "datepicker"
+
+        = f.input_field :updated_at_lt,
+                  :data => {:provide => "datepicker"},
+                  label: "Available to",
+                  class: "datepicker"                  
   
   = f.submit "Look up for stays"
 

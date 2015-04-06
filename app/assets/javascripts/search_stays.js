@@ -1,5 +1,4 @@
 var ready = function() {
-  console.log("yay");
 
   if ($("#stay_search").length > 0) {
 
@@ -9,6 +8,8 @@ var ready = function() {
     $("button.find").click(function(){
       $("#q_full_address_cont").trigger("geocode");
     });
+
+    $('.datepicker').datepicker();
 
   }
 
