@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Determine ruby version, good for heroku and local dev machines
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -18,7 +20,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem "therubyracer"
+# Instead of therubyracer install nodejs on your dev machine
+# https://devcenter.heroku.com/articles/rails-asset-pipeline#therubyracer
+# gem 'therubyracer'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -37,10 +41,11 @@ gem 'omniauth-google-oauth2'
 
 # Templating
 gem 'html2haml'
-gem "haml-rails", "~> 0.9"
+gem 'haml'
+gem 'haml-rails', '~> 0.9'
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass' #, '~> 3.3.4'
-gem 'font-awesome-sass', '~> 4.3.1'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 
 # Sign-on social networks
 gem 'bootstrap-social-rails'
@@ -66,7 +71,7 @@ group :development, :test do
 
   # Imrpoved error-page
   gem 'better_errors'
-  gem "binding_of_caller"
+  gem 'binding_of_caller'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -83,5 +88,37 @@ group :development, :test do
 
   # Pretty print objects on console
   gem 'awesome_print'
+
+  # Cleaner log
+  gem 'quiet_assets'
+
+  # Load environment variables from .env file
+  # https://github.com/bkeepers/dotenv
+  gem 'dotenv-rails'
+
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+
+  # https://github.com/bbatsov/rubocop#rails
+  gem 'rubocop', require: false
 end
 
+group :development do
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'launchy'
+  gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'simplecov', require: false
+end
+
+group :production do
+  # Heroku needs this
+  gem 'rails_12factor'
+end

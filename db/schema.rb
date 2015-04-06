@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20150403135135) do
     t.integer  "stay_id"
     t.integer  "nrooms"
     t.integer  "floor"
-    t.boolean  "lift",       null: false
-    t.boolean  "security",   null: false
+    t.boolean  "lift"
+    t.boolean  "security"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20150403135135) do
     t.string   "current_country"
     t.string   "description"
     t.string   "activity"
-    t.integer  "thrusted"
+    t.integer  "trusted"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
