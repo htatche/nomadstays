@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20150403135135) do
     t.integer  "stay_id"
     t.integer  "nrooms"
     t.integer  "floor"
-    t.boolean  "lift",       null: false
-    t.boolean  "security",   null: false
+    t.boolean  "lift"
+    t.boolean  "security"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
