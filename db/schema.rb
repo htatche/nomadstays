@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20150403135135) do
     t.string   "current_country"
     t.string   "description"
     t.string   "activity"
-    t.integer  "thrusted"
+    t.integer  "trusted"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

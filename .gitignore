@@ -12,8 +12,11 @@
 !/log/.keep
 /tmp
 
-/Gemfile.lock
+# /Gemfile.lock
 /bower_components
 
 *.sublime-workspace
 *.sublime-project
+
+# RubyMine
+.idea
