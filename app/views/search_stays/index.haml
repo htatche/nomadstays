@@ -31,13 +31,11 @@
 
         = f.input_field :updated_at_gt,
                   :data => {:provide => "datepicker"},
-                  label: "Available from",
-                  class: "datepicker"
+                  label: "Available from"
 
         = f.input_field :updated_at_lt,
                   :data => {:provide => "datepicker"},
-                  label: "Available to",
-                  class: "datepicker"                  
+                  label: "Available to"
   
   = f.submit "Look up for stays"
 
@@ -49,7 +47,7 @@
       %p= link_to stay.title, stay_path(stay.id)
 
   - if @stays.empty?
-    %h3 We didn't found anything that strictly matches your criteria, but...
+    %h3 We didn't find anything that strictly matches your criteria, but...
 
 / Important: We will never show an empty result ! If nothing comes up, we suggest something anyway    
 

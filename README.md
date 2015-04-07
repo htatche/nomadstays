@@ -8,11 +8,6 @@ previous one.
 In order to update your local codebase after pulling the code please do so:
 
     git pull origin master
-    rake db:drop
-    rake db:migrate
-
-or
-
     rake db:reset
 
 This will re-run all the migrations and leave you with a clean database

@@ -59,7 +59,7 @@ class StaysController < ApplicationController
 
       end    
 
-      @stay.save
+      @stay.save!
 
       if @stay.persisted?
         redirect_to :action => 'show', :id => @stay.id
@@ -101,8 +101,10 @@ class StaysController < ApplicationController
                                    :latitude, :longitude, :street_address, :city, :state, :country,
                                    :wifi, :wifi_speed, :mobile_data, :mobile_data_speed,
                                    :terrace, :router_access, :desk,
-                                   :airport_pickup, :laundry, :cleaning, :data_sim_card,
-                                   :monthly_price)
+                                   :service_pickup, :service_laundry, :service_cleaning, :service_sim_card,
+                                   :service_pickup_price, :service_laundry_price, :service_cleaning_price, :service_sim_card_price,
+                                   :monthly_price
+                                   )
     end
 
 end

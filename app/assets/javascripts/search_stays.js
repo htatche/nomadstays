@@ -9,7 +9,7 @@ var ready = function() {
       $("#q_full_address_cont").trigger("geocode");
     });
 
-    $('.datepicker').datepicker();
+    // $('.datepicker').datepicker();
 
   }
 

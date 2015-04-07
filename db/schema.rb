@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403135135) do
+ActiveRecord::Schema.define(version: 20150406151054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,26 @@ ActiveRecord::Schema.define(version: 20150403135135) do
   end
 
   add_index "apartments", ["stay_id"], name: "index_apartments_on_stay_id", using: :btree
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "stay_id"
+    t.date     "date_from",                             null: false
+    t.date     "date_to",                               null: false
+    t.integer  "stay_length_in_months",                 null: false
+    t.boolean  "paid",                  default: false, null: false
+    t.boolean  "accepted"
+    t.boolean  "service_pickup"
+    t.boolean  "service_laundry"
+    t.boolean  "service_cleaning"
+    t.boolean  "service_sim_card"
+    t.text     "special_request"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "bookings", ["stay_id"], name: "index_bookings_on_stay_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
     t.integer  "stay_id"
@@ -74,32 +94,35 @@ ActiveRecord::Schema.define(version: 20150403135135) do
 
   create_table "stays", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title",                null: false
+    t.string   "title",                  null: false
+    t.text     "description"
+    t.string   "accomodation_type"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "city",                 null: false
-    t.string   "state",                null: false
-    t.string   "country",              null: false
-    t.string   "street_address",       null: false
-    t.string   "full_address",         null: false
-    t.boolean  "airport_pickup"
-    t.boolean  "laundry"
-    t.boolean  "cleaning"
-    t.boolean  "data_sim_card"
-    t.boolean  "wifi",                 null: false
+    t.string   "street_address",         null: false
+    t.string   "city",                   null: false
+    t.string   "state",                  null: false
+    t.string   "country",                null: false
+    t.string   "full_address",           null: false
+    t.boolean  "wifi",                   null: false
     t.string   "wifi_speed"
     t.boolean  "mobile_data"
     t.string   "mobile_data_speed"
-    t.string   "accomodation_type"
     t.boolean  "terrace"
     t.boolean  "router_access"
     t.boolean  "desk"
-    t.text     "description"
-    t.boolean  "not_available"
-    t.text     "not_available_reason"
+    t.boolean  "service_pickup"
+    t.integer  "service_pickup_price"
+    t.boolean  "service_laundry"
+    t.integer  "service_laundry_price"
+    t.boolean  "service_cleaning"
+    t.integer  "service_cleaning_price"
+    t.boolean  "service_sim_card"
+    t.integer  "service_sim_card_price"
+    t.boolean  "available"
     t.integer  "monthly_price"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "stays", ["user_id"], name: "index_stays_on_user_id", using: :btree

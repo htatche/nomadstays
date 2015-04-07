@@ -98,6 +98,18 @@ function read_dom_events() {
   $("#stay_accomodation_type").change(function() {
     show_accomodation_fields();
   })
+
+  $("#extra-services :checkbox").change(function(e) {
+    var input = $("." + e.target.id + "_price");
+
+    if (this.checked) {
+      input.show();
+    } else {
+      input.hide();
+    }
+
+  });  
+
 }
 
 function show_accomodation_fields () {

@@ -1,0 +1,73 @@
+%h3 Make a new booking
+
+= simple_form_for @booking, :url => "/stay/#{@stay.id}/book", :method => :post do |f|    
+
+  / Period
+
+  %h4 Choose the length of your booking
+
+  .panel.panel-default
+    .panel-body
+      %p I will arrive the
+
+      = f.text_field :date_from,
+                :data => {:provide => "datepicker"},
+                label: "Book from",
+                as: :datepicker,
+                class: "datepicker"
+
+      / TODO: Use a more human-readable format for the date
+
+      %p and stay for
+
+      = f.input :stay_length_in_months, 
+                collection: months_to_stay,
+                include_blank: false,
+                label: false       
+
+  / Extra services
+
+  %h4 Your host offers the following extra services
+  %p Choose as many as you want to make your stay more comfortable !
+
+  .panel.panel-default
+    .panel-body#extra-services
+
+      = f.input :service_laundry, :label => "Laundry"   
+      .integer.booking_service_laundry_price
+        .input-group
+          %span#basic-addon1.input-group-addon $ US
+          %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_laundry_price, :type => "text", :readonly => "readonly"}        
+      = f.hint "A nice host that offers to take care of your laundry, cool!"
+
+      = f.input :service_cleaning, :label => "Weekly cleaning"
+      .integer.booking_service_cleaning_price
+        .input-group
+          %span#basic-addon1.input-group-addon $ US
+          %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_cleaning_price, :type => "text", :readonly => "readonly"}  
+      = f.hint "Would you like to get your place cleaned every week ?"
+
+      = f.input :service_sim_card, :label => "Local SIM Card"
+      .integer.booking_service_sim_card_price
+        .input-group
+          %span#basic-addon1.input-group-addon $ US
+          %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_sim_card_price, :type => "text", :readonly => "readonly"}  
+      = f.hint "Handy to receive a local SIM card as soon as you arrive, right ?"
+
+      = f.input :service_pickup, :label => "Pickup on arrival"
+      .integer.booking_service_pickup_price
+        .input-group
+          %span#basic-addon1.input-group-addon $ US
+          %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_pickup_price, :type => "text", :readonly => "readonly"}  
+      = f.hint "Let your host pick you up wherever you land. Aiport, train or bus station..."
+
+  / Special request
+
+  %h4 Anything else ? 
+
+  .panel.panel-default
+    .panel-body
+      = f.input :special_request
+      = f.hint "Tell your host any special request you may have"
+
+  = f.button :submit, "Book"

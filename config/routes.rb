@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'bookings/index'
+
+  get 'bookings/show'
+
+  get 'bookings/new'
+
+  get 'bookings/create'
+
+  get 'bookings/edit'
+
+  get 'bookings/update'
+
   # You can have the root of your site routed with "root"
   root :to => "home#index"
 
@@ -6,14 +18,46 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations' }, class_name: 'FormUser'
   get 'users/:id' => 'users#profile'
 
-  # Stays and rooms
+  # Stays, rooms, bookings
   resources :stays do
     resources :rooms
+    resources :bookings
   end  
 
   # Search stays
   get "search" => "search_stays#index"
   post "search" => "search_stays#index"
+
+  # Bookings
+  get 'stay/:stay_id/book' => 'bookings#new'
+  post 'stay/:stay_id/book' => 'bookings#create'
+  resources :bookings
+
+  # Dashboard
+  # Shows next bookings (nomad)
+  # Shows pending booking requests (host)
+  # Shows big picture of community interaction later
+  # get "dashboard"
+
+
+  # New booking 
+  # /bookings/new
+
+  # Dashboard
+  # 
+  # See current bookings as a host
+  # /host/dashboard
+  # See current bookings as a nomad
+  # /nomad/dashboard
+
+  # Show
+  # 
+  # See a booking as a nomad
+  # /nomad/booking/id
+  # See and manage a booking as a host 
+  # /host/booking/id
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
