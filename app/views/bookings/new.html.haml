@@ -16,7 +16,7 @@
 
             / TODO: Use a more human-readable format for the date
             = f.text_field :date_from,
-                      value: Date.today.strftime("%m/%d/%Y"),
+                      value: Date.today.strftime("%d/%m/%Y"),
                       :data => {:provide => "datepicker"},
                       label: "Book from",
                       as: :datepicker,
@@ -41,7 +41,7 @@
               = f.input :service_laundry, :label => "Laundry", :id => "service-laundry"
               .integer.booking_service_laundry_price
                 .input-group
-                  %span#basic-addon1.input-group-addon $ US
+                  %span#basic-addon1.input-group-addon US $
                   %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_laundry_price, :type => "text", :readonly => "readonly"}        
               = f.hint "He will take care of your laundry, cool!"
 
@@ -49,7 +49,7 @@
               = f.input :service_cleaning, :label => "Weekly cleaning", :id => "service-cleaning"
               .integer.booking_service_cleaning_price
                 .input-group
-                  %span#basic-addon1.input-group-addon $ US
+                  %span#basic-addon1.input-group-addon US $
                   %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_cleaning_price, :type => "text", :readonly => "readonly"}  
               = f.hint "Would you like to get your place cleaned every week ?"
 
@@ -57,7 +57,7 @@
               = f.input :service_sim_card, :label => "Local SIM Card", :id => "service-sim-card"
               .integer.booking_service_sim_card_price
                 .input-group
-                  %span#basic-addon1.input-group-addon $ US
+                  %span#basic-addon1.input-group-addon US $
                   %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_sim_card_price, :type => "text", :readonly => "readonly"}  
               = f.hint "Handy to receive a local SIM card as soon as you arrive, right ?"
 
@@ -65,7 +65,7 @@
               = f.input :service_pickup, :label => "Pickup on arrival", :id => "service-pickup"
               .integer.booking_service_pickup_price
                 .input-group
-                  %span#basic-addon1.input-group-addon $ US
+                  %span#basic-addon1.input-group-addon $ US $
                   %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_pickup_price, :type => "text", :readonly => "readonly"}  
               = f.hint "Let your host pick you up wherever you land. Aiport, train or bus station..."
 

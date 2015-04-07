@@ -121,10 +121,15 @@ form.new_user, form.edit_user {
 
     /* Extra services */
 
-    #services tr {
+    tr.extra-service {
       display: none;
     }
 
+    /* Total */
+
+    tr#total {
+      font-weight: bold;
+    }
   }    
 
 }

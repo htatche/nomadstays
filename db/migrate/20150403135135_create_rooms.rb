@@ -9,6 +9,8 @@ class CreateRooms < ActiveRecord::Migration
       t.integer :sqm
       t.boolean :desk
       t.boolean :kitchen_access
+      t.integer :monthly_price
+      t.boolean :available
 
       t.timestamps null: false
     end

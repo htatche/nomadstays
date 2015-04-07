@@ -20,16 +20,57 @@
       To
       %span#date_to
 
-    %p
-      Services during your stay
+    %table.table
 
+      / Stay 
 
-    %table.table#services
-      %tr#booking_service_laundry
+      %tr
         %td
-          Laundry
+          - if @room
+            Room
+          - else
+            = @stay.accomodation_type
         %td
-          = "#{@stay.service_laundry_price} US $"
+          - if @room
+            %p#stay_price= "#{@room.monthly_price}"
+          - else
+            %p#stay_price= "#{@stay.monthly_price}"
 
-    / Extra services taken and price for each one
-    / Total of the bill
+      / Extra services       
+
+      - if @stay.service_laundry
+        %tr.extra-service#booking_service_laundry
+          %td
+            Laundry
+          %td
+            = "#{@stay.service_laundry_price}"
+
+      - if @stay.service_cleaning
+        %tr.extra-service#booking_service_cleaning
+          %td
+            Weekly cleaning
+          %td
+            = "#{@stay.service_cleaning_price}"                    
+
+      - if @stay.service_sim_card
+        %tr.extra-service#booking_service_sim_card
+          %td
+            Local SIM card
+          %td
+            = "#{@stay.service_sim_card_price}"          
+
+      - if @stay.service_pickup
+        %tr.extra-service#booking_pickup
+          %td
+            Pickup
+          %td
+            = "#{@stay.service_pickup_price}"    
+
+      / Total
+
+      %tr#total
+        %td
+          Total for
+          %span#months
+        %td#pricetag
+          TOTAL

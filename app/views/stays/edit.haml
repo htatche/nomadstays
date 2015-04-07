@@ -118,14 +118,33 @@
       / Extra services
 
       %h4 Would you like to offer any extra service ?
-      %p Make some extra bucks while offering a more comfortable stay
+      %p Make some extra bucks by offering a more comfortable stay, or give it for free !
 
       .panel.panel-default
-        .panel-body
-          .input-group
-            = f.input :laundry
-            = f.input :cleaning
-            = f.input :data_sim_card, :label => "Data SIM Card"
-            = f.input :airport_pickup, :label => "Airport Pickup"
+        .panel-body#extra-services
+          / TODO: Limit HTML5 numeric inputs to >= 0 and < 200
+          = f.input :service_laundry,   :label => "Take care of your nomad's laundry"
+
+          = f.input :service_laundry_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_laundry_price, class: "form-control"
+
+          = f.input :service_cleaning, :label => "Weekly cleaning of the stay"
+
+          = f.input :service_cleaning_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_cleaning_price, class: "form-control"
+
+          = f.input :service_sim_card,  :label => "Local SIM Card"
+
+          = f.input :service_sim_card_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_sim_card_price, class: "form-control"    
+
+          = f.input :service_pickup,    :label => "Airport Pickup"
+
+          = f.input :service_pickup_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_pickup_price, class: "form-control"        
 
       = f.button :submit, "Update"

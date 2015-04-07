@@ -9,4 +9,8 @@
   = f.hint "Remember, a nomad will spend most of his time working !"
   = f.input :kitchen_access, label: "Are nomads free to use to the kitchen ?"
 
+  = f.input :monthly_price, wrapper: :vertical_input_group, hint: "Remember, the minimum stay length will be 1 month" do
+    %span.input-group-addon US $
+    = f.input_field :monthly_price, class: "form-control"  
+
   = f.button :submit, "Add"

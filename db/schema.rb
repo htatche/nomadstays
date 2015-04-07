@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20150406151054) do
     t.integer  "sqm"
     t.boolean  "desk"
     t.boolean  "kitchen_access"
+    t.integer  "monthly_price"
+    t.boolean  "available"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
