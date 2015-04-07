@@ -1,6 +1,6 @@
 class Apartment < ActiveRecord::Base
 	belongs_to :stay
-	has_many :rooms,            :dependent => :delete_all
+	has_many :rooms,            through: :stay, :dependent => :delete_all 
 
   validates_presence_of       :nrooms
   validates_presence_of       :floor

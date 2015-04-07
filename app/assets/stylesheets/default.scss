@@ -76,22 +76,22 @@ form.new_user, form.edit_user {
  * New
  */
 
-  .new_stay {
-    .map-container {
-      margin-top: 25px;
-    }
+.new_stay {
+  .map-container {
+    margin-top: 25px;
+  }
 
-    #accomodation_is_apartment, #accomodation_is_house, #accomodation_is_room {
+  #accomodation_is_apartment, #accomodation_is_house, #accomodation_is_room {
+    display: none;
+  }
+
+  #extra-services {
+    div.integer {
       display: none;
     }
+  }    
 
-    #extra-services {
-      div.integer {
-        display: none;
-      }
-    }    
-
-  }
+}
 
 /* ==========================================================================
    Bookings
@@ -101,16 +101,30 @@ form.new_user, form.edit_user {
  * New
  */
 
-   .new_booking {
+#new-booking {
 
-    #extra-services {
-      div.integer {
-        display: none;
+  #extra-services {
 
-        input.integer {
-          background-color: white;
-        }
+    /* Price */
+
+    div.integer {
+      display: none;
+
+      input.integer {
+        background-color: white;
       }
     }
 
   }
+
+  #bill {
+
+    /* Extra services */
+
+    #services tr {
+      display: none;
+    }
+
+  }    
+
+}

@@ -1,0 +1,35 @@
+%h4 Your booking
+
+.panel.panel-default
+  .panel-body#bill
+    %h4= @stay.title
+
+    - if @room
+      %p= "You will stay in #{@room.title}"
+      / TODO: Show avatars of other nomads staying here
+
+    / main picture smaller
+
+    %p
+      You are staying for
+      %span#stay_length
+
+    %p
+      From 
+      %span#date_from
+      To
+      %span#date_to
+
+    %p
+      Services during your stay
+
+
+    %table.table#services
+      %tr#booking_service_laundry
+        %td
+          Laundry
+        %td
+          = "#{@stay.service_laundry_price} US $"
+
+    / Extra services taken and price for each one
+    / Total of the bill

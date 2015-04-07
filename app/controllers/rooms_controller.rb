@@ -15,13 +15,14 @@ class RoomsController < ApplicationController
   	def create
       @stay = Stay.find(params[:stay_id])
   		@room = Room.new(room_params)
+      @room.stay_id = @stay.id
 
       # Rooms are linked to an apartment or a house, not to a stay
-      if @stay.house
-        @room.house_id = @stay.house.id
-      elsif @stay.apartment
-        @room.apartment_id = @stay.apartment.id
-      end      
+      # if @stay.house
+        # @room.house_id = @stay.house.id
+      # elsif @stay.apartment
+        # @room.apartment_id = @stay.apartment.id
+      # end      
 
   		@room.save
 

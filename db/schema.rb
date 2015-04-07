@@ -79,8 +79,7 @@ ActiveRecord::Schema.define(version: 20150406151054) do
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
-    t.integer  "house_id"
-    t.integer  "apartment_id"
+    t.integer  "stay_id"
     t.string   "title"
     t.integer  "sqm"
     t.boolean  "desk"
@@ -89,8 +88,7 @@ ActiveRecord::Schema.define(version: 20150406151054) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "rooms", ["apartment_id"], name: "index_rooms_on_apartment_id", using: :btree
-  add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
+  add_index "rooms", ["stay_id"], name: "index_rooms_on_stay_id", using: :btree
 
   create_table "stays", force: :cascade do |t|
     t.integer  "user_id"

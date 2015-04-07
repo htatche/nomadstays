@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
-  get 'bookings/index'
+  get "bookings/index"
 
-  get 'bookings/show'
+  get "bookings/show"
 
-  get 'bookings/new'
+  get "bookings/new"
 
-  get 'bookings/create'
+  get "bookings/create"
 
-  get 'bookings/edit'
+  get "bookings/edit"
 
-  get 'bookings/update'
+  get "bookings/update"
 
   # You can have the root of your site routed with "root"
   root :to => "home#index"
 
   # Users
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations' }, class_name: 'FormUser'
-  get 'users/:id' => 'users#profile'
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: "registrations" }, class_name: "FormUser"
+  get "users/:id" => "users#profile"
 
   # Stays, rooms, bookings
   resources :stays do
@@ -29,8 +29,13 @@ Rails.application.routes.draw do
   post "search" => "search_stays#index"
 
   # Bookings
-  get 'stay/:stay_id/book' => 'bookings#new'
-  post 'stay/:stay_id/book' => 'bookings#create'
+  get   "stay/:stay_id/book" => "bookings#new"
+  post  "stay/:stay_id/book" => "bookings#create"
+
+  # Rooms bookings
+  get   "stay/:stay_id/room/:room_id/book" => "bookings#new"
+  post  "stay/:stay_id/room/:room_id/book" => "bookings#create"
+
   resources :bookings
 
   # Dashboard
@@ -60,10 +65,10 @@ Rails.application.routes.draw do
 
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  #   get "products/:id" => "catalog#view"
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  #   get "products/:id/purchase" => "catalog#purchase", as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -71,12 +76,12 @@ Rails.application.routes.draw do
   # Example resource route with options:
   #   resources :products do
   #     member do
-  #       get 'short'
-  #       post 'toggle'
+  #       get "short"
+  #       post "toggle"
   #     end
   #
   #     collection do
-  #       get 'sold'
+  #       get "sold"
   #     end
   #   end
 
@@ -90,13 +95,13 @@ Rails.application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', on: :collection
+  #       get "recent", on: :collection
   #     end
   #   end
 
   # Example resource route with concerns:
   #   concern :toggleable do
-  #     post 'toggle'
+  #     post "toggle"
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable

@@ -4,8 +4,8 @@ class Stay < ActiveRecord::Base
   has_one  :apartment,    :dependent => :destroy
   has_one  :house,        :dependent => :destroy
 
-  has_many :rooms, through: :apartment
-  has_many :rooms, through: :house
+  has_many :rooms #, through: :apartment
+  has_many :rooms #, through: :house
   has_many :bookings,             dependent: :delete_all
 
   accepts_nested_attributes_for :apartment

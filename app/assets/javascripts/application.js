@@ -17,4 +17,5 @@
 //= require turbolinks
 //= require gmaps
 //= require jquery.geocomplete
+//= require moment.min
 //= require_tree .

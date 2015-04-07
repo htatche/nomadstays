@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  
   def index
   end
 
@@ -7,16 +8,21 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+
     @stay = Stay.find(params[:stay_id])
-end
+    @room = Room.find(params[:room_id]) if params[:room_id]
+  end
 
   def create
+    # binding.pry
+
+    @room = Room.find(params[:room_id]) if params[:room_id]
+
     @booking = Booking.new(booking_params)
     @stay = Stay.find(params[:stay_id])
 
     @booking.stay_id = params[:stay_id]
     @booking.user_id = current_user.id
-    # binding.pry
     @booking.date_to = @booking.date_from + @booking.stay_length_in_months.months
     @booking.paid = false
 
