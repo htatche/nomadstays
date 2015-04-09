@@ -49,10 +49,6 @@ class Stay < ActiveRecord::Base
 
   validates :monthly_price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  def country_name(country_code)
-    ISO3166::Country[country_code].name
-  end
-
   def attached_rooms
     container = apartment || house
     container.rooms

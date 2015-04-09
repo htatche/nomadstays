@@ -29,7 +29,7 @@ class StaysController < ApplicationController
       @stay = Stay.new(stay_params)
       @stay.accomodation_type = accomodation_type
       @stay.user_id = current_user.id
-      @stay.country = @stay.country_name(input[:country])
+      @stay.country = country_name(input[:country])
       @stay.full_address = @stay.build_full_address
 
       if input[:accomodation_type] == "House"

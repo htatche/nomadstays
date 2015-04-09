@@ -7,10 +7,15 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
+    unless current_user.has_all_data
+      flash[:notice] = "In order to continue with your booking please first finish completing your account data"
+      redirect_to edit_user_registration_path
+    else
+      @booking = Booking.new
 
-    @stay = Stay.find(params[:stay_id])
-    @room = Room.find(params[:room_id]) if params[:room_id]
+      @stay = Stay.find(params[:stay_id])
+      @room = Room.find(params[:room_id]) if params[:room_id]
+    end
   end
 
   def create
@@ -29,13 +34,16 @@ class BookingsController < ApplicationController
     @booking.save!
 
     if @booking.persisted?
+      BookingMailer.booking_email(current_user).deliver
       redirect_to :action => 'show', :id => @booking.id
     else
       render "new"
     end        
   end
 
+
   def edit
+
   end
 
   def update

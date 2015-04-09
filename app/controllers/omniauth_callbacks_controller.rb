@@ -15,11 +15,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.nil?
       # If a user had already registered using this email, we just linked it up
       # to this identity
+
       @user_by_email = User.find_by_email @identity.email
+      
       if @user_by_email
         @user = @user_by_email
       else
         full_name = @identity.build_name
+
         @user = User.new(
           email: @identity.email || @user_by_email || "",
           first_name: full_name[0],
