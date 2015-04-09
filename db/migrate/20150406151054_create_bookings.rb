@@ -9,7 +9,7 @@ class CreateBookings < ActiveRecord::Migration
       t.integer :stay_length_in_months,               null: false
 
       t.boolean :paid,                                null: false, unique: true, default: false
-      t.boolean :accepted                            
+      t.string  :status                            
 
       t.boolean :service_pickup
       t.boolean :service_laundry

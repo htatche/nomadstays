@@ -1,2 +1,13 @@
-%h1 Bookings#index
-%p Find me in app/views/bookings/index.html.haml
+%h3 Your next bookings
+
+%table.table
+  - @bookings.each do |booking|
+    %tr
+      %td
+        =link_to booking.stay.title, booking_path(booking.id)
+      %td
+        = booking.date_from
+      %td
+        = booking.date_to
+      %td
+        = booking.status

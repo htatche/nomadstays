@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150406151054) do
     t.date     "date_to",                               null: false
     t.integer  "stay_length_in_months",                 null: false
     t.boolean  "paid",                  default: false, null: false
-    t.boolean  "accepted"
+    t.boolean  "status"
     t.boolean  "service_pickup"
     t.boolean  "service_laundry"
     t.boolean  "service_cleaning"
