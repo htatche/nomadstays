@@ -60,6 +60,9 @@ gem 'bootstrap-datepicker-rails'
 gem 'underscore-rails'
 gem 'geocoder'
 
+# Booking
+gem 'validates_overlap'
+
 group :development, :test do
 
   # Better replacement for IRB console

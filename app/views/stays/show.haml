@@ -8,17 +8,21 @@
   .panel.panel-default
     .panel-heading Availability
     .panel-body
-      #availability-calendar
+      .availability-calendar
+  
+  %p= link_to "Book this stay", new_stay_booking_path(stay_id: @stay.id)
 
   / Host options
+
+  %p
+    %strong Host options
 
   %p= link_to "Edit this stay", edit_stay_path(id: @stay.id)
   %p= link_to "Remove this stay", stay_path(id: @stay.id), :method => "delete"
 
   - if @stay.attached_rooms.empty?
     %p
-      %strong Would you like to offer the possibility to rent out a separate room in your #{@stay.accomodation_type} ? 
-
+      Would you like to offer the possibility to rent out a separate room in your #{@stay.accomodation_type} ? 
     = link_to 'Rent out a room', new_stay_room_path(@stay.id)
 
   - if @stay.attached_rooms.any?
@@ -32,4 +36,4 @@
     
 / Yes, I am mixing JS with HTML and RUBY, send me to hell HAHA !
 :javascript
-  var booking_dates = #{@booking_dates};
+  var booked_dates = #{@booked_dates};

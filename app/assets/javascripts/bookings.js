@@ -86,6 +86,8 @@ NewBookingView.prototype.ready = function() {
     parent.update_bill_length.call(select_length_el);
     parent.update_bill_total.call(select_length_el);
     parent.read_dom_events(extra_services_els, select_length_el, date_from_el);
+
+    renderAvailabilityCalendar(".availability-calendar");  
   }
 
 }

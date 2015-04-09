@@ -17,6 +17,8 @@ class BookingsController < ApplicationController
 
       @stay = Stay.find(params[:stay_id])
       @room = Room.find(params[:room_id]) if params[:room_id]
+
+      @booked_dates = @stay.booked_dates
     end
   end
 
@@ -32,7 +34,7 @@ class BookingsController < ApplicationController
     @booking.paid = false
     @booking.status = "Pending"
 
-    @booking.save!
+    @booking.save
 
     if @booking.persisted?
       flash[:notice] = "Thanks for requesting a booking with us ! You will soon receive a confirmation email."

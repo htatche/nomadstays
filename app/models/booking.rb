@@ -7,4 +7,6 @@ class Booking < ActiveRecord::Base
   validates :stay_length_in_months,              presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   # validates_presence_of  :paid
+
+  validates :date_from, :date_to, :overlap => {:scope => "stay_id"}
 end

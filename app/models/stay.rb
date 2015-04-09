@@ -62,4 +62,19 @@ class Stay < ActiveRecord::Base
     end
   end
 
+  # Get all the bookings for this stay, so we can
+  # render the availability calendar
+  def booked_dates
+    dates = []
+
+    bookings.each { |booking|
+      from = booking.date_from.strftime("%d/%m/%Y") 
+      to   = booking.date_to.strftime("%d/%m/%Y")
+
+      dates << [from, to]
+    }
+
+    dates
+  end
+
 end

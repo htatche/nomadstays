@@ -20,7 +20,7 @@
                       :data => {:provide => "datepicker"},
                       label: "Book from",
                       as: :datepicker,
-                      class: "datepicker"
+                      class: "datepicker availability-calendar"
 
             %p and stay for
 
@@ -82,3 +82,9 @@
 
     .col-md-6          
       = render "bill"
+
+
+
+/ Yes, I am mixing JS with HTML and RUBY, send me to hell HAHA !
+:javascript
+  var booked_dates = #{@booked_dates}   

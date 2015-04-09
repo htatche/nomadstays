@@ -150,31 +150,31 @@ function show_accomodation_fields () {
  * Show view
  */
 
-function showAvailabilityCalendar () {
+// function showAvailabilityCalendar () {
 
-  $('#availability-calendar').datepicker({
-    beforeShowDay: function(date) {   
+//   $('#availability-calendar').datepicker({
+//     beforeShowDay: function(date) {   
 
-      var dateFormat = moment(new Date(date));
+//       var dateFormat = moment(new Date(date));
 
-      for (var i=0; i<booking_dates.length; ++i) {
+//       for (var i=0; i<booking_dates.length; ++i) {
 
-        var from = moment(booking_dates[i][0], 'DD/MM/YYYY');
-        var to = moment(booking_dates[i][1], 'DD/MM/YYYY');
+//         var from = moment(booking_dates[i][0], 'DD/MM/YYYY');
+//         var to = moment(booking_dates[i][1], 'DD/MM/YYYY');
 
-        var inRange  = dateFormat.isBetween(from, to);
-        var sameDate = dateFormat.isSame(from) || dateFormat.isSame(to);
+//         var inRange  = dateFormat.isBetween(from, to);
+//         var sameDate = dateFormat.isSame(from) || dateFormat.isSame(to);
 
-        if (inRange || sameDate) {
-          return {classes: 'alert alert-danger'}; 
-        }   
+//         if (inRange || sameDate) {
+//           return {classes: 'alert alert-danger'}; 
+//         }   
 
-      }
+//       }
 
-    }
+//     }
 
-  })
-}
+//   })
+// }
 
 var ready = function() {
 
@@ -211,8 +211,9 @@ var ready = function() {
   }  
 
   if ($("#show-stay").length > 0) {
-    showAvailabilityCalendar();  
+    renderAvailabilityCalendar(".availability-calendar");  
   }
+  
 };
 
 $(document).ready(ready);
