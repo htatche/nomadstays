@@ -1,3 +1,7 @@
+/*
+ * New view
+ */
+
 var map, marker, loc, lat, lng;
 
 function build_map (latitude, longitude) {
@@ -142,6 +146,36 @@ function show_accomodation_fields () {
   }
 }
 
+/*
+ * Show view
+ */
+
+function showAvailabilityCalendar () {
+
+  $('#availability-calendar').datepicker({
+    beforeShowDay: function(date) {   
+
+      var dateFormat = moment(new Date(date));
+
+      for (var i=0; i<booking_dates.length; ++i) {
+
+        var from = moment(booking_dates[i][0], 'DD/MM/YYYY');
+        var to = moment(booking_dates[i][1], 'DD/MM/YYYY');
+
+        var inRange  = dateFormat.isBetween(from, to);
+        var sameDate = dateFormat.isSame(from) || dateFormat.isSame(to);
+
+        if (inRange || sameDate) {
+          return {classes: 'alert alert-danger'}; 
+        }   
+
+      }
+
+    }
+
+  })
+}
+
 var ready = function() {
 
   if ($("#new_stay").length > 0) {
@@ -176,7 +210,15 @@ var ready = function() {
     show_accomodation_fields();
   }  
 
+  if ($("#show-stay").length > 0) {
+    showAvailabilityCalendar();  
+  }
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);  
+
+$('#sandbox-container div').datepicker({
+    format: "dd/mm/yyyy",
+    weekStart: 1
+});

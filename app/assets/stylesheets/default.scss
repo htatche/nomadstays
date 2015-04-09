@@ -93,6 +93,31 @@ form.new_user, form.edit_user {
 
 }
 
+/*
+ * Show
+ */
+
+#show-stay {
+
+  #availability-calendar {
+
+    td {
+      border: none !important;
+    }
+
+    .alert {
+      border: none !important;
+      border-radius: 0;
+    }
+
+    .highlight-range {
+      background-color: red;
+    }
+
+  }
+
+}
+
 /* ==========================================================================
    Bookings
    ========================================================================== */

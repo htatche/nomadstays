@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	end
 
   def host_dashboard
-    
+      
   end
-  
+
 end

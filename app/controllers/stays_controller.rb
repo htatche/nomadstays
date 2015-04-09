@@ -8,6 +8,19 @@ class StaysController < ApplicationController
 
     def show
       @stay = Stay.find params[:id]
+
+      # Get all the bookings for this stay, so we can
+      # render the calendar
+
+      @booking_dates = []
+
+      @stay.bookings.each { |booking|
+        from = booking.date_from.strftime("%d/%m/%Y") 
+        to   = booking.date_to.strftime("%d/%m/%Y")
+
+        @booking_dates << [from, to]
+      }
+
     end
 
   	def new
