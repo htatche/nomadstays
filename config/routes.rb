@@ -29,12 +29,15 @@ Rails.application.routes.draw do
   post "search" => "search_stays#index"
 
   # Bookings
-  get   "stay/:stay_id/book" => "bookings#new"
-  post  "stay/:stay_id/book" => "bookings#create"
+  # get   "stay/:stay_id/book" => "bookings#new"
+  # post  "stay/:stay_id/book" => "bookings#create"
 
   # Rooms bookings
   get   "stay/:stay_id/room/:room_id/book" => "bookings#new"
   post  "stay/:stay_id/room/:room_id/book" => "bookings#create"
+
+  # Host dashboard
+  get "dashboard" => "users#host_dashboard"
 
   resources :bookings
 

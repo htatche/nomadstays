@@ -13,7 +13,21 @@
       %button.btn.btn-primary{:type => "button"}   
         %span.glyphicon.glyphicon-briefcase{"aria-hidden" => "true"}
 
+  / Host dashboard
+
+  - if current_user && current_user.stays.any?
+    = link_to dashboard_path do 
+      %button.btn.btn-primary{:type => "button"}   
+        %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
+
   / Favorite
 
   %button.btn.btn-primary{:type => "button"}    
     %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+
+  / User profile
+
+  / - if current_user
+  /  = link_to profile_path do 
+  /    %button.btn.btn-primary{:type => "button"}   
+  /      %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}    

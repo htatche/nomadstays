@@ -1,0 +1,10 @@
+%h3 Host Dashboard
+
+%p Here you can manage your stays and bookings
+
+- current_user.stays.each do |stay|
+  %strong= stay.title
+  - stay.bookings.each do |booking|
+    %p= booking.user.full_name
+    %p= booking.date_from
+    %p= booking.date_to
