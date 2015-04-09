@@ -49,13 +49,21 @@ class Stay < ActiveRecord::Base
 
   validates :monthly_price, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
+  def country_name(country_code)
+    ISO3166::Country[country_code].name
+  end
+
   def attached_rooms
     container = apartment || house
     container.rooms
   end
 
   def build_full_address
-    street_address + ", " + city + ", " + state + ", " + country
+    if state
+      full_address = street_address + ", " + city + ", " + state + ", " + country
+    else
+      full_address = street_address + ", " + city + ", " + country
+    end
   end
 
 end

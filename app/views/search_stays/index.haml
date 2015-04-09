@@ -20,22 +20,22 @@
           %span.input-group-addon US $
           = f.input_field :monthly_price_lt, class: "form-control"
 
-        = f.input :wifi_speed_gt, 
-                  collection: internet_speed_types,
-                  include_blank: false,
-                  label: "Wifi speed greater than"           
+        / = f.input :wifi_speed_gt, 
+        /           collection: internet_speed_types,
+        /           include_blank: false,
+        /           label: "Wifi speed greater than"           
 
         = f.input :house_nomad_house_eq_any, 
                   label: "Only show nomad houses",
                   as: :boolean
 
-        = f.input_field :updated_at_gt,
-                  :data => {:provide => "datepicker"},
-                  label: "Available from"
+        / = f.input_field :updated_at_gt,
+        /           :data => {:provide => "datepicker"},
+        /           label: "Available from"
 
-        = f.input_field :updated_at_lt,
-                  :data => {:provide => "datepicker"},
-                  label: "Available to"
+        / = f.input_field :updated_at_lt,
+        /           :data => {:provide => "datepicker"},
+        /           label: "Available to"
   
   = f.submit "Look up for stays"
 
