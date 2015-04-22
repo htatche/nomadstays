@@ -1,6 +1,7 @@
-%h3 Host Dashboard
+- content_for :title do
+  Manage your stays
 
-%p Here you can manage your stays and bookings
+%h4 Your bookings
 
 - current_user.stays.each do |stay|
   %strong= stay.title
@@ -8,3 +9,18 @@
     %p= booking.user.full_name
     %p= booking.date_from
     %p= booking.date_to
+
+
+- if !current_user.stays.empty?
+  %table.table
+    .tr
+      .td
+        %p=link_to "Rent out a new stay", new_stay_path
+
+    - current_user.stays.each do |stay|
+      .tr
+        .td
+          =link_to stay.title, stay_path(stay.id)
+
+- if current_user.stays.empty?
+  %p=link_to("Rent out a stay", new_stay_path) + " and start hosting nomads !"

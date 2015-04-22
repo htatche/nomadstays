@@ -4,6 +4,7 @@ $.fn.datepicker.defaults.weekStart = 1;
 function renderAvailabilityCalendar (element_class) {
 
   $(element_class).datepicker({
+    
     beforeShowDay: function(date) {   
 
       var dateFormat = moment(new Date(date));
@@ -17,10 +18,15 @@ function renderAvailabilityCalendar (element_class) {
         var sameDate = dateFormat.isSame(from) || dateFormat.isSame(to);
 
         if (inRange || sameDate) {
-          return {classes: 'alert alert-danger'}; 
+          return {enabled: false}; 
         }   
       }
     }
+    // beforeShowMonth: function() {   
+    //   // Re-apply CSS for unfolding calendar
+    //   console.log('asd');
+    //   $('.datepicker').addClass('availability-calendar');
+    // }    
   })
   
 }

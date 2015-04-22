@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Nomadstays
+    %title Nomad Stays
 
     / Google maps
     / %script{:src => "http://maps.google.com/maps/api/js?libraries=places&sensor=false", :type => "text/javascript"}
@@ -10,15 +10,16 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
   %body
 
     .container-fluid
       .row
-        .col-md-2
-          .left-panel
-            = render "menu/menu"
+        .col-md-12
+          / = yeld :header
+          = render "header/header"
+          = render "header/subheader"
 
-        .col-md-10
           .main-panel
             - if flash[:alert]
               %p.bg-danger= flash[:alert]
@@ -26,7 +27,21 @@
             - if flash[:notice]      
               %p.bg-warning= flash[:notice]
 
-            .title
-              %h1 Nomad | Stays
-
             = yield
+
+        / .col-md-2
+        /   .left-panel
+        /     = render "menu/menu"
+
+        / .col-md-10
+        /   .main-panel
+        /     - if flash[:alert]
+        /       %p.bg-danger= flash[:alert]
+
+        /     - if flash[:notice]      
+        /       %p.bg-warning= flash[:notice]
+
+        /     .title
+        /       %h1 Nomad | Stays
+
+        /     = yield

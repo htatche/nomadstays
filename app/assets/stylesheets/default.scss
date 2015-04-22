@@ -1,4 +1,11 @@
 /* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100);
+
+
+/* ==========================================================================
    Bootstrap override
    ========================================================================== */
 
@@ -11,25 +18,69 @@ h3 {
    Layout
    ========================================================================== */
 
+body {
+  // font-family: 'Roboto', sans-serif;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.header {
+  background-color: #3F51B5;
+  padding: 5px;
+  height: 50px;
+
+  .logo {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .title {
+    margin-left: -60px;
+    line-height: 45px;
+    font-weight: 200;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    text-align: left;
+    color: white;
+  }
+
+}
+
+.subheader {
+  background-color: #303F9F;
+  height: 35px;
+  padding: 5px 5px 5px 5px;
+
+  .glyphicon {
+    padding: 0 10px 0 10px;
+    font-size: 20px;
+    color: white;
+  }
+
+}
+
 .main-menu {
 
   width: 80px;
   padding: 10px;
 
-  .btn {
-    width: 75px;
-    height: 75px;
+  // .btn {
+  //   width: 75px;
+  //   height: 75px;
 
-    margin-bottom: 10px;
+  //   margin-bottom: 10px;
 
-    a {
-      color: white;
-    }
-  }
+  //   a {
+  //     color: white;
+  //   }
+  // }
 
-  .glyphicon {
-    font-size: 30px;
-  }
+
 }
 
 .main-panel {
@@ -40,22 +91,21 @@ h3 {
    General
    ========================================================================== */
 
-#show-stay, #new-booking {
-  .datepicker {
-    td {
-      border: none !important;
-    }
+.datepicker.availability-calendar {
+  td {
+    border: none !important;
+  }
 
-    .alert {
-      border: none !important;
-      border-radius: 0;
-    }
+  .disabled, .disabled:hover {
+    border: none !important;
+    border-radius: 0;
 
-    .highlight-range {
-      background-color: red;
-    }
-  }  
-}
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;      // background-color: red;
+
+  }
+}  
 
 /* ==========================================================================
     Users
