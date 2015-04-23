@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  get "bookings/index"
+  # get "bookings/index"
 
-  get "bookings/show"
+  # get "bookings/show"
 
-  get "bookings/new"
+  # get "bookings/new"
 
-  get "bookings/create"
+  # get "bookings/create"
 
-  get "bookings/edit"
+  # get "bookings/edit"
 
-  get "bookings/update"
+  # get "bookings/update"
 
   # You can have the root of your site routed with "root"
   root :to => "home#index"
@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   # Host dashboard
   get "dashboard" => "users#host_dashboard"
+  get "bookings/:id/accept" => "bookings#accept"
+  get "bookings/:id/reject" => "bookings#reject"
 
   resources :bookings
 

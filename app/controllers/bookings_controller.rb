@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
     unless current_user.has_all_data
       flash[:notice] = "In order to continue with your booking please first finish completing your account data"
       redirect_to edit_user_registration_path
+      # TODO: Once the account is updated, send him back to new_booking_path
     else
       @booking = Booking.new
 
@@ -32,9 +33,11 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     @booking.date_to = @booking.date_from + @booking.stay_length_in_months.months
     @booking.paid = false
-    @booking.status = "Pending"
+    @booking.status = "pending"
 
     @booking.save
+
+    # TODO: Show error if date overlap with another booking
 
     if @booking.persisted?
       flash[:notice] = "Thanks for requesting a booking with us ! You will soon receive a confirmation email."
@@ -45,7 +48,8 @@ class BookingsController < ApplicationController
       redirect_to :action => 'show', :id => @booking.id
     else
       render "new"
-    end        
+    end 
+
   end
 
 
@@ -54,6 +58,30 @@ class BookingsController < ApplicationController
   end
 
   def update
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+
+    @booking.status = "accepted"
+
+    if @booking.save
+      redirect_to @booking
+    else
+      render booking_path(stay_id: @booking.stay.id, booking_id: @booking.id)
+    end      
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+
+    @booking.status = "rejected"
+
+    if @booking.save
+      redirect_to @booking
+    else
+      render booking_path(stay_id: @booking.stay.id, booking_id: @booking.id)
+    end      
   end
 
   private

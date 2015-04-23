@@ -1,26 +1,39 @@
-- content_for :title do
-  Manage your stays
+.host-dashboard
 
-%h4 Your bookings
+  - content_for :title do
+    Host dashboard
 
-- current_user.stays.each do |stay|
-  %strong= stay.title
-  - stay.bookings.each do |booking|
-    %p= booking.user.full_name
-    %p= booking.date_from
-    %p= booking.date_to
+  - content_for :subheader do
+    = link_to new_stay_path do
+      Rent out a new stay
 
+  - current_user.stays.each do |stay|
+    = link_to stay_path(stay.id) do
+      .stay-card= stay.title
 
-- if !current_user.stays.empty?
-  %table.table
-    .tr
-      .td
-        %p=link_to "Rent out a new stay", new_stay_path
+  %h3 Pending for approval
 
-    - current_user.stays.each do |stay|
-      .tr
-        .td
-          =link_to stay.title, stay_path(stay.id)
+  - current_user.stays.each do |stay|
+    - stay.pending_bookings.each do |booking|
+      .booking
+        = link_to booking_path(booking.id) do
+          #{image_tag(booking.user.photo, class: "gravatar")}
+          #{booking.user.first_name} would like to stay in #{booking.stay.title} from #{booking.date_from} to #{booking.date_to} 
 
-- if current_user.stays.empty?
-  %p=link_to("Rent out a stay", new_stay_path) + " and start hosting nomads !"
+  %h3 Waiting for payment
+
+  - current_user.stays.each do |stay|
+    - stay.pending_payment_bookings.each do |booking|
+      .booking
+        = link_to booking_path(booking.id) do
+          #{image_tag(booking.user.photo, class: "gravatar")}
+          #{booking.user.first_name} would like to stay in #{booking.stay.title} from #{booking.date_from} to #{booking.date_to}              
+
+  %h3 Next arrivals
+
+  - current_user.stays.each do |stay|
+    - stay.ready_bookings.each do |booking|
+      .booking
+        = link_to booking_path(booking.id) do
+          #{image_tag(booking.user.photo, class: "gravatar")}
+          #{booking.user.first_name} would like to stay in #{booking.stay.title} from #{booking.date_from} to #{booking.date_to}        

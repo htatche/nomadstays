@@ -77,4 +77,16 @@ class Stay < ActiveRecord::Base
     dates
   end
 
+  def pending_bookings
+    bookings.where( status: 'pending' )
+  end
+
+  def pending_payment_bookings
+    bookings.where( status: 'accepted', paid: 'false' )
+  end
+
+  def ready_bookings
+    bookings.where( status: 'ready', paid: 'true' )
+  end
+
 end

@@ -15,7 +15,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require turbolinks
-// require gmaps
+//= require gmaps
 //= require jquery.geocomplete
 //= require moment.min
 //= require_tree .

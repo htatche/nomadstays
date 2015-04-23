@@ -1,12 +1,68 @@
-%h3 Your booking at #{@booking.stay.title}
+.booking-admin
 
-%table.table
-  %tr
-    %td
-      =link_to @booking.stay.title, stay_path(@booking.stay.id)
-    %td
-      = @booking.date_from
-    %td
-      = @booking.date_to
-    %td
-      = @booking.status
+  - content_for :title do
+    Booking from #{@booking.user.first_name} at #{@booking.stay.title}
+
+  - content_for :subheader do
+    = link_to "Host dashboard", dashboard_path
+
+  .nomad-request
+    .left
+      = link_to root_path(@booking.user.id) do
+        = image_tag(@booking.user.photo, class: "gravatar")
+    .right
+      - if @booking.paid == true
+        %h3 #{@booking.user.full_name} is coming to #{@booking.stay.title}
+      - else
+        %h3 #{@booking.user.full_name} wants to stay in #{@booking.stay.title}
+
+      %p Arrival on the #{@booking.date_from}, and stays for #{@booking.stay_length_in_months} months
+
+  .action 
+
+    - if @booking.status == "pending"
+
+      = link_to "/bookings/#{@booking.id}/accept" do
+        %button.btn.btn-success{:type => "button"} Welcome #{@booking.user.first_name}
+      = link_to "/bookings/#{@booking.id}/reject" do
+        %button.btn.btn-danger{:type => "button"} Unavailable
+
+    - elsif @booking.status == "accepted"
+
+      - if @booking.paid == true
+        %button.btn.btn-success{:type => "button"} Payment received
+      - else
+        = link_to "/bookings/#{@booking.id}/accept" do
+          %button.btn.btn-warning{:type => "button"} Waiting for payment
+        = link_to "/bookings/#{@booking.id}/reject" do
+          %button.btn.btn-danger{:type => "button"} Cancel booking
+
+    - elsif @booking.status == "rejected"
+
+      %button.btn.btn-danger{:type => "button"} Booking rejected
+
+  %h3 Extra services
+
+  - if @booking.service_laundry
+    %p
+      %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+      Laundry
+
+  - if @booking.service_cleaning
+    %p
+      %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+      Weekly cleaning
+
+  - if @booking.service_pickup
+    %p
+      %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+      Pick me up 
+
+  - if @booking.service_sim_card
+    %p
+      %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+      Local SIM card
+
+- unless @booking.special_request.empty?
+  %h3 Special request
+  = @booking.special_request
