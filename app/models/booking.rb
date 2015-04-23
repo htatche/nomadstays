@@ -8,5 +8,5 @@ class Booking < ActiveRecord::Base
 
   # validates_presence_of  :paid
 
-  validates :date_from, :date_to, :overlap => {:scope => "stay_id"}
+  validates :date_from, :date_to, :overlap => {:scope => "stay_id",  :message => "This period is already booked, choose another one", :message_title => "This period is already booked, choose another one", :message_content => "This period is already booked, choose another one"}
 end

@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Hi #{@booking.user.first_name},
+    %p
+      We are sorry to tell you that your host #{@booking.stay.user.first_name} can't host you right now at his stay #{@booking.stay.title}
+
+    %p 
+      For further information you can contact him through the website.
+
+    %p
+      The team of Nomad Stays

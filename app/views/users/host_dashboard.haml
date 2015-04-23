@@ -16,7 +16,7 @@
   - current_user.stays.each do |stay|
     - stay.pending_bookings.each do |booking|
       .booking
-        = link_to booking_path(booking.id) do
+        = link_to stay_booking_path(stay_id: stay.id, id: booking.id) do
           #{image_tag(booking.user.photo, class: "gravatar")}
           #{booking.user.first_name} would like to stay in #{booking.stay.title} from #{booking.date_from} to #{booking.date_to} 
 
@@ -25,7 +25,7 @@
   - current_user.stays.each do |stay|
     - stay.pending_payment_bookings.each do |booking|
       .booking
-        = link_to booking_path(booking.id) do
+        = link_to stay_booking_path(stay_id: stay.id, id: booking.id) do
           #{image_tag(booking.user.photo, class: "gravatar")}
           #{booking.user.first_name} would like to stay in #{booking.stay.title} from #{booking.date_from} to #{booking.date_to}              
 
@@ -34,6 +34,6 @@
   - current_user.stays.each do |stay|
     - stay.ready_bookings.each do |booking|
       .booking
-        = link_to booking_path(booking.id) do
+        = link_to stay_booking_path(stay_id: stay.id, id: booking.id) do
           #{image_tag(booking.user.photo, class: "gravatar")}
           #{booking.user.first_name} would like to stay in #{booking.stay.title} from #{booking.date_from} to #{booking.date_to}        

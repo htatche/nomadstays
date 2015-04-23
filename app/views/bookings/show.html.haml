@@ -32,14 +32,17 @@
       - if @booking.paid == true
         %button.btn.btn-success{:type => "button"} Payment received
       - else
-        = link_to "/bookings/#{@booking.id}/accept" do
-          %button.btn.btn-warning{:type => "button"} Waiting for payment
-        = link_to "/bookings/#{@booking.id}/reject" do
+        %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Waiting for payment
+        = link_to "/bookings/#{@booking.id}/cancel_by_host" do
           %button.btn.btn-danger{:type => "button"} Cancel booking
 
     - elsif @booking.status == "rejected"
 
-      %button.btn.btn-danger{:type => "button"} Booking rejected
+      %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking rejected
+
+    - elsif @booking.status == "cancelled"
+
+      %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking cancelled      
 
   %h3 Extra services
 

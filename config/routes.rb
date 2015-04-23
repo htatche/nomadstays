@@ -40,8 +40,10 @@ Rails.application.routes.draw do
   get "dashboard" => "users#host_dashboard"
   get "bookings/:id/accept" => "bookings#accept"
   get "bookings/:id/reject" => "bookings#reject"
+  get "bookings/:id/cancel_by_host" => "bookings#cancel_by_host"
+  get "bookings/:id/cancel_by_nomad" => "bookings#cancel_by_nomad"
 
-  resources :bookings
+  # resources :bookings
 
   # Dashboard
   # Shows next bookings (nomad)

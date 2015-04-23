@@ -106,7 +106,8 @@ class StaysController < ApplicationController
                                    :terrace, :router_access, :desk,
                                    :service_pickup, :service_laundry, :service_cleaning, :service_sim_card,
                                    :service_pickup_price, :service_laundry_price, :service_cleaning_price, :service_sim_card_price,
-                                   :monthly_price
+                                   :monthly_price,
+                                   :available
                                    )
     end
 

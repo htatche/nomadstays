@@ -147,4 +147,14 @@
             %span.input-group-addon US $
             = f.input_field :service_pickup_price, class: "form-control"        
 
+      / Status
+
+      %h4 Status
+
+      .panel.panel-default
+        .panel-body
+          .input-group    
+            = f.input :available,   :label => "Is your stay currently active ?"
+            = f.hint "If not, your stay won't be visible on the website"
+
       = f.button :submit, "Update"

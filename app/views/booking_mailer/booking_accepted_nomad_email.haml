@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Hi #{@booking.user.first_name}, we have one good news for you!
+    %p
+      Your host #{@booking.stay.user.first_name} is welcoming you at his stay #{@booking.stay.title}
+
+    %p
+      Review your booking now and proceed to payment by clicking the next link:
+
+    %p Link goes here
+
+    %p The team of Nomad Stays
