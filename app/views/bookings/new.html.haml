@@ -1,6 +1,11 @@
-.container#new-booking
+- content_for :title do
+  Book your stay at #{@stay.title}
 
-  %h3= "Booking form"
+- content_for :subheader do
+  = link_to stay_path(@stay.id) do
+    = @stay.title
+
+#new-booking
 
   .row
     .col-md-6
@@ -10,7 +15,7 @@
 
         / Period
 
-        %h4 Choose the length of your booking
+        %h3 Choose the length of your booking
 
         .panel.panel-default
           .panel-body
@@ -37,47 +42,49 @@
 
         / Extra services
 
-        %h4 Your host offers the following extra services
-        %p Choose as many as you want to make your stay more comfortable !
+        - if @stay.offers_extra_services?
 
-        .panel.panel-default
-          .panel-body#extra-services
+          %h3 Your host offers the following extra services
+          %p Choose as many as you want to make your stay more comfortable !
 
-            - if @stay.service_laundry
-              = f.input :service_laundry, :label => "Laundry", :id => "service-laundry"
-              .integer.booking_service_laundry_price
-                .input-group
-                  %span#basic-addon1.input-group-addon US $
-                  %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_laundry_price, :type => "text", :readonly => "readonly"}        
-              = f.hint "He will take care of your laundry, cool!"
+          .panel.panel-default
+            .panel-body#extra-services
 
-            - if @stay.service_cleaning
-              = f.input :service_cleaning, :label => "Weekly cleaning", :id => "service-cleaning"
-              .integer.booking_service_cleaning_price
-                .input-group
-                  %span#basic-addon1.input-group-addon US $
-                  %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_cleaning_price, :type => "text", :readonly => "readonly"}  
-              = f.hint "Would you like to get your place cleaned every week ?"
+              - if @stay.service_laundry
+                = f.input :service_laundry, :label => "Laundry", :id => "service-laundry"
+                .integer.booking_service_laundry_price
+                  .input-group
+                    %span#basic-addon1.input-group-addon US $
+                    %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_laundry_price, :type => "text", :readonly => "readonly"}        
+                = f.hint "He will take care of your laundry, cool!"
 
-            - if @stay.service_sim_card
-              = f.input :service_sim_card, :label => "Local SIM Card", :id => "service-sim-card"
-              .integer.booking_service_sim_card_price
-                .input-group
-                  %span#basic-addon1.input-group-addon US $
-                  %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_sim_card_price, :type => "text", :readonly => "readonly"}  
-              = f.hint "Handy to receive a local SIM card as soon as you arrive, right ?"
+              - if @stay.service_cleaning
+                = f.input :service_cleaning, :label => "Weekly cleaning", :id => "service-cleaning"
+                .integer.booking_service_cleaning_price
+                  .input-group
+                    %span#basic-addon1.input-group-addon US $
+                    %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_cleaning_price, :type => "text", :readonly => "readonly"}  
+                = f.hint "Would you like to get your place cleaned every week ?"
 
-            - if @stay.service_pickup
-              = f.input :service_pickup, :label => "Pickup on arrival", :id => "service-pickup"
-              .integer.booking_service_pickup_price
-                .input-group
-                  %span#basic-addon1.input-group-addon $ US $
-                  %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_pickup_price, :type => "text", :readonly => "readonly"}  
-              = f.hint "Let your host pick you up wherever you land. Aiport, train or bus station..."
+              - if @stay.service_sim_card
+                = f.input :service_sim_card, :label => "Local SIM Card", :id => "service-sim-card"
+                .integer.booking_service_sim_card_price
+                  .input-group
+                    %span#basic-addon1.input-group-addon US $
+                    %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_sim_card_price, :type => "text", :readonly => "readonly"}  
+                = f.hint "Handy to receive a local SIM card as soon as you arrive, right ?"
+
+              - if @stay.service_pickup
+                = f.input :service_pickup, :label => "Pickup on arrival", :id => "service-pickup"
+                .integer.booking_service_pickup_price
+                  .input-group
+                    %span#basic-addon1.input-group-addon $ US $
+                    %input.form-control.integer{"aria-describedby" => "basic-addon1", :placeholder => @stay.service_pickup_price, :type => "text", :readonly => "readonly"}  
+                = f.hint "Let your host pick you up wherever you land. Aiport, train or bus station..."
 
         / Special request
 
-        %h4 Anything else ? 
+        %h3 Anything else ? 
 
         .panel.panel-default
           .panel-body

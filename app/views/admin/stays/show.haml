@@ -1,35 +1,25 @@
+- content_for :title do
+  Manage your stay #{@stay.title}
+
+- content_for :subheader do
+  = link_to "Host dashboard", admin_stays_path
+
+  = link_to new_stay_room_path(@stay.id) do
+    Rent out a room in this stay
+
 .wrapper#show-stay
-  %h3= @stay.title
-
-  / = render "map"
-
-  / Nomad options
 
   .panel.panel-default
     .panel-heading Availability
     .panel-body
       .datepicker.availability-calendar
-  
-  %p= link_to "Book this stay", new_stay_booking_path(stay_id: @stay.id)
-
-  / Host options
-
-  %p
-    %strong Host options
-
+      
+  %h3 Manage 
   %p= link_to "Edit this stay", edit_stay_path(id: @stay.id)
-  %p= link_to "Remove this stay", stay_path(id: @stay.id), :method => "delete"
-
-  - if @stay.attached_rooms.empty?
-    %p
-      Would you like to offer the possibility to rent out a separate room in your #{@stay.accomodation_type} ? 
-    = link_to 'Rent out a room', new_stay_room_path(@stay.id)
 
   - if @stay.attached_rooms.any?
-    %h4 Rooms
+    %h3 Rooms
     
-    %p= link_to('Rent out', new_stay_room_path(@stay.id)) + " a new room"
-
     - @stay.attached_rooms.each do |room|
       %p= link_to room.title, stay_room_path(stay_id: @stay.id, id: room.id)
 

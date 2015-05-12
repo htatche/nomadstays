@@ -46,11 +46,12 @@ body {
     img {
       width: 40px;
       height: 40px;
+      margin: 0 10px;
     }
   }
 
   .title {
-    margin-left: -60px;
+    margin-left: -50px;
     line-height: 45px;
     font-weight: 200;
 
@@ -74,6 +75,7 @@ body {
   // }
 
   a {
+    padding-right: 15px;
     font-size: 15px;
     color: white;
     font-weight: 400;
@@ -81,15 +83,13 @@ body {
 
 }
 
-.main-menu {
-
-  width: 80px;
-  padding: 10px;
-
+.main-panel {
+  width: 100%;
 }
 
-.main-panel {
-  padding: 10px;
+p.subtitle {
+  font-weight: 300;
+  font-size: 15px;
 }
 
 /* ==========================================================================
@@ -151,7 +151,8 @@ form.new_user, form.edit_user {
  * New
  */
 
-.new_stay {
+#new-stay {
+
   .map-container {
     margin-top: 25px;
   }
@@ -172,6 +173,123 @@ form.new_user, form.edit_user {
  * Show
  */
 
+#show-stay {
+
+  width: inherit;
+
+  .photo-overlay {
+    width: inherit;
+    height: 500px;
+    margin-top: 15px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));    
+    z-index: 0;
+
+    .title {
+      font-size: 50px;
+      font-weight: 200;
+      color: #FFFFFF;
+      z-index: 0;
+      position: absolute;
+      text-align: center;
+      width: inherit;
+      top: 300px;
+    }      
+
+    .price {
+      font-size: 25px;
+      font-weight: 100;
+      color: #FFFFFF;
+      z-index: 0;
+      position: absolute;
+      text-align: center;
+      width: inherit;
+      top: 360px;
+    }      
+
+    .photo {
+      background: no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      width: inherit;
+      height: inherit;
+      z-index: -1;
+    }
+
+  }  
+
+  .photo-subheader {
+    width: 95%;
+    height: 80px;
+    margin: 0 auto;
+    background-color: #3F51B5;
+    border-bottom: 1px solid #b6b6b6;
+
+    .extra-services {
+      font-family: Roboto;
+      color: #FFFFFF !important;
+
+      .service {
+        float: left;
+        padding: 10px;
+        text-align: center;
+        font-weight: 100;
+
+        .title {
+          font-size: 25px;
+        }
+        .price {
+          font-size: 15px;
+        }
+      }
+
+    }
+
+    .bookit {
+      float: right;
+      font-family: Roboto;
+      font-size: 35px;
+      font-weight: 300;
+      color: #FFEB3B;
+      padding: 15px;
+    }
+
+  }
+
+  .content {
+    width: 95%;
+    margin: 0 auto;    
+
+    .overview {
+      .description {
+        float: left;
+        width: 50%;
+        margin-top: 20px;
+        font-size: 17px;
+
+        .rate {
+          h3 {
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-size: 30px;
+            font-weight: 300;        
+          }
+        }
+
+      }      
+
+      .photos {
+        width: 50%;
+        float: right;
+
+        img {
+          padding: 10px;
+        }
+      }
+    }
+
+  }
+
+}
 
 /* ==========================================================================
    Bookings
@@ -268,11 +386,19 @@ form.new_user, form.edit_user {
 
 .host-dashboard {
 
-  .stay-card {
-    width: 150px;
-    height: 200px;
+  .stays-wrapper {
+    width: inherit;
+    height: 500px;
 
-    border: 1px solid black;
+    .stay-card {
+      float: left;
+      width: 150px;
+      height: 200px;
+      margin: 10px;
+
+      border: 1px solid black;
+    }
+
   }
 
   .booking {

@@ -1,145 +1,172 @@
-%h3 Add a new stay
+#new-stay
+  - content_for :title do
+    Add a new stay
 
-= simple_form_for @stay, :method => :post do |f|    
-  = f.input :latitude, :as => :hidden
-  = f.input :longitude, :as => :hidden
+  - content_for :subheader do
+    - if current_user.stays.any?
+      = link_to admin_stays_path do
+        Host dashboard
+    - else
+      = link_to root_path do
+        Home
 
-  / Accomodation Type
+  = simple_form_for @stay, :method => :post, :html => { :multipart => true } do |f|    
+    = f.input :latitude, :as => :hidden
+    = f.input :longitude, :as => :hidden
 
-  %h4 What sort of accomodation do you offer ?
+    / Accomodation Type
 
-  = f.input :accomodation_type, 
-            collection: accomodation_types,
-            include_blank: false,
-            label: "Accomodation"
+    %h3 What sort of accomodation do you offer ?
 
-  / Room
+    = f.input :accomodation_type, 
+              collection: accomodation_types,
+              include_blank: false,
+              label: "Accomodation"
 
-  #accomodation_is_room
-    = render :partial => 'form_room'
+    / Room
 
-  / Description
+    #accomodation_is_room
+      = render :partial => 'form_room'
 
-  %h4 Write a beautiful description
+    #form-details
 
-  .panel.panel-default
-    .panel-body
-      = f.input :title
-      = f.hint "Type something that will attract nomads. For example: Fully furnished apartment by the sea"
-      = f.input :description
+      / Description
 
-  / Apartment 
+      %h3 Write a beautiful description
 
-  #accomodation_is_apartment
+      .panel.panel-default
+        .panel-body
+          = f.input :title
+          = f.hint "Type something that will attract nomads. For example: Fully furnished apartment by the sea"
+          = f.input :description
 
-    %h4 About your apartment
+      / Apartment 
 
-    .panel.panel-default
-      .panel-body
-        = f.simple_fields_for :apartment do |a|
-          = render :partial => 'form_apartment', :locals => {:a => a}
+      #accomodation_is_apartment
 
-  / House          
+        %h3 About your apartment
 
-  #accomodation_is_house
+        .panel.panel-default
+          .panel-body
+            = f.simple_fields_for :apartment do |a|
+              = render :partial => 'form_apartment', :locals => {:a => a}
 
-    %h4 About your house
+      / House          
 
-    .panel.panel-default
-      .panel-body
-        = f.simple_fields_for :house do |h|
-          = render :partial => 'form_house', :locals => {:h => h}
+      #accomodation_is_house
 
-  / Location
+        %h3 About your house
 
-  %h4 Where is it ?
-  %p Don't worry, we will only offer an approximate location   until booking is completed
+        .panel.panel-default
+          .panel-body
+            = f.simple_fields_for :house do |h|
+              = render :partial => 'form_house', :locals => {:h => h}
 
-  .panel.panel-default
-    .panel-body
+      / Location
 
-      .row
-        .col-md-6
+      %h3 Where is it ?
+      %p.subtitle Don't worry, we will only offer an approximate location   until booking is completed
 
-          = f.input :country
-          = f.input :state 
-          = f.input :city
-          = f.input :street_address
-          = f.hint "Once you have filled those fields please fine-grain the position by clicking on the map"
+      .panel.panel-default
+        .panel-body
 
-        .col-md-6
+          .row
+            .col-md-6
 
-          = render "new_stay_map"                
+              = f.input :country
+              = f.input :state 
+              = f.input :city
+              = f.input :street_address
+              = f.hint "Once you have filled those fields please fine-grain the position by clicking on the map"
 
-  / Connection
+            .col-md-6
 
-  %h4 What sort of connetion is available ?
-  %p Remember, only stays that have an internet connection will be listed
+              = render "new_stay_map"                
 
-  .panel.panel-default
-    .panel-body
-      = f.input :wifi
-      = f.input :wifi_speed,
-        :label => "What is the speed of your internet connection ?",
-        collection: internet_speed_types,
-        include_blank: false              
-      = f.input :router_access, :label => "Does your guest has physical access to the router ? (in case he needs to restart it)"
-      = f.input :mobile_data
-      = f.input :mobile_data_speed,
-        :label => "What is the speed of your mobile data connection in your place ?",
-        collection: internet_speed_types,
-        include_blank: false                   
+      / Connection
 
-  / Amenities
+      %h3 What sort of connetion is available ?
+      %p.subtitle Remember, only stays that have an internet connection will be listed
 
-  %h4 Does your place offer amenities ?
+      .panel.panel-default
+        .panel-body
+          = f.input :wifi
+          = f.input :wifi_speed,
+            :label => "What is the speed of your internet connection ?",
+            collection: internet_speed_types,
+            include_blank: false              
+          = f.input :router_access, :label => "Does your guest has physical access to the router ? (in case he needs to restart it)"
+          = f.input :mobile_data
+          = f.input :mobile_data_speed,
+            :label => "What is the speed of your mobile data connection in your place ?",
+            collection: internet_speed_types,
+            include_blank: false                   
 
-  .panel.panel-default
-    .panel-body
-      = f.input :terrace
-      = f.input :desk
-      = f.hint "Having a desk will give you a better score"
+      / Amenities
 
-  / Price
+      %h3 Does your place offer amenities ?
 
-  %h4 What will be the monthly cost ?
+      .panel.panel-default
+        .panel-body
+          = f.input :terrace
+          = f.input :desk
+          = f.hint "Having a desk will give you a better score"
 
-  .panel.panel-default
-    .panel-body
-      = f.input :monthly_price, wrapper: :vertical_input_group, hint: "Remember, the minimum stay length will be 1 month" do
-        %span.input-group-addon US $
-        = f.input_field :monthly_price, class: "form-control"
+      / Price
 
-  / Extra services
+      %h3 What will be the monthly cost ?
 
-  %h4 Would you like to offer any extra service ?
-  %p Make some extra bucks by offering a more comfortable stay, or give it for free !
+      .panel.panel-default
+        .panel-body
+          = f.input :monthly_price, wrapper: :vertical_input_group, hint: "Remember, the minimum stay length will be 1 month" do
+            %span.input-group-addon US $
+            = f.input_field :monthly_price, class: "form-control"
 
-  .panel.panel-default
-    .panel-body#extra-services
-      / TODO: Limit HTML5 numeric inputs to >= 0 and < 200
-      = f.input :service_laundry,   :label => "Take care of your nomad's laundry"
+      / Extra services
 
-      = f.input :service_laundry_price, wrapper: :vertical_input_group, label: false do
-        %span.input-group-addon US $
-        = f.input_field :service_laundry_price, class: "form-control"
+      %h3 Would you like to offer any extra service ?
+      %p.subtitle Make some extra bucks by offering a more comfortable stay, or give it for free !
 
-      = f.input :service_cleaning, :label => "Weekly cleaning of the stay"
+      .panel.panel-default
+        .panel-body#extra-services
+          / TODO: Limit HTML5 numeric inputs to >= 0 and < 200
+          = f.input :service_laundry,   :label => "Take care of your nomad's laundry"
 
-      = f.input :service_cleaning_price, wrapper: :vertical_input_group, label: false do
-        %span.input-group-addon US $
-        = f.input_field :service_cleaning_price, class: "form-control"
+          = f.input :service_laundry_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_laundry_price, class: "form-control"
 
-      = f.input :service_sim_card,  :label => "Local SIM Card"
+          = f.input :service_cleaning, :label => "Weekly cleaning of the stay"
 
-      = f.input :service_sim_card_price, wrapper: :vertical_input_group, label: false do
-        %span.input-group-addon US $
-        = f.input_field :service_sim_card_price, class: "form-control"    
+          = f.input :service_cleaning_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_cleaning_price, class: "form-control"
 
-      = f.input :service_pickup,    :label => "Airport Pickup"
+          = f.input :service_sim_card,  :label => "Local SIM Card"
 
-      = f.input :service_pickup_price, wrapper: :vertical_input_group, label: false do
-        %span.input-group-addon US $
-        = f.input_field :service_pickup_price, class: "form-control"          
+          = f.input :service_sim_card_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_sim_card_price, class: "form-control"    
 
-  = f.button :submit, "Add"
+          = f.input :service_pickup,    :label => "Airport Pickup"
+
+          = f.input :service_pickup_price, wrapper: :vertical_input_group, label: false do
+            %span.input-group-addon US $
+            = f.input_field :service_pickup_price, class: "form-control"          
+
+      / Photos
+
+      %h3 Photos
+      %p.subtitle Photos are extremely important, put as many as possible.
+      %p.subtitle 
+        %u A lack of photos or poor quality of them will result in your new addition being cancelled.
+
+      .panel.panel-default
+        .panel-body
+          = f.fields_for :stay_photos do |p|
+            .field
+              = p.label :file
+              %br
+                = p.file_field :file, :multiple => true #, name: "stay_photos[file][]"
+
+      = f.button :submit, "Add"

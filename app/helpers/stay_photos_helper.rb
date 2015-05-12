@@ -1,0 +1,2 @@
+module StayPhotosHelper
+end

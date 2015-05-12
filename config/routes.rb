@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'stay_photos/show'
+
+  get 'stay_photos/new'
+
+  get 'stay_photos/create'
+
   # get "bookings/index"
 
   # get "bookings/show"

@@ -7,9 +7,13 @@
     = link_to new_stay_path do
       Rent out a new stay
 
-  - current_user.stays.each do |stay|
-    = link_to stay_path(stay.id) do
-      .stay-card= stay.title
+  - if current_user.stays.any?
+    .stays-wrapper
+      - current_user.stays.each do |stay|
+        = link_to stay_path(stay.id) do
+          .stay-card= stay.title
+
+  %h2 Bookings
 
   %h3 Pending for approval
 

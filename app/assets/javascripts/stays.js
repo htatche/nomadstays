@@ -125,18 +125,21 @@ function show_accomodation_fields () {
       $("#accomodation_is_apartment").show();
       $("#accomodation_is_house").hide();
       $("#accomodation_is_room").hide();
+      $("#form-details").show();    
       break;
 
     case "House":
       $("#accomodation_is_house").show();
       $("#accomodation_is_apartment").hide();
       $("#accomodation_is_room").hide();
+      $("#form-details").show();    
       break;
 
     case "Room":
       $("#accomodation_is_room").show();
       $("#accomodation_is_house").hide();
-      $("#accomodation_is_apartment").hide();      
+      $("#accomodation_is_apartment").hide();  
+      $("#form-details").hide();    
       break;
 
     default:

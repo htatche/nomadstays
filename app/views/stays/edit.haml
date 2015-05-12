@@ -2,6 +2,8 @@
   .col-md-12
     %h3 Update your stay
 
+    %p= link_to "Remove this stay", stay_path(id: @stay.id), :method => "delete"
+
     = simple_form_for @stay, method: :put, wrapper: :vertical_input_group do |f|    
       = f.input :latitude, :as => :hidden
       = f.input :longitude, :as => :hidden

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def accomodation_types
-    [["All", ""], ["Apartment", "Apartment"], ["House", "House"], ["Room", "Room"]]
+    [["Apartment", "Apartment"], ["House", "House"], ["Room", "Room"]]
   end
 
   def internet_speed_types

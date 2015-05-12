@@ -4,10 +4,13 @@ class Stay < ActiveRecord::Base
   has_one  :apartment,    :dependent => :destroy
   has_one  :house,        :dependent => :destroy
 
-  has_many :rooms #, through: :apartment
-  has_many :rooms #, through: :house
+  # has_many :rooms #, through: :apartment
+  # has_many :rooms #, through: :house
+  has_many :rooms
   has_many :bookings,             dependent: :delete_all
+  has_many :stay_photos
 
+  accepts_nested_attributes_for :stay_photos
   accepts_nested_attributes_for :apartment
   accepts_nested_attributes_for :house
 
@@ -75,6 +78,10 @@ class Stay < ActiveRecord::Base
     }
 
     dates
+  end
+
+  def offers_extra_services?
+    service_pickup || service_cleaning || service_laundry || service_sim_card
   end
 
   def pending_bookings

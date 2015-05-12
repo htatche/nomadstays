@@ -2,7 +2,8 @@
   .row
     .col-md-1
       .logo
-        =image_tag "Logo_06.png"    
+        = link_to root_path do
+          = image_tag "Logo_06.png"    
     .col-md-11
       .title
-        =yield :title
+        = yield :title

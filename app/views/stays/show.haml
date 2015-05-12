@@ -1,0 +1,75 @@
+- content_for :title do
+  #{@stay.title}
+
+- content_for :subheader do
+  %p= link_to "Book this stay", new_stay_booking_path(stay_id: @stay.id)
+
+#show-stay
+
+  .photo-overlay
+    .title
+      #{@stay.title}
+    .price
+      #{@stay.monthly_price} $ / month
+    .photo{:style => "background-image: url(#{image_path "stay-default-photo.jpg"})"}
+
+  .photo-subheader
+    .extra-services
+      .service
+        .title
+          Laundry
+        .price
+          25 $ monthly 
+      .service
+        .title
+          Cleaning
+        .price
+          15 $ monthly    
+      .bookit   
+        BOOK
+
+  .content
+
+    .overview
+      .description
+        Another security issue you should care for is the file names (see Ruby On Rails Security Guide).
+        By default, CarrierWave provides only English letters, arabic numerals and some symbols as white
+        listed characters in the file name. If you want to support local scripts (Cyrillic letters, letters with diacritics
+        and so on), you have to override sanitize_regexp method. It should return regular expression which would
+        match all non-allowed symbols.
+
+        .rate
+          %h3 Rate by other nomads
+          %h4 Proximity
+
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+           
+          %h4 Connectivity
+          
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star-empty{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star-empty{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star-empty{"aria-hidden" => "true"}
+
+          %h4 Luminosity
+          
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}
+          %span.glyphicon.glyphicon-star-empty{"aria-hidden" => "true"}                     
+          
+      .photos
+        - @stay_photos.each do |p|
+          = image_tag p.file.thumb
+
+
+
+
+
+/ = render "map"

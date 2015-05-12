@@ -8,12 +8,14 @@ class StaysController < ApplicationController
 
     def show
       @stay = Stay.find params[:id]
+      @stay_photos = @stay.stay_photos.all
 
       @booked_dates = @stay.booked_dates
     end
 
   	def new
   		@stay = Stay.new
+      @stay_photos = @stay.stay_photos.build    
 
       @stay.apartment = Apartment.new
       @stay.house =     House.new
@@ -33,6 +35,8 @@ class StaysController < ApplicationController
       @stay.user_id = current_user.id
       @stay.country = country_name(input[:country])
       @stay.full_address = @stay.build_full_address
+
+      # Apartment / House
 
       if input[:accomodation_type] == "House"
 
@@ -62,9 +66,13 @@ class StaysController < ApplicationController
 
       end    
 
-      @stay.save!
+      @stay.save!  
 
       if @stay.persisted?
+        params[:stay_photos]['file'].each do |a|
+          @stay_photo = @stay.stay_photos.create!(:file => a, :stay_id => @stay.id)
+        end  
+
         redirect_to :action => 'show', :id => @stay.id
       else
         # Renders the nested form for the child that was not created before
@@ -107,7 +115,8 @@ class StaysController < ApplicationController
                                    :service_pickup, :service_laundry, :service_cleaning, :service_sim_card,
                                    :service_pickup_price, :service_laundry_price, :service_cleaning_price, :service_sim_card_price,
                                    :monthly_price,
-                                   :available
+                                   :available,
+                                   stay_photos_attributes: [:id, :stay_id, :file]
                                    )
     end
 

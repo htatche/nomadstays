@@ -56,6 +56,10 @@ gem 'country_select'
 gem 'ransack'
 gem 'bootstrap-datepicker-rails'
 
+# Photos
+gem 'carrierwave'
+gem 'rmagick'
+
 # Geolocation
 gem 'underscore-rails'
 gem 'geocoder'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406151054) do
+ActiveRecord::Schema.define(version: 20150509154913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,13 @@ ActiveRecord::Schema.define(version: 20150406151054) do
 
   add_index "rooms", ["stay_id"], name: "index_rooms_on_stay_id", using: :btree
 
+  create_table "stay_photos", force: :cascade do |t|
+    t.integer  "stay_id"
+    t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "stays", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title",                  null: false
@@ -123,6 +130,7 @@ ActiveRecord::Schema.define(version: 20150406151054) do
     t.integer  "monthly_price"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.json     "photos"
   end
 
   add_index "stays", ["user_id"], name: "index_stays_on_user_id", using: :btree
