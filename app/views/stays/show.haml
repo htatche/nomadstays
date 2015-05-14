@@ -11,7 +11,7 @@
       #{@stay.title}
     .price
       #{@stay.monthly_price} $ / month
-    .photo{:style => "background-image: url(#{image_path @stay.stay_photos.first.file_url})"}
+    .photo{:style => "background-image: url(#{image_path @cover_photo.file_url})"}
 
   .photo-subheader
     .extra-services
@@ -32,12 +32,8 @@
 
     .overview
       .description
-        Another security issue you should care for is the file names (see Ruby On Rails Security Guide).
-        By default, CarrierWave provides only English letters, arabic numerals and some symbols as white
-        listed characters in the file name. If you want to support local scripts (Cyrillic letters, letters with diacritics
-        and so on), you have to override sanitize_regexp method. It should return regular expression which would
-        match all non-allowed symbols.
-
+        = @stay.description
+        
         .rate
           %h3 Rate by other nomads
           %h4 Proximity

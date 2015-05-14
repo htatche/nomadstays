@@ -95,8 +95,9 @@ ActiveRecord::Schema.define(version: 20150509154913) do
   create_table "stay_photos", force: :cascade do |t|
     t.integer  "stay_id"
     t.string   "file"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "cover",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "stays", force: :cascade do |t|
@@ -130,7 +131,6 @@ ActiveRecord::Schema.define(version: 20150509154913) do
     t.integer  "monthly_price"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.json     "photos"
   end
 
   add_index "stays", ["user_id"], name: "index_stays_on_user_id", using: :btree

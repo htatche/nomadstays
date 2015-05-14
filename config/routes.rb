@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'stay_photos/show'
-
-  get 'stay_photos/new'
-
-  get 'stay_photos/create'
-
   # get "bookings/index"
 
   # get "bookings/show"
@@ -30,6 +24,10 @@ Rails.application.routes.draw do
     resources :bookings
   end  
 
+  resources :stay_photos 
+  get "stay_photos/:id/set_as_cover" => "stay_photos#set_as_cover"
+
+
   # Bookings
   # get   "stay/:stay_id/book" => "bookings#new"
   # post  "stay/:stay_id/book" => "bookings#create"
@@ -51,6 +49,7 @@ Rails.application.routes.draw do
 
     resources :stays
   end
+
 
   # resources :bookings
 

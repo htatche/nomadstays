@@ -17,6 +17,8 @@ class StaysController < ApplicationController
       @stay = Stay.find params[:id]
       @stay_photos = @stay.stay_photos.all
 
+      @cover_photo = StayPhoto.where(stay: @stay.id, cover: true).first
+
       @booked_dates = @stay.booked_dates
     end
 
@@ -76,12 +78,12 @@ class StaysController < ApplicationController
       @stay.save!  
 
       if @stay.persisted?
-        # logger.debug params[:stay_photos][:file].is_a?(Symbol).inspect
-
         params[:stay_photos][:file].each do |a|
-          # debugger
           @stay_photo = @stay.stay_photos.create!(:file => a, :stay_id => @stay.id)
         end  
+
+        # First photo will be the cover one automatically
+        @stay.stay_photos.first.update(cover: true)
 
         redirect_to :action => 'show', :id => @stay.id
       else
@@ -100,9 +102,15 @@ class StaysController < ApplicationController
 
     def update
       @stay = Stay.find(params[:id])
-      @stay.update(stay_params)
 
       if @stay.update(stay_params)
+
+        if params[:stay_photos]
+          params[:stay_photos][:file].each do |a|
+            @stay_photo = @stay.stay_photos.create!(:file => a, :stay_id => @stay.id)
+          end  
+        end
+
         redirect_to @stay
       else
         render "edit"

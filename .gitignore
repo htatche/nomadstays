@@ -20,3 +20,6 @@
 
 # RubyMine
 .idea
+
+# Photos
+/public/uploads/*

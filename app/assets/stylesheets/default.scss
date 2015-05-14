@@ -92,6 +92,10 @@ p.subtitle {
   font-size: 15px;
 }
 
+.with-padding {
+  padding: 10px;
+}
+
 /* ==========================================================================
    General
    ========================================================================== */
@@ -151,7 +155,9 @@ form.new_user, form.edit_user {
  * New
  */
 
-#new-stay {
+#stays-new {
+
+  width: 50%;
 
   .map-container {
     margin-top: 25px;
@@ -168,6 +174,34 @@ form.new_user, form.edit_user {
   }    
 
 }
+
+#stays-edit {
+
+  width: 50%;
+
+  .photos {
+    .photo {
+      width: 220px;
+      float: left;
+      padding: 10px;
+
+      .delete {
+        float: left;
+        width: 50%;
+        padding: 5px;
+      } 
+
+      .set-as-cover {
+        float: right;
+        width: 50%;
+        padding: 5px;
+        text-align: right;
+      }    
+    }
+  }   
+
+}
+
 
 /*
  * Show

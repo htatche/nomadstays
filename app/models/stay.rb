@@ -6,9 +6,9 @@ class Stay < ActiveRecord::Base
 
   # has_many :rooms #, through: :apartment
   # has_many :rooms #, through: :house
-  has_many :rooms
+  has_many :rooms,                dependent: :delete_all
   has_many :bookings,             dependent: :delete_all
-  has_many :stay_photos
+  has_many :stay_photos,          dependent: :delete_all
 
   accepts_nested_attributes_for :stay_photos
   accepts_nested_attributes_for :apartment
