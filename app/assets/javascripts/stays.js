@@ -181,6 +181,18 @@ function show_accomodation_fields () {
 
 var ready = function() {
 
+  if ($("#show-stay").length > 0) {
+    var latitude  = parseFloat($("#latitude").html());
+    var longitude = parseFloat($("#longitude").html());
+
+    map = build_map(latitude, longitude);
+
+    marker = map.addMarker({
+      lat: latitude,
+      lng: longitude
+    });
+  }
+
   if ($("#new_stay").length > 0) {
     map = build_map();
 

@@ -3,8 +3,15 @@ class StaysController < ApplicationController
   public
 
     def index
-      @stays = current_user.stays
-    end
+      if params[:q]
+        query = params[:q].reject {|i,j|  i == "house_nomad_house_eq_any" && j == "0"}
+        @q = Stay.ransack(query)
+        @stays = @q.result(distinct: true)      
+      else
+        @q = Stay.ransack(params[:q])
+        @stays = @q.result(distinct: true)
+      end
+    end      
 
     def show
       @stay = Stay.find params[:id]
@@ -69,8 +76,8 @@ class StaysController < ApplicationController
       @stay.save!  
 
       if @stay.persisted?
-        params[:stay_photos]['file'].each do |a|
-          @stay_photo = @stay.stay_photos.create!(:file => a, :stay_id => @stay.id)
+        params[:stay][:stay_photos_attributes].each do |a|
+          @stay_photo = @stay.stay_photos.create!(:file => a[:file], :stay_id => @stay.id)
         end  
 
         redirect_to :action => 'show', :id => @stay.id

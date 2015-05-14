@@ -144,7 +144,7 @@ form.new_user, form.edit_user {
 }
 
 /* ==========================================================================
-   Stay
+   Stays
    ========================================================================== */
 
 /*
@@ -172,6 +172,96 @@ form.new_user, form.edit_user {
 /*
  * Show
  */
+
+#stays-index {
+
+  .form-container {
+    margin: 10px;
+
+    .panel-default {
+      border: none;
+    }
+
+    .form-bottom {
+      margin-top: 15px;
+
+      .accomodation-type {
+        width: 20%;
+        float: left;          
+      }
+
+      .price-range {
+        width: 22%;
+        float: left;
+        margin-left: 20px;
+
+        .q_monthly_price_lt {
+          float: left;
+          width: 45%;
+        }
+
+        .q_monthly_price_gt {
+          float: right;
+          width: 45%;
+        }
+      }
+
+      input[type="submit"] {
+        float: left;
+        width: 10%;
+        margin-left: 15px;
+        background-color: #3F51B5;
+        color: white;
+        font-family: "Roboto";
+        font-weight: 300;
+      }
+
+    }
+  }
+
+  .stay-cards-container {
+    
+  }
+
+  .stay-card {
+    float: left;
+
+    width: 300px;
+    height: 250px;
+    margin: 10px;
+
+    .photo {
+      width: inherit;
+      height: 200px;
+
+      background: no-repeat center;
+      position: relative;
+    }
+
+    .info {
+      height: 50px;
+      padding: 10px;
+
+      font-weight: 100;
+      background-color: #303F9F;
+
+      .title {
+        float: left;
+        font-size: 20px;              
+        color: white;
+      }
+
+      .price {
+        float: right;
+        font-size: 18px;              
+        color: #FFEB3B;        
+      }
+
+    }
+
+  }
+
+}
 
 #show-stay {
 
@@ -249,8 +339,11 @@ form.new_user, form.edit_user {
       font-family: Roboto;
       font-size: 35px;
       font-weight: 300;
-      color: #FFEB3B;
       padding: 15px;
+
+      a {
+        color: #FFEB3B;
+      }
     }
 
   }
@@ -288,6 +381,21 @@ form.new_user, form.edit_user {
     }
 
   }
+
+  .map-wrapper {
+    #latitude, #longitude {
+      display: none;
+    }
+
+    #map-container {
+      width: 100%;
+
+      #map {
+        width: 100%;
+        height: 400px;
+      }
+    }
+  }  
 
 }
 

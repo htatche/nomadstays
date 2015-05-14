@@ -26,7 +26,7 @@
         .price
           15 $ monthly    
       .bookit   
-        BOOK
+        = link_to "Book", new_stay_booking_path(stay_id: @stay.id)
 
   .content
 
@@ -68,8 +68,7 @@
         - @stay_photos.each do |p|
           = image_tag p.file.thumb
 
-
-
-
-
-/ = render "map"
+  .map-wrapper
+    #latitude= @stay.latitude
+    #longitude= @stay.longitude
+    = render "map"

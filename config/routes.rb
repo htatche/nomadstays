@@ -30,10 +30,6 @@ Rails.application.routes.draw do
     resources :bookings
   end  
 
-  # Search stays
-  get "search" => "search_stays#index"
-  post "search" => "search_stays#index"
-
   # Bookings
   # get   "stay/:stay_id/book" => "bookings#new"
   # post  "stay/:stay_id/book" => "bookings#create"

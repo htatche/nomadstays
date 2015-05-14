@@ -1,13 +1,93 @@
-- if !@stays.empty?
-  %table.table
-    .tr
-      .td
-        %p=link_to "Rent out a new stay", new_stay_path
+#stays-index
 
-    - @stays.each do |stay|
-      .tr
-        .td
-          =link_to stay.title, stay_path(stay.id)
+  - content_for :title do
+    Find your next stay
 
-- if @stays.empty?
-  %p=link_to("Rent out a stay", new_stay_path) + " and start hosting nomads !"
+  .form-container
+
+    = search_form_for @q, :url => stays_path do |f|
+
+      .panel.panel-default
+        .panel-body
+          .form-group
+            = f.input_field :full_address_cont,
+                      label: false,
+                      class: "form-control input-lg"
+
+            .form-bottom-wrapper
+
+              .form-bottom
+
+                .accomodation-type 
+                  = f.input_field :accomodation_type_eq, 
+                            collection: accomodation_types,
+                            include_blank: false,
+                            label: false, class: "form-control input-lg"
+
+
+                .price-range 
+                  = f.input :monthly_price_gt, wrapper: :vertical_input_group, label: false do
+                    %span.input-group-addon US $
+                    = f.input_field :monthly_price_gt, class: "form-control input-lg"
+
+                  = f.input :monthly_price_lt, wrapper: :vertical_input_group, label: false do
+                    %span.input-group-addon US $
+                    = f.input_field :monthly_price_lt, class: "form-control input-lg"
+
+                = f.submit "Search", class: "form-control input-lg"
+
+
+            / = f.input :wifi_speed_gt, 
+            /           collection: internet_speed_types,
+            /           include_blank: false,
+            /           label: "Wifi speed greater than"           
+
+            / = f.input :house_nomad_house_eq_any, 
+            /           label: "Only show nomad houses",
+            /           as: :boolean
+
+            / = f.input_field :updated_at_gt,
+            /           :data => {:provide => "datepicker"},
+            /           label: "Available from"
+
+            / = f.input_field :updated_at_lt,
+            /           :data => {:provide => "datepicker"},
+            /           label: "Available to"
+      
+
+  .stay-cards-container
+
+    - if @stays.any?
+      %h3 We found those stays for you
+      - @stays.each do |stay|
+        = link_to stay_path(stay.id) do
+
+          .stay-card
+            .photo{:style => "background-image: url(#{image_path "stay-default-photo.jpg"})"}
+            .info
+              .title
+                = stay.title
+              .price
+                = stay.monthly_price
+                = "$ / month"
+
+    - if @stays.empty?
+      %h3 We didn't find anything that strictly matches your criteria, but...
+
+  / Important: We will never show an empty result ! If nothing comes up, we suggest something anyway    
+
+  / See Top Picks
+  / See Latest
+  / See Hottest
+
+  / Filter by region
+
+  / Filter by availability (booking period) -> If filter not active, show them all
+
+  / Filter by weather (WARM or COLD) OR by terrain (SEA-SIDE, MOUNTAINS, FIELDS)
+
+  / Filter by extra services provided
+
+  / Launch as beta first
+  / Provide invitations to hosts
+  / Start only in one region, then expand availability to other places (allows to keep promoting for longer)
