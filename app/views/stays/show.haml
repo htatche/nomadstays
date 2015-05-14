@@ -11,7 +11,7 @@
       #{@stay.title}
     .price
       #{@stay.monthly_price} $ / month
-    .photo{:style => "background-image: url(#{image_path "stay-default-photo.jpg"})"}
+    .photo{:style => "background-image: url(#{image_path @stay.stay_photos.first.file_url})"}
 
   .photo-subheader
     .extra-services

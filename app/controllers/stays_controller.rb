@@ -76,8 +76,11 @@ class StaysController < ApplicationController
       @stay.save!  
 
       if @stay.persisted?
-        params[:stay][:stay_photos_attributes].each do |a|
-          @stay_photo = @stay.stay_photos.create!(:file => a[:file], :stay_id => @stay.id)
+        # logger.debug params[:stay_photos][:file].is_a?(Symbol).inspect
+
+        params[:stay_photos][:file].each do |a|
+          # debugger
+          @stay_photo = @stay.stay_photos.create!(:file => a, :stay_id => @stay.id)
         end  
 
         redirect_to :action => 'show', :id => @stay.id

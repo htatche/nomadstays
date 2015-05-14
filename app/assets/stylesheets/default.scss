@@ -176,11 +176,19 @@ form.new_user, form.edit_user {
 #stays-index {
 
   .form-container {
-    margin: 10px;
 
     .panel-default {
+      margin-top: 10px;
+      margin-bottom: 0;
       border: none;
+      box-shadow: none;
+
+      .panel-body {
+        padding: 10px;
+      }
     }
+
+    
 
     .form-bottom {
       margin-top: 15px;
@@ -220,7 +228,6 @@ form.new_user, form.edit_user {
   }
 
   .stay-cards-container {
-    
   }
 
   .stay-card {

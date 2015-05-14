@@ -58,7 +58,6 @@
   .stay-cards-container
 
     - if @stays.any?
-      %h3 We found those stays for you
       - @stays.each do |stay|
         = link_to stay_path(stay.id) do
 
