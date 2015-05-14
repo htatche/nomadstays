@@ -321,7 +321,7 @@ form.new_user, form.edit_user {
   .photo-overlay {
     width: inherit;
     height: 500px;
-    margin-top: 15px;
+    // margin-top: 15px;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));    
     z-index: 0;
 
@@ -359,7 +359,7 @@ form.new_user, form.edit_user {
   }  
 
   .photo-subheader {
-    width: 95%;
+    // width: 95%;
     height: 80px;
     margin: 0 auto;
     background-color: #3F51B5;
@@ -387,9 +387,9 @@ form.new_user, form.edit_user {
 
     .bookit {
       float: right;
-      font-family: Roboto;
+      font-family: "Roboto";
       font-size: 35px;
-      font-weight: 300;
+      font-weight: 100;
       padding: 15px;
 
       a {
