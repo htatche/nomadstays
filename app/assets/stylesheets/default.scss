@@ -222,8 +222,6 @@ form.new_user, form.edit_user {
       }
     }
 
-    
-
     .form-bottom {
       margin-top: 15px;
 
@@ -262,40 +260,52 @@ form.new_user, form.edit_user {
   }
 
   .stay-cards-container {
-  }
 
-  .stay-card {
-    float: left;
+    .stay-card {
+      float: left;
 
-    width: 300px;
-    height: 250px;
-    margin: 10px;
+      width: 300px;
+      height: 250px;
+      margin: 10px;
 
-    .photo {
-      width: inherit;
-      height: 200px;
+      .photo {
+        position: relative;
+        z-index: -1;        
+        width: inherit;
+        height: 200px;
 
-      background: no-repeat center;
-      position: relative;
-    }
+        background: no-repeat center;
 
-    .info {
-      height: 50px;
-      padding: 10px;
+        .price {
+          position: absolute;
+          bottom: 20px;
+          right: 0;
+          padding: 5px;
+          z-index: 0;
+          font-size: 18px;          
+          font-weight: 100;    
+          background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)); 
+          color: #FFEB3B;        
+        }
 
-      font-weight: 100;
-      background-color: #303F9F;
-
-      .title {
-        float: left;
-        font-size: 20px;              
-        color: white;
       }
 
-      .price {
-        float: right;
-        font-size: 18px;              
-        color: #FFEB3B;        
+      .info {
+        height: 50px;
+        background-color: #303F9F;
+
+        .title {
+          float: left;
+          width: 100%;
+          margin: 0 auto;
+          padding: 10px;
+          text-align: center;
+          // font-family: "Roboto";
+          font-size: 16px;              
+          font-weight: 200;
+          color: white;
+        }
+
       }
 
     }

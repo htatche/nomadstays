@@ -62,13 +62,13 @@
         = link_to stay_path(stay.id) do
 
           .stay-card
-            .photo{:style => "background-image: url(#{image_path "stay-default-photo.jpg"})"}
+            .photo{:style => "background-image: url(#{image_path stay.cover_photo.file.card.url})"}
+              .price
+                = stay.monthly_price
+                = "$ / month"            
             .info
               .title
                 = stay.title
-              .price
-                = stay.monthly_price
-                = "$ / month"
 
     - if @stays.empty?
       %h3 We didn't find anything that strictly matches your criteria, but...

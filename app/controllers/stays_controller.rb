@@ -17,7 +17,7 @@ class StaysController < ApplicationController
       @stay = Stay.find params[:id]
       @stay_photos = @stay.stay_photos.all
 
-      @cover_photo = StayPhoto.where(stay: @stay.id, cover: true).first
+      @cover_photo = @stay.cover_photo
 
       @booked_dates = @stay.booked_dates
     end

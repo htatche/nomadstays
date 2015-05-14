@@ -96,4 +96,8 @@ class Stay < ActiveRecord::Base
     bookings.where( status: 'ready', paid: 'true' )
   end
 
+  def cover_photo
+    stay_photos.where( cover: true ).first
+  end
+
 end
