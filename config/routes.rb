@@ -1,17 +1,5 @@
 Rails.application.routes.draw do
-  # get "bookings/index"
 
-  # get "bookings/show"
-
-  # get "bookings/new"
-
-  # get "bookings/create"
-
-  # get "bookings/edit"
-
-  # get "bookings/update"
-
-  # You can have the root of your site routed with "root"
   root :to => "home#index"
 
   # Users
@@ -24,34 +12,31 @@ Rails.application.routes.draw do
     resources :bookings
   end  
 
+  # Stay photos
   resources :stay_photos 
   get "stay_photos/:id/set_as_cover" => "stay_photos#set_as_cover"
 
-
   # Bookings
-  # get   "stay/:stay_id/book" => "bookings#new"
-  # post  "stay/:stay_id/book" => "bookings#create"
+  get "bookings/:id/payment" => "bookings#payment"
+  get "bookings/:id/pay" => "bookings#pay"
 
-  # Rooms bookings
-  get   "stay/:stay_id/room/:room_id/book" => "bookings#new"
-  post  "stay/:stay_id/room/:room_id/book" => "bookings#create"
+  get "bookings/:id/payment_cancelled" => "bookings#payment_cancelled"
+  get "bookings/:id/payment_received" =>  "bookings#payment_received"
 
-  # Host dashboard
-  get "bookings/:id/accept" => "bookings#accept"
-  get "bookings/:id/reject" => "bookings#reject"
-  get "bookings/:id/cancel_by_host" => "bookings#cancel_by_host"
-  get "bookings/:id/cancel_by_nomad" => "bookings#cancel_by_nomad"
+  get  "stay/:stay_id/room/:room_id/book" => "bookings#new"
+  post "stay/:stay_id/room/:room_id/book" => "bookings#create"
 
-
+  # Admin
   namespace :admin do
-    # Directs /admin/products/* to Admin::ProductsController
-    # (app/controllers/admin/products_controller.rb)
-
     resources :stays
+    resources :bookings
+
+    get "bookings/:id/accept" => "bookings#accept"
+    get "bookings/:id/reject" => "bookings#reject"
+    get "bookings/:id/cancel_by_host" => "bookings#cancel_by_host"
+    get "bookings/:id/cancel_by_nomad" => "bookings#cancel_by_nomad"    
   end
 
-
-  # resources :bookings
 
   # Dashboard
   # Shows next bookings (nomad)

@@ -96,6 +96,9 @@ group :development, :test do
   # Pretty print objects on console
   gem 'awesome_print'
 
+  # Paypal adaptative payments
+  gem 'paypal-sdk-adaptivepayments'
+
   # Cleaner log
   gem 'quiet_assets'
 

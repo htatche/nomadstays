@@ -124,6 +124,49 @@ class BookingsController < ApplicationController
     end      
   end  
 
+  def payment
+    @booking = Booking.find(params[:id])
+  end
+
+  def pay
+    @booking = Booking.find(params[:id])
+    @api = PayPal::SDK::AdaptivePayments.new
+
+    @pay = @api.build_pay({
+      :actionType => "PAY",
+      :cancelUrl => "http://localhost:3000/bookings/#{@booking.id}/payment_cancelled",
+      :currencyCode => "USD",
+      :feesPayer => "EACHRECEIVER",
+      :ipnNotificationUrl => "",
+      :receiverList => {
+        :receiver => [{
+          :amount => 500,
+          :email => "istambulapartment@gmail.com" }] }, #tatcheherve-buyer@gmail.com
+      :returnUrl => "http://localhost:3000/bookings/#{@booking.id}/payment_received" })
+
+    # Make API call & get response
+    @response = @api.pay(@pay)
+
+    # Access response
+    if @response.success? && @response.payment_exec_status != "ERROR"
+      @response.payKey
+      @api.payment_url(@response)  # Url to complete payment
+      logger.debug @response.payKey.inspect
+      redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey=#{@response.payKey}"
+    else
+      @response.error[0].message
+      logger.debug @response.error[0].message.inspect
+    end    
+  end
+
+  def payment_cancelled
+
+  end
+
+  def payment_received
+
+  end
+
   private
 
     def booking_params

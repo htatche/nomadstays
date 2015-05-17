@@ -175,6 +175,10 @@ form.new_user, form.edit_user {
 
 }
 
+/*
+ * Edit
+ */
+
 #stays-edit {
 
   width: 50%;
@@ -204,7 +208,7 @@ form.new_user, form.edit_user {
 
 
 /*
- * Show
+ * Index
  */
 
 #stays-index {
@@ -314,7 +318,11 @@ form.new_user, form.edit_user {
 
 }
 
-#show-stay {
+/*
+ * Show
+ */
+
+#stays-show {
 
   width: inherit;
 

@@ -14,7 +14,13 @@ function build_map (latitude, longitude) {
     el: '#map',
     lat: latitude,
     lng: longitude,
-    zoom: 5
+    zoom: 5,
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    // draggable: false,
+    mapTypeId: google.maps.MapTypeId.ROADMAP    
   }); 
 }
 
@@ -181,19 +187,22 @@ function show_accomodation_fields () {
 
 var ready = function() {
 
-  if ($("#show-stay").length > 0) {
+  if ($("#stays-show").length > 0) {
     var latitude  = parseFloat($("#latitude").html());
     var longitude = parseFloat($("#longitude").html());
 
     map = build_map(latitude, longitude);
+    console.log(latitude);
 
     marker = map.addMarker({
       lat: latitude,
       lng: longitude
     });
+
+    map.setZoom(16);
   }
 
-  if ($("#new_stay").length > 0) {
+  if ($("#stays-new").length > 0) {
     map = build_map();
 
     marker = map.addMarker({
@@ -208,7 +217,7 @@ var ready = function() {
     read_dom_events();
   }
 
-  if ($(".edit_stay").length > 0) {
+  if ($("#stays-edit").length > 0) {
     var latitude  = parseFloat($("#stay_latitude").val());
     var longitude = parseFloat($("#stay_longitude").val());
 
@@ -225,9 +234,9 @@ var ready = function() {
     show_accomodation_fields();
   }  
 
-  if ($("#show-stay").length > 0) {
-    renderAvailabilityCalendar(".availability-calendar");  
-  }
+  // if ($("#show-stay").length > 0) {
+  //   renderAvailabilityCalendar(".availability-calendar");  
+  // }
   
 };
 
