@@ -1,13 +1,83 @@
-%h3 Your next bookings
+- content_for :title do
+  Nomad Stays
 
-%table.table
-  - @bookings.each do |booking|
-    %tr
-      %td
-        =link_to booking.stay.title, booking_path(booking.id)
-      %td
-        = booking.date_from
-      %td
-        = booking.date_to
-      %td
-        = booking.status
+#bookings-show.has-padding
+
+  %h3 Your next bookings
+
+  .bookings-container
+
+    - @bookings.each do |booking|
+      .booking
+        = render :partial => 'stays/stay_card', :locals => {:stay => booking.stay}    
+
+        .details
+          .info
+            .title= booking.stay.title
+            .location #{booking.stay.city} , #{booking.stay.country_name}
+            .dates You will arrive the #{booking.date_from} and stay for #{booking.stay_length_in_months} months
+
+            .services
+              - if booking.service_laundry
+                %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+                Laundry
+
+              - if booking.service_cleaning
+                %p
+                  %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+                  Weekly cleaning
+
+              - if booking.service_pickup
+                %p
+                  %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+                  Pick me up 
+
+              - if booking.service_sim_card
+                %p
+                  %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+                  Local SIM card
+
+            .status-info
+              - if booking.status == "pending"
+                Your host has yet to accept this booking.
+              - elsif booking.status == "accepted"
+                - if booking.paid == true
+                  This booking is confirmed and paid !
+                - else
+                  Your host has confirmed this booking, you can now proceed to pay.
+              - elsif booking.status == "rejected"
+                Your host has rejected this booking.
+              - elsif booking.status == "cancelled"
+                This booking has been cancelled.
+
+            .payment
+              - if booking.status == "accepted" and booking.paid == false
+                %a{"data-paypal-button" => "true", :href => "/bookings/#{booking.id}/pay"}
+                  %img{:alt => "Pay Now", :src => "//www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif"}/            
+
+          .status
+
+            - if booking.status == "pending"
+
+              = link_to "/bookings/#{booking.id}/accept" do
+                %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Pending for approval
+
+              = link_to "/bookings/#{booking.id}/cancel_by_nomad" do
+                %button.btn.btn-danger{:type => "button"} Cancel booking                
+
+            - elsif booking.status == "accepted"
+
+              - if booking.paid == true
+                %button.btn.btn-success{:type => "button"} Booking confirmed
+              - else
+                %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Waiting for payment
+                = link_to "/bookings/#{booking.id}/cancel_by_nomad" do
+                  %button.btn.btn-danger{:type => "button"} Cancel booking
+
+            - elsif booking.status == "rejected"
+
+              %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking rejected
+
+            - elsif booking.status == "cancelled"
+
+              %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking cancelled     

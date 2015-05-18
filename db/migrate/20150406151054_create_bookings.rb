@@ -8,15 +8,17 @@ class CreateBookings < ActiveRecord::Migration
       t.date :date_to,                                null: false
       t.integer :stay_length_in_months,               null: false
 
-      t.boolean :paid,                                null: false, unique: true, default: false
-      t.string  :status,                              null: false
-
       t.boolean :service_pickup
       t.boolean :service_laundry
       t.boolean :service_cleaning
       t.boolean :service_sim_card
 
       t.text :special_request
+
+      t.boolean :paid,                                null: false, default: false
+      t.string  :status,                              null: false, default: "pending"
+
+      t.integer :bill_total,                          null: false
 
       t.timestamps null: false
     end

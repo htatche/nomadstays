@@ -17,7 +17,7 @@
       .row
         .col-md-12
           = render "header/header"
-          = render "header/subheader"
+          / = render "header/subheader"
 
           .main-panel
             - if flash[:alert]
@@ -27,20 +27,3 @@
               %p.bg-warning= flash[:notice]
 
             = yield
-
-        / .col-md-2
-        /   .left-panel
-        /     = render "menu/menu"
-
-        / .col-md-10
-        /   .main-panel
-        /     - if flash[:alert]
-        /       %p.bg-danger= flash[:alert]
-
-        /     - if flash[:notice]      
-        /       %p.bg-warning= flash[:notice]
-
-        /     .title
-        /       %h1 Nomad | Stays
-
-        /     = yield

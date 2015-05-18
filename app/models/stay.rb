@@ -23,7 +23,8 @@ class Stay < ActiveRecord::Base
   validates :accomodation_type, presence: true, allow_blank: false
 
   validates_presence_of       :street_address
-  validates_presence_of       :country
+  validates_presence_of       :country_code
+  validates_presence_of       :country_name
   validates_presence_of       :city
   validates_presence_of       :full_address
 
@@ -59,9 +60,9 @@ class Stay < ActiveRecord::Base
 
   def build_full_address
     if state
-      full_address = street_address + ", " + city + ", " + state + ", " + country
+      full_address = street_address + ", " + city + ", " + state + ", " + country_name
     else
-      full_address = street_address + ", " + city + ", " + country
+      full_address = street_address + ", " + city + ", " + country_name
     end
   end
 
@@ -99,5 +100,13 @@ class Stay < ActiveRecord::Base
   def cover_photo
     stay_photos.where( cover: true ).first
   end
+
+  # def get_country_name
+  #   debugger
+
+  #   country = ISO3166::Country[country]
+  #   # country.translations[I18n.locale.to_s] || country.name
+  #   country.name
+  # end  
 
 end

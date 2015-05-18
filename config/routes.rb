@@ -6,17 +6,10 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: "registrations" }, class_name: "FormUser"
   get "users/:id" => "users#profile"
 
-  # Stays, rooms, bookings
-  resources :stays do
-    resources :rooms
-    resources :bookings
-  end  
-
-  # Stay photos
-  resources :stay_photos 
-  get "stay_photos/:id/set_as_cover" => "stay_photos#set_as_cover"
-
   # Bookings
+  resources :bookings
+  get "bookings/:id/cancel_by_nomad" => "bookings#cancel_by_nomad"    
+
   get "bookings/:id/payment" => "bookings#payment"
   get "bookings/:id/pay" => "bookings#pay"
 
@@ -26,6 +19,15 @@ Rails.application.routes.draw do
   get  "stay/:stay_id/room/:room_id/book" => "bookings#new"
   post "stay/:stay_id/room/:room_id/book" => "bookings#create"
 
+  # Stays, rooms, bookings
+  resources :stays do
+    resources :rooms
+  end  
+
+  # Stay photos
+  resources :stay_photos 
+  get "stay_photos/:id/set_as_cover" => "stay_photos#set_as_cover"
+
   # Admin
   namespace :admin do
     resources :stays
@@ -34,7 +36,6 @@ Rails.application.routes.draw do
     get "bookings/:id/accept" => "bookings#accept"
     get "bookings/:id/reject" => "bookings#reject"
     get "bookings/:id/cancel_by_host" => "bookings#cancel_by_host"
-    get "bookings/:id/cancel_by_nomad" => "bookings#cancel_by_nomad"    
   end
 
 

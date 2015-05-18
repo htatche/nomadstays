@@ -9,7 +9,7 @@
 
   .row
     .col-md-6
-      = simple_form_for @booking, :url => stay_bookings_path(stay_id: @stay.id) , :method => :post do |f|    
+      = simple_form_for @booking, :url => bookings_path(stay_id: @stay.id) , :method => :post do |f|    
 
         = f.error_notification
 

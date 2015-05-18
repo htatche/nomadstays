@@ -2,7 +2,7 @@
   #{@stay.title}
 
 - content_for :subheader do
-  %p= link_to "Book this stay", new_stay_booking_path(stay_id: @stay.id)
+  %p= link_to "Book this stay", new_booking_path(stay_id: @stay.id)
 
 #stays-show
 
@@ -26,7 +26,7 @@
         .price
           15 $ monthly    
       .bookit   
-        = link_to "Book", new_stay_booking_path(stay_id: @stay.id)
+        = link_to "Book", new_booking_path(stay_id: @stay.id)
 
   .content
 

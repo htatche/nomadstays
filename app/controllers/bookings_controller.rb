@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   
   def index
-    @bookings = current_user.bookings
+    @bookings = current_user.bookings.order(created_at: :desc)
   end
 
   def show
@@ -32,8 +32,7 @@ class BookingsController < ApplicationController
     @booking.stay_id = params[:stay_id]
     @booking.user_id = current_user.id
     @booking.date_to = @booking.date_from + @booking.stay_length_in_months.months
-    @booking.paid = false
-    @booking.status = "pending"
+    @booking.bill_total = @booking.total
 
     @booking.save
 
@@ -52,60 +51,11 @@ class BookingsController < ApplicationController
 
   end
 
-
   def edit
 
   end
 
   def update
-  end
-
-  def accept
-    @booking = Booking.find(params[:id])
-
-    @booking.status = "accepted"
-
-    if @booking.save
-      flash[:notice] = "Great ! #{@booking.user.first_name} will soon receive a notification."
-
-      BookingMailer.booking_accepted_nomad_email(@booking).deliver
-
-      redirect_to stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
-    else
-      render stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
-    end    
-  end
-
-  def reject
-    @booking = Booking.find(params[:id])
-
-    @booking.status = "rejected"
-
-    if @booking.save
-      flash[:notice] = "We are sorry that you can't welcome #{@booking.user.first_name}, maybe next time ?"
-
-      BookingMailer.booking_rejected_nomad_email(@booking).deliver
-
-      redirect_to stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
-    else
-      render stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
-    end      
-  end
-
-  def cancel_by_host
-    @booking = Booking.find(params[:id])
-
-    @booking.status = "cancelled"
-
-    if @booking.save
-      flash[:notice] = "#{@booking.user.first_name}'s booking has been cancelled."
-
-      BookingMailer.booking_cancelled_by_host_nomad_email(@booking).deliver
-
-      redirect_to stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
-    else
-      render stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
-    end      
   end
 
   def cancel_by_nomad
@@ -118,15 +68,11 @@ class BookingsController < ApplicationController
 
       BookingMailer.booking_cancelled_by_nomad_host_email(@booking).deliver
 
-      redirect_to stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
+      redirect_to booking_path(stay_id: @booking.stay.id, id: @booking.id)
     else
-      render stay_booking_path(stay_id: @booking.stay.id, id: @booking.id)
+      render booking_path(stay_id: @booking.stay.id, id: @booking.id)
     end      
   end  
-
-  def payment
-    @booking = Booking.find(params[:id])
-  end
 
   def pay
     @booking = Booking.find(params[:id])

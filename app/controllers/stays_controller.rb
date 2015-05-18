@@ -42,6 +42,7 @@ class StaysController < ApplicationController
       @stay = Stay.new(stay_params)
       @stay.accomodation_type = accomodation_type
       @stay.user_id = current_user.id
+      @stay.country_name = ISO3166::Country[@stay.country_code]
       @stay.full_address = @stay.build_full_address
 
       # Apartment / House
@@ -102,6 +103,9 @@ class StaysController < ApplicationController
     def update
       @stay = Stay.find(params[:id])
 
+      @stay.country_name = ISO3166::Country[country_code]
+      @stay.full_address = @stay.build_full_address
+
       if @stay.update(stay_params)
 
         if params[:stay_photos]
@@ -126,7 +130,7 @@ class StaysController < ApplicationController
 
     def stay_params
       params.require(:stay).permit(:title, :description, :accomodation_type,
-                                   :latitude, :longitude, :street_address, :city, :state, :country,
+                                   :latitude, :longitude, :street_address, :city, :state, :country_code,
                                    :wifi, :wifi_speed, :mobile_data, :mobile_data_speed,
                                    :terrace, :router_access, :desk,
                                    :service_pickup, :service_laundry, :service_cleaning, :service_sim_card,

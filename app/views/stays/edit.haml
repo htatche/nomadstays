@@ -1,4 +1,4 @@
-#stays-edit.with-padding
+#stays-edit.has-padding
 
   - content_for :title do
     Update your stay
@@ -14,7 +14,6 @@
 
     = link_to 'Remove this stay', stay_path(@stay.id), method: :delete 
 
-  / = simple_form_for @stay, method: :put, :html => { :multipart => true }, wrapper: :vertical_input_group do |f|  
   = simple_form_for @stay, :method => :put, :html => { :multipart => true } do |f|      
     = f.input :latitude, :as => :hidden
     = f.input :longitude, :as => :hidden
@@ -78,7 +77,7 @@
           .col-md-6
 
             .input-group
-              = f.input :country
+              = f.input :country_code
               = f.input :state 
               = f.input :city
               = f.input :street_address

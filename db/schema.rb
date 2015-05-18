@@ -31,18 +31,19 @@ ActiveRecord::Schema.define(version: 20150509154913) do
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "stay_id"
-    t.date     "date_from",                             null: false
-    t.date     "date_to",                               null: false
-    t.integer  "stay_length_in_months",                 null: false
-    t.boolean  "paid",                  default: false, null: false
-    t.string   "status",                                null: false
+    t.date     "date_from",                                 null: false
+    t.date     "date_to",                                   null: false
+    t.integer  "stay_length_in_months",                     null: false
     t.boolean  "service_pickup"
     t.boolean  "service_laundry"
     t.boolean  "service_cleaning"
     t.boolean  "service_sim_card"
     t.text     "special_request"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.boolean  "paid",                  default: false,     null: false
+    t.string   "status",                default: "pending", null: false
+    t.integer  "bill_total",                                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "bookings", ["stay_id"], name: "index_bookings_on_stay_id", using: :btree
@@ -110,7 +111,8 @@ ActiveRecord::Schema.define(version: 20150509154913) do
     t.string   "street_address",         null: false
     t.string   "city",                   null: false
     t.string   "state",                  null: false
-    t.string   "country",                null: false
+    t.string   "country_name",           null: false
+    t.string   "country_code",           null: false
     t.string   "full_address",           null: false
     t.boolean  "wifi",                   null: false
     t.string   "wifi_speed"

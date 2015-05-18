@@ -1,0 +1,8 @@
+.stay-card
+  .photo{:style => "background-image: url(#{image_path stay.cover_photo.file.card.url})"}
+    .price
+      = stay.monthly_price
+      = "$ / month"            
+  .info
+    .title
+      = stay.title

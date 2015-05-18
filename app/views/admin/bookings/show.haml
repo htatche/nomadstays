@@ -22,9 +22,9 @@
 
     - if @booking.status == "pending"
 
-      = link_to "/bookings/#{@booking.id}/accept" do
+      = link_to "/admin/bookings/#{@booking.id}/accept" do
         %button.btn.btn-success{:type => "button"} Welcome #{@booking.user.first_name}
-      = link_to "/bookings/#{@booking.id}/reject" do
+      = link_to "/admin/bookings/#{@booking.id}/reject" do
         %button.btn.btn-danger{:type => "button"} Unavailable
 
     - elsif @booking.status == "accepted"
@@ -33,7 +33,7 @@
         %button.btn.btn-success{:type => "button"} Payment received
       - else
         %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Waiting for payment
-        = link_to "/bookings/#{@booking.id}/cancel_by_host" do
+        = link_to "/admin/bookings/#{@booking.id}/cancel_by_host" do
           %button.btn.btn-danger{:type => "button"} Cancel booking
 
     - elsif @booking.status == "rejected"
