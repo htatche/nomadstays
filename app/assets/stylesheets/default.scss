@@ -40,7 +40,7 @@ body {
 .header {
   background-color: #3F51B5;
   padding: 5px;
-  height: 50px;
+  height: 52px;
 
   .logo {
     img {
@@ -111,7 +111,7 @@ p.subtitle {
 }  
 
 button {
-  width: 150px;
+  min-width: 150px;
   margin: 0 10px;
 }
 
@@ -465,7 +465,7 @@ form.new_user, form.edit_user {
  * New
  */
 
-#new-booking {
+#bookings-new {
 
   #extra-services {
 
@@ -568,6 +568,11 @@ form.new_user, form.edit_user {
 
         button {
           margin: 10px;
+        }
+
+        .view-details {
+          margin-top: 20px;
+          font-size: 15px;
         }
       }               
 

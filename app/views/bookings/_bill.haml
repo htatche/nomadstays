@@ -32,9 +32,11 @@
             = @stay.accomodation_type
         %td
           - if @room
-            %p#stay_price= "#{@room.monthly_price}"
+            %p#stay_price{"data-price": @room.monthly_price} 
+              = number_to_currency(@room.monthly_price)
           - else
-            %p#stay_price= "#{@stay.monthly_price}"
+            %p#stay_price{"data-price": @stay.monthly_price} 
+              = number_to_currency(@stay.monthly_price)
 
       / Extra services       
 
@@ -42,29 +44,29 @@
         %tr.extra-service#booking_service_laundry
           %td
             Laundry
-          %td
-            = "#{@stay.service_laundry_price}"
+          %td{"data-price": @stay.service_laundry_price} 
+            = number_to_currency(@stay.service_laundry_price)
 
       - if @stay.service_cleaning
         %tr.extra-service#booking_service_cleaning
           %td
             Weekly cleaning
-          %td
-            = "#{@stay.service_cleaning_price}"                    
+          %td{"data-price": @stay.service_cleaning_price} 
+            = number_to_currency(@stay.service_cleaning_price)                    
 
       - if @stay.service_sim_card
         %tr.extra-service#booking_service_sim_card
           %td
             Local SIM card
-          %td
-            = "#{@stay.service_sim_card_price}"          
+          %td{"data-price": @stay.service_sim_card_price} 
+            = number_to_currency(@stay.service_sim_card_price)         
 
       - if @stay.service_pickup
-        %tr.extra-service#booking_pickup
+        %tr.extra-service#booking_service_pickup
           %td
             Pickup
-          %td
-            = "#{@stay.service_pickup_price}"    
+          %td{"data-price": @stay.service_pickup_price} 
+            = number_to_currency(@stay.service_pickup_price)
 
       / Total
 
@@ -73,4 +75,3 @@
           Total for
           %span#months
         %td#pricetag
-          TOTAL

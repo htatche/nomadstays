@@ -53,31 +53,35 @@
             .payment
               - if booking.status == "accepted" and booking.paid == false
                 %a{"data-paypal-button" => "true", :href => "/bookings/#{booking.id}/pay"}
-                  %img{:alt => "Pay Now", :src => "//www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif"}/            
+                  = image_tag "btn_paynow_107x26.png"
 
           .status
+            .booking-status
 
-            - if booking.status == "pending"
+              - if booking.status == "pending"
+                = link_to "/bookings/#{booking.id}/accept" do
+                  %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Pending for approval
 
-              = link_to "/bookings/#{booking.id}/accept" do
-                %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Pending for approval
-
-              = link_to "/bookings/#{booking.id}/cancel_by_nomad" do
-                %button.btn.btn-danger{:type => "button"} Cancel booking                
-
-            - elsif booking.status == "accepted"
-
-              - if booking.paid == true
-                %button.btn.btn-success{:type => "button"} Booking confirmed
-              - else
-                %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Waiting for payment
                 = link_to "/bookings/#{booking.id}/cancel_by_nomad" do
-                  %button.btn.btn-danger{:type => "button"} Cancel booking
+                  %button.btn.btn-danger{:type => "button"} Cancel booking                
 
-            - elsif booking.status == "rejected"
+              - elsif booking.status == "accepted"
+                - if booking.paid == true
+                  %button.btn.btn-success{:type => "button", :disabled => "disabled"} Booking confirmed
+                - else
+                  %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Waiting for payment
+                  = link_to "/bookings/#{booking.id}/cancel_by_nomad" do
+                    %button.btn.btn-danger{:type => "button"} Cancel booking
 
-              %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking rejected
+              - elsif booking.status == "rejected"
+                %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking rejected
 
-            - elsif booking.status == "cancelled"
+              - elsif booking.status == "cancelled"
+                %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking cancelled     
 
-              %button.btn.btn-danger{:type => "button", :disabled => "disabled"} Booking cancelled     
+            .view-details
+              = link_to booking_path(booking.id) do
+                %button.btn.btn-default{:type => "button"}
+                  %span.glyphicon.glyphicon-pencil{"aria-hidden" => "true"}
+                  Manage this booking
+

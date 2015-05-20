@@ -18,4 +18,5 @@
 //= require gmaps
 //= require jquery.geocomplete
 //= require moment.min
+//= require accounting
 //= require_tree .

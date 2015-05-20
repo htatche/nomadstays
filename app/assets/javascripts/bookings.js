@@ -35,20 +35,22 @@ NewBookingView.prototype.update_bill_services = function() {
 NewBookingView.prototype.update_bill_total = function() {
   var selected_option = $(this).find(":selected");
   var total = 0;
+  var formatted_total;
 
   // Stay price
-  total = total + parseInt($("#bill #stay_price").html());
+  total = total + $("#bill #stay_price").data("price");
 
   // Extra services sum
-  $(".extra-service.selected td:nth-child(2)").each(function(index,value) {
-    var html = $(value).html();
-    total = total + parseInt(html);
+  $(".extra-service.selected td:nth-child(2)").each(function(index,el) {
+    var price = $(el).data("price")
+    total = total + parseInt(price);
   })  
 
   total = total * parseInt(selected_option.val());
+  formatted_total = accounting.formatMoney(total);
 
   $("#bill #total #months").html(selected_option.text());
-  $("#bill #total #pricetag").html(total);
+  $("#bill #total #pricetag").html(formatted_total);
 }
 
 NewBookingView.prototype.read_dom_events = function(extra_services_els, select_length_el, date_from_el) {
