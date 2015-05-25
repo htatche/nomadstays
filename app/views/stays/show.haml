@@ -1,8 +1,9 @@
 - content_for :title do
-  #{@stay.title}
+  / #{@stay.title}
+  Nomad Stays
 
-- content_for :subheader do
-  %p= link_to "Book this stay", new_booking_path(stay_id: @stay.id)
+/- content_for :subheader do
+/  %p= link_to "Book this stay", new_booking_path(stay_id: @stay.id)
 
 #stays-show
 
@@ -11,7 +12,7 @@
       #{@stay.title}
     .price
       #{@stay.monthly_price} $ / month
-    .photo{:style => "background-image: url(#{image_path @cover_photo.file_url})"}
+    .photo{:style => "background-image: url(#{image_path @stay.cover_photo.file_url})"}
 
   .photo-subheader
     .extra-services

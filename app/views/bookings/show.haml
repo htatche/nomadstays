@@ -1,6 +1,25 @@
 - content_for :title do
   Nomad Stays
 
-#bookings-show.has-padding
+#bookings-show
 
-  %h3 Your booking at #{@booking.stay.title}
+  .booking-header
+    .photo{:style => "background-image: url(#{image_path @stay.cover_photo.file_url})"}
+    .title
+      %span= "Your booking at"
+      %span.value
+        = link_to @stay.title, stay_path(@stay)
+    .length
+      .months-number= @booking.stay_length_in_months
+      .months-text months
+      .dates
+        .from
+          .day= @booking.date_from.day
+          .month-year 
+            .month= @booking.date_from.strftime("%b").downcase
+            .year= @booking.date_from.year
+        .to
+          .day= @booking.date_to.day
+          .month-year 
+            .month= @booking.date_to.strftime("%b").downcase
+            .year= @booking.date_to.year
