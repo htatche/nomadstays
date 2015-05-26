@@ -1,5 +1,13 @@
 // TODO: Conver this and the rest of JS files to new ES6 modules :-P
 
+/* ==========================================================================
+   Bookings
+   ========================================================================== */
+
+/*
+ * New
+ */
+
 var NewBookingView = function() {
 
   var parent = this;
@@ -80,21 +88,74 @@ NewBookingView.prototype.read_dom_events = function(extra_services_els, select_l
 NewBookingView.prototype.ready = function() {
   var parent = this;
 
-  if ($("#new_booking").length > 0) {
-    var select_length_el = $("#booking_stay_length_in_months");
-    var extra_services_els = $("#extra-services :checkbox");
-    var date_from_el = $("#booking_date_from"); 
+  var select_length_el = $("#booking_stay_length_in_months");
+  var extra_services_els = $("#extra-services :checkbox");
+  var date_from_el = $("#booking_date_from"); 
 
-    parent.update_bill_length.call(select_length_el);
-    parent.update_bill_total.call(select_length_el);
-    parent.read_dom_events(extra_services_els, select_length_el, date_from_el);
+  parent.update_bill_length.call(select_length_el);
+  parent.update_bill_total.call(select_length_el);
+  parent.read_dom_events(extra_services_els, select_length_el, date_from_el);
 
-    renderAvailabilityCalendar(".availability-calendar");  
-  }
-
+  renderAvailabilityCalendar(".availability-calendar");  
 }
 
-var new_booking_form = new NewBookingView();
+/*
+ * Show
+ */
 
-$(document).ready(new_booking_form.ready.bind(new_booking_form));
-$(document).on('page:load', new_booking_form.ready.bind(new_booking_form));  
+var BookingsShowView = function() {
+  var parent = this;  
+
+  var map, marker, loc, lat, lng;  
+}
+
+// Load GMaps
+BookingsShowView.prototype.load_map = function(lat, long) {
+
+  if (arguments.length == 0) {
+    var latitude  = -12.043333;
+    var longitude = -77.028333;
+  }
+
+  return new GMaps({
+    el: '#map',
+    lat: latitude,
+    lng: longitude,
+    zoom: 5,
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    // draggable: false,
+    mapTypeId: google.maps.MapTypeId.ROADMAP    
+  }); 
+}
+
+BookingsShowView.prototype.ready = function() {
+  var parent = this;
+
+  parent.load_map();
+
+      // var latitude  = parseFloat($("#latitude").html());
+    // var longitude = parseFloat($("#longitude").html());
+}
+
+/*
+ * Load
+ */
+
+var load_view = function() {
+  if ($("#new_booking").length > 0) {
+    var new_booking_form = new NewBookingView();
+    new_booking_form.ready();
+  }
+
+  if ($("#bookings-show").length > 0) {
+    var bookings_show_view = new BookingsShowView();
+    bookings_show_view.ready();
+  }
+}
+
+$(document).ready(load_view.bind());
+$(document).on('page:load', load_view.bind());    
+

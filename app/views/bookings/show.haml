@@ -5,6 +5,9 @@
 
   .booking-header
     .photo{:style => "background-image: url(#{image_path @stay.cover_photo.file_url})"}
+    .host
+      = link_to root_path(@booking.user.id) do
+        = image_tag(@booking.user.photo, class: "gravatar")    
     .title
       %span= "Your booking at"
       %span.value
@@ -23,3 +26,135 @@
           .month-year 
             .month= @booking.date_to.strftime("%b").downcase
             .year= @booking.date_to.year
+
+  .booking-subheader
+    - if @booking.status == "pending"
+      .status
+        .alert.alert-warning{:role => "alert"} 
+          %span.glyphicon.glyphicon-asterisk{"aria-hidden" => "true"}    
+          Waiting for your host to approve this booking .                      
+
+    - elsif @booking.status == "accepted"
+      - if !@booking.paid 
+        .alert.alert-success{:role => "alert"} 
+          %span.glyphicon.glyphicon-asterisk{"aria-hidden" => "true"}    
+          Your host has accepted your request ! Please proceed to pay.
+      - else
+        .alert.alert-success{:role => "alert"} 
+          %span.glyphicon.glyphicon-asterisk{"aria-hidden" => "true"}    
+          This booking has been accepted and paid !
+
+    - elsif @booking.status == "rejected"
+      .alert.alert-danger{:role => "alert"} 
+        %span.glyphicon.glyphicon-asterisk{"aria-hidden" => "true"}    
+        Your host has not approved this booking, please contact with him.
+
+    - elsif @booking.status == "cancelled"
+      .alert.alert-danger{:role => "alert"} 
+        %span.glyphicon.glyphicon-asterisk{"aria-hidden" => "true"}    
+        Your host has cancelled this booking.
+
+    .action-buttons
+      - if @booking.status == "pending"
+        = link_to "/bookings/#{@booking.id}/cancel_by_nomad" do
+          %button.btn-primary.btn-lg{:type => "button"} Cancel booking                
+
+      - elsif @booking.status == "accepted"
+        - if !@booking.paid 
+          = link_to "/bookings/#{@booking.id}/pay" do
+            %button.btn-primary.btn-lg.pay{:type => "button"} Pay now
+          = link_to "/bookings/#{@booking.id}/cancel_by_nomad" do
+            %button.btn-primary.btn-lg{:type => "button"} Cancel booking
+
+  .booking-content   
+
+    .information
+
+      .status
+        / .alert.alert-warning{:role => "alert"} 
+        /   Waiting for your host to approve this booking
+
+      .services
+        %h3 You requested the following services
+
+        .service
+          = image_tag "icons/car.png"
+          %p Pick me up
+        .service
+          = image_tag "icons/washing.png"
+          %p Laundry
+        .service
+          = image_tag "icons/vacuum.png"
+          %p Weekly Cleaning 
+
+    .bill
+
+      %h3 Your bill
+
+      %table.table
+
+        / Stay 
+
+        %tr
+          %td
+            - if @room
+              Room
+            - else
+              = @stay.accomodation_type
+          %td
+            - if @room
+              %p#stay_price{"data-price": @room.monthly_price} 
+                = number_to_currency(@room.monthly_price)
+            - else
+              %p#stay_price{"data-price": @stay.monthly_price} 
+                = number_to_currency(@stay.monthly_price)
+
+        / Extra services       
+
+        - if @stay.service_laundry
+          %tr.extra-service#booking_service_laundry
+            %td
+              Laundry
+            %td{"data-price": @stay.service_laundry_price} 
+              = number_to_currency(@stay.service_laundry_price)
+
+        - if @stay.service_cleaning
+          %tr.extra-service#booking_service_cleaning
+            %td
+              Weekly cleaning
+            %td{"data-price": @stay.service_cleaning_price} 
+              = number_to_currency(@stay.service_cleaning_price)                    
+
+        - if @stay.service_sim_card
+          %tr.extra-service#booking_service_sim_card
+            %td
+              Local SIM card
+            %td{"data-price": @stay.service_sim_card_price} 
+              = number_to_currency(@stay.service_sim_card_price)         
+
+        - if @stay.service_pickup
+          %tr.extra-service#booking_service_pickup
+            %td
+              Pickup
+            %td{"data-price": @stay.service_pickup_price} 
+              = number_to_currency(@stay.service_pickup_price)
+
+        / Fee
+        %tr.extra-service#booking_service_laundry
+          %td
+            Nomad Stays fee
+          %td
+            = number_to_currency(0)        
+
+        / Total
+
+        %tr.total
+          %td
+            = "Total for #{@booking.stay_length_in_months} months"
+
+          %td
+            = number_to_currency(@booking.total)
+
+  .booking-map
+    = render "stays/map"
+

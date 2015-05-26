@@ -194,6 +194,9 @@ form.new_user, form.edit_user {
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%; 
+
+  width: 75px;
+  height: 75px;
 }
 
 /* ==========================================================================
@@ -602,10 +605,17 @@ form.new_user, form.edit_user {
       z-index: -1;
     }      
 
+    .host {
+      position: absolute;
+      left: 55px;
+      top: 80px;
+      z-index: 0;      
+    } 
+
     .title {
       position: absolute;
       left: 55px;
-      bottom: 40px;
+      top: 265px;
 
       float: left;
       width: 75%;
@@ -708,9 +718,131 @@ form.new_user, form.edit_user {
     //     z-index: -1;
     //   }
 
-    // }   
+    // }    
 
   }
+
+  .booking-subheader {
+    height: 80px;
+    padding: 20px 0;
+
+    .status {
+      width: 100%;
+      text-align: left;
+    }
+
+    .action-buttons {
+      float: right;
+      width: 30%;
+      margin-bottom: 15px;
+      
+      text-align: right;
+
+      .btn-primary {
+        width: 175px;
+        margin: 0 0 0 10px;
+        padding: 10px 16px;
+        border-radius: 0px;    
+        background-color: #3F51B5;
+        border: none;  
+
+        font-size: 20px;
+        line-height: 1.3333333;        
+
+        &.pay {
+          background-color: #FFEB3B;
+          color: #212121;
+        }
+
+      }
+
+    }
+
+  }  
+
+  .booking-content {
+
+    .information {
+      float: left;
+      width:  60%;   
+
+      .status {
+        width: 50%;
+      } 
+
+      .services {
+        .service {
+          float: left;
+          width: 100px;
+          // height: 120px;
+
+          margin: 20px 20px 0 0;
+
+          text-align: center;
+          font-size: 18px;
+
+          img {
+            width: 50px;
+            height: 50px;
+          }        
+        }
+      }
+    }
+
+    .bill {
+      float: right;
+      width: 40%;
+      // margin-top: 40px;
+      background-color: #4860E9;
+      color: #212121;
+      padding: 20px;
+      position: relative;
+      width: 500px;
+      padding: 50px;
+      /* margin: 0 auto; */
+      background-color: #fff;
+      -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+
+      tr.total {
+        font-size: 20px;
+      }
+    }
+
+    .bill:before, .bill:after
+    {
+      position: absolute;
+      width: 40%;
+      height: 10px;
+      content: ' ';
+      left: 12px;
+      bottom: 12px;
+      background: transparent;
+      -webkit-transform: skew(-5deg) rotate(-5deg);
+      -moz-transform: skew(-5deg) rotate(-5deg);
+      -ms-transform: skew(-5deg) rotate(-5deg);
+      -o-transform: skew(-5deg) rotate(-5deg);
+      transform: skew(-5deg) rotate(-5deg);
+      -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    } 
+
+    .bill:after
+    {
+      left: auto;
+      right: 12px;
+      -webkit-transform: skew(5deg) rotate(5deg);
+      -moz-transform: skew(5deg) rotate(5deg);
+      -ms-transform: skew(5deg) rotate(5deg);
+      -o-transform: skew(5deg) rotate(5deg);
+      transform: skew(5deg) rotate(5deg);
+    }
+
+  }
+
 }
 
 /*

@@ -59,8 +59,7 @@
             .booking-status
 
               - if booking.status == "pending"
-                = link_to "/bookings/#{booking.id}/accept" do
-                  %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Pending for approval
+                %button.btn.btn-warning{:type => "button", :disabled => "disabled"} Pending for approval
 
                 = link_to "/bookings/#{booking.id}/cancel_by_nomad" do
                   %button.btn.btn-danger{:type => "button"} Cancel booking                

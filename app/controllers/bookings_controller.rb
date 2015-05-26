@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find params[:id]
     @stay = @booking.stay
+    @room = Room.find(params[:room_id]) if params[:room_id]
   end
 
   def new
